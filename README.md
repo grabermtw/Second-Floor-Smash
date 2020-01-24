@@ -1,7 +1,7 @@
 # Second Floor Smash
 A Super Smash Brothers clone using custom assets enabling a wider variety of characters and stages. It is a work-in-progress.
 
-Below are some guidelines about the project structure and organization.
+### Below are some guidelines about the project structure and organization.
 
 The DefaultCharacter has the abilities that all the custom characters will share (i.e. movement, jumping, basic attack, taking damage, dodge etc.).
 
