@@ -102,9 +102,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Dodge",
-                    "type": "Value",
-                    "id": "e232da74-b8a7-4e88-b852-4f6376a6b42e",
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "29648bf3-fd06-4748-98b4-91036a367e48",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -266,37 +266,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Button With One Modifier",
-                    "id": "961ecb84-3233-47cc-9e32-f4547f3801da",
-                    "path": "ButtonWithOneModifier",
+                    "name": "",
+                    "id": "2d8af351-88ed-46bc-a710-ac08b5fb4930",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dodge",
-                    "isComposite": true,
+                    "action": "Grab",
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "54c5618f-5d4b-41d1-ac8a-3dcc6158ea87",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "260dfd3e-ba99-4773-a4cd-2b99af922d94",
-                    "path": "<Gamepad>/dpad/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

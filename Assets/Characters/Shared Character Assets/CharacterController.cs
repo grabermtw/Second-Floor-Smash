@@ -11,7 +11,6 @@ public class CharacterController : MonoBehaviour
     Vector2 leftJoystick;
     Vector3 movement;
     float moveSpeed = 6f;
-    public float damage = 0f;
     int direction;
     Rigidbody2D rb;
     int jumping;
@@ -20,11 +19,16 @@ public class CharacterController : MonoBehaviour
     bool canMove; // Used to determine whether or not the character is "busy" (i.e. in the middle of punching or something)
                   // Assinged in Update()
     bool ready = false; // Set to true at end of Start(), used to prevent unwanted early input from messing things up
+                        // Also set to true whenever the script is enabled and set to false whenever it is disabled.
+                        //bool started = false; // Set to true once and only once, at the end of start.
+                        // Prevents OnEnable from prematurely setting ready to true.
+
     GameObject standCollider;
     GameObject crouchCollider;
     ContactFilter2D attackFilter;
+    ContactFilter2D grabFilter;
+    DamageControl damageControl;
     PlayerNumberManager playerManager;
-    TextMeshProUGUI damageDisplay;
     int playerNumber;
 
 
@@ -32,6 +36,8 @@ public class CharacterController : MonoBehaviour
     public float hangOffset; // Distance down from the edge that we must be to realistically hang off the edge.
                              // This really depends on the character's arm/torso length.
     public int maxShield; // Maximum number of frames of shield
+    public float grabHeight; // Height on the player that grabbing occurs at
+    public float grabRange; // How far is the player's reach?
     public GameObject shield;
 
 
@@ -39,6 +45,7 @@ public class CharacterController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        damageControl = GetComponent<DamageControl>();
 
         standCollider = transform.GetChild(0).gameObject;
         crouchCollider = transform.GetChild(1).gameObject;
@@ -61,29 +68,33 @@ public class CharacterController : MonoBehaviour
             collider.gameObject.layer = 8 + playerNumber;
         }
 
-        // Display the damage reading for this player
-        damageDisplay = playerManager.GetDamageText(playerNumber);
-        Debug.Log(damageDisplay);
-        damageDisplay.text = "0.00%";
+        // Inform DamageControl of what our number is
+        damageControl.AssignPlayerNumber(playerNumber);
 
         // We only want our attacks to hit the enemy players
         // We must set the appropriate mask based on which player we are.
         attackFilter = new ContactFilter2D();
+        // Same goes for grabbing, except that grabbing should work against shielded players
+        grabFilter = new ContactFilter2D();
         if (playerNumber == 1)
         {
             attackFilter.SetLayerMask(LayerMask.GetMask("Player 2", "Player 3", "Player 4"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 2", "Player 3", "Player 4", "Shield"));
         }
         else if (playerNumber == 2)
         {
             attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 3", "Player 4"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 3", "Player 4", "Shield"));
         }
         else if (playerNumber == 3)
         {
             attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 4"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 4", "Shield"));
         }
         else
         {
             attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 3"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 3", "Shield"));
         }
 
         // Default the Shield animation parameter to -1. This way, later on, if it counts down to 0,
@@ -91,6 +102,11 @@ public class CharacterController : MonoBehaviour
         animator.SetInteger("Shield", -1);
 
         ready = true;
+    }
+
+    public void SetReady(bool weGood)
+    {
+        ready = weGood;
     }
 
     // ----------------------- STANDARD ATTACK SECTION ---------------------------------------
@@ -216,41 +232,100 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    // ----------------------- GRABBING SECTION --------------------------
+    // There are separate scripts devoted to grabbing, but this is what gets that going.
+    // The "Grab" script is for the assailant, and the "Grabbed" script is for the victim.
+
+    // This method called when we're gonna try to grab
+    private void OnGrab()
+    {
+        if (ready && canMove)
+        {
+            Vector2 origin = new Vector2(rb.position.x, rb.position.y + grabHeight);
+            Vector2 castDirection = new Vector2(Mathf.Cos(0) * direction, Mathf.Sin(0));
+            RaycastHit2D[] results = new RaycastHit2D[5];
+
+            animator.SetTrigger("Grab"); // begin the grabbing animation
+
+            int numHits = Physics2D.Raycast(origin, castDirection, grabFilter, results, grabRange);
+
+            // If someone was in range, grab them!
+            if (numHits > 0)
+            {
+                // Grab script
+                Grab ourGrab = GetComponent<Grab>();
+                results[0].rigidbody.gameObject.GetComponent<CharacterController>().Grabbed(transform.position, direction, ourGrab);
+                animator.SetBool("Grabbing", true);
+
+                // Switch to the "Grab" script and disable the character controller
+                ourGrab.SetReady(true);
+                // Give the Grab script our victim and direction
+                ourGrab.SetVictim(results[0].rigidbody.gameObject.GetComponent<Grabbed>(), direction);
+                Debug.Log("We've grabbed someone, deactivating character controller!");
+                ready = false;
+            }
+            else // Didn't grab anyone
+            {
+                animator.SetBool("Grabbing", false);
+            }
+        }
+    }
+
+    // This method called when we have been grabbed
+    public void Grabbed(Vector3 assailantPos, int dir, Grab attacker)
+    {
+        // Make sure we're facing the same way as our attacker (they'll grab us from behind)
+        SetDirection(dir);
+        // Put ourselves at a good stranglin' distance
+        transform.position = new Vector3(assailantPos.x + dir * 0.15f, assailantPos.y, 0);
+        // Let the animator know we're being grabbed
+        animator.SetBool("Grabbed", true);
+
+        // Switch to the "Grabbed" script and disable the character controller
+        Grabbed ourGrabbed = GetComponent<Grabbed>();
+        ourGrabbed.SetReady(true);
+        ourGrabbed.SetAttacker(attacker);
+        Debug.Log("We've been grabbed, deactivating character controller");
+        ready = false;
+    }
+
     // ----------------------- JUMPING SECTION ---------------------------
 
     private void OnJump()
     {
-        if(ready){
-            if(animator.GetCurrentAnimatorStateInfo(0).IsTag("Hanging")){
+        if (ready)
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsTag("Hanging"))
+            {
                 Debug.Log("Jump from haning!");
                 jumping = 1;
                 animator.SetInteger("Jumping", jumping); // start jump animation
                 rb.isKinematic = false;
                 rb.AddForce(transform.up * jumpPower);
             }
-        if (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt")) // Shouldn't be able to jump while punching
-        {
-            Debug.Log("Enter jump");
-            // First Jump
-            if (rb.IsTouchingLayers(LayerMask.GetMask("Platform")))
+            if (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt")) // Shouldn't be able to jump while punching
             {
-                StopCrouch();
-                Debug.Log("Single Jump!");
-                jumping = 1;
-                animator.SetInteger("Jumping", jumping); // start jump animation
-                rb.AddForce(transform.up * jumpPower);
+                Debug.Log("Enter jump");
+                // First Jump
+                if (rb.IsTouchingLayers(LayerMask.GetMask("Platform")))
+                {
+                    StopCrouch();
+                    Debug.Log("Single Jump!");
+                    jumping = 1;
+                    animator.SetInteger("Jumping", jumping); // start jump animation
+                    rb.AddForce(transform.up * jumpPower);
+                }
+                // Double Jump
+                else if (jumping == 1)
+                {
+                    Debug.Log("Double Jump!");
+                    jumping = 2;
+                    animator.SetInteger("Jumping", jumping);
+                    // reset the verticle velocity so that our jumping force isn't hindered by a downward velocity.
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                    rb.AddForce(transform.up * jumpPower);
+                }
             }
-            // Double Jump
-            else if (jumping == 1)
-            {
-                Debug.Log("Double Jump!");
-                jumping = 2;
-                animator.SetInteger("Jumping", jumping);
-                // reset the verticle velocity so that our jumping force isn't hindered by a downward velocity.
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(transform.up * jumpPower);
-            }
-        }
         }
     }
 
@@ -420,24 +495,29 @@ public class CharacterController : MonoBehaviour
 
     // This function is called every frame by the Shield animation behavior while shielding.
     // If we should dodge, it returns the dodge direction (-1 or 1), otherwise, it returns 0.
-    public int ShouldWeDodge(){
-        if(leftJoystick.x > 0.4f){
+    public int ShouldWeDodge()
+    {
+        if (leftJoystick.x > 0.4f)
+        {
             // Yes, we should dodge to the right.
             return 1;
         }
-        else if(leftJoystick.x < -0.4f){
+        else if (leftJoystick.x < -0.4f)
+        {
             // Yes, we should dodge to the left.
             return -1;
         }
-        else{
+        else
+        {
             // No, we should not dodge.
             return 0;
         }
     }
 
     // This function is much like ShouldWeDodge(), only it returns a bool cause direction is irrelevant for sidestep
-    public bool ShouldWeSidestep(){
-        
+    public bool ShouldWeSidestep()
+    {
+
         return leftJoystick.y < -0.4f;
     }
 
@@ -545,7 +625,7 @@ public class CharacterController : MonoBehaviour
         animator.SetInteger("Jumping", jumping);
     }
 
-    
+
 
 
     // --------------------------- DEALING DAMAGE SECTION -----------------------
@@ -573,8 +653,8 @@ public class CharacterController : MonoBehaviour
     // direction is -1 for left, 1 for right
     public void Strike(float addDamage, float angle, float launchFactor, int launchDirection, bool useHitAnim = true)
     {
-        damage += addDamage;
-        float launchEnergy = damage * launchFactor;
+        damageControl.UpdateDamage(addDamage);
+        float launchEnergy = damageControl.GetDamage() * launchFactor;
 
         if (useHitAnim) // by default, we use this, but in certain cases (such as shield expiring) we don't want this
         {
@@ -593,25 +673,10 @@ public class CharacterController : MonoBehaviour
             }
             animator.SetTrigger("Hit");
         }
-        // Increase the damage score on the read-out
-        UpdateDamage();
 
         // Add our force to launch us
         rb.AddForce(new Vector2(launchEnergy * Mathf.Cos(angle) * launchDirection, launchEnergy * Mathf.Sin(angle)), ForceMode2D.Impulse);
     }
-
-    // Helper methods for other things
-    public float GetDamage()
-    {
-        return damage;
-    }
-
-    private void UpdateDamage()
-    {
-        damageDisplay.text = damage.ToString("F") + "%";
-    }
-
-
 
 
     // Use LateUpdate to reset the triggers so that they can be evaluated within the animation controller
@@ -624,6 +689,7 @@ public class CharacterController : MonoBehaviour
         animator.ResetTrigger("UpPunch");
         animator.ResetTrigger("DownPunch");
         animator.ResetTrigger("Hang");
+        animator.ResetTrigger("Grab");
     }
 
 }
