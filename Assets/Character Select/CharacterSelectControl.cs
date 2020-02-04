@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectControl : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class CharacterSelectControl : MonoBehaviour
     Transform canvas;
     bool ready = false; // Make sure everything's set before taking input
     PlayerNumberCharacterSelect playerManager;
-    
+    PlayerCharList playerCharList;
+    TokenControl tokCtrl;
+    bool hold = true;
+
 
     void Awake()
     {
@@ -27,9 +31,12 @@ public class CharacterSelectControl : MonoBehaviour
         playerManager = GameObject.Find("PlayerInputManager").GetComponent<PlayerNumberCharacterSelect>();
         token = Instantiate(playerManager.GetPlayerCursor(), transform).transform;
         cursor = token.GetComponentsInChildren<Transform>()[1];
+        tokCtrl = token.gameObject.GetComponent<TokenControl>();
 
-        Debug.Log(token.gameObject.name);
-        Debug.Log(cursor.gameObject.name);
+        // Find the player character list for checking whether we can begin the game in OnStart
+        playerCharList = GameObject.Find("PlayerCharacterList").GetComponent<PlayerCharList>();
+
+        playerCharList.AddPlayer(GetComponent<PlayerInput>().devices[0]);
 
         // All set!
         ready = true;
@@ -55,9 +62,14 @@ public class CharacterSelectControl : MonoBehaviour
     {
         if (ready)
         {
-            token.SetParent(canvas);
-            cursor.SetParent(transform);
-            Debug.Log(token.parent);
+            if (hold)
+            {
+                token.SetParent(canvas);
+                cursor.SetParent(transform);
+                Debug.Log(token.parent);
+                hold = false;
+                tokCtrl.SetHeld(hold);
+            }
         }
     }
 
@@ -66,9 +78,27 @@ public class CharacterSelectControl : MonoBehaviour
     {
         if (ready)
         {
-            token.SetParent(transform);
-            token.position = transform.position;
-            cursor.SetParent(token);
+            if (!hold)
+            {
+                token.SetParent(transform);
+                token.position = transform.position;
+                cursor.SetParent(token);
+                hold = true;
+                tokCtrl.SetHeld(hold);
+            }
+        }
+    }
+
+    // Start Button (normally "+" in Smash) is pressed to begin the game
+    private void OnStart()
+    {
+        if (ready)
+        {
+            // Determine if all the players have selected a character
+            if (playerCharList.AllSelected())
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 

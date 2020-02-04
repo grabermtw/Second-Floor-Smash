@@ -61,7 +61,7 @@ public class CharacterController : MonoBehaviour
         playerManager = GameObject.Find("PlayerInputManager").GetComponent<PlayerNumberManager>();
         playerNumber = playerManager.GetPlayerNumber();
         Debug.Log("PLAYER " + playerNumber + " JOINED");
-        gameObject.tag = "Player " + playerNumber;
+      //  gameObject.tag = "Player " + playerNumber;
         gameObject.layer = 8 + playerNumber;
         foreach (Collider2D collider in gameObject.transform.GetComponentsInChildren<Collider2D>(true))
         {

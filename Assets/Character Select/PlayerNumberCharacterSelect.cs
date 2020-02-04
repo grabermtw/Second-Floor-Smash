@@ -6,6 +6,8 @@ public class PlayerNumberCharacterSelect : MonoBehaviour
 {
     private int playerNumber = 0;
     public GameObject[] playerCursors;
+    public PlayerCharList playerCharList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class PlayerNumberCharacterSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public GameObject GetPlayerCursor()
