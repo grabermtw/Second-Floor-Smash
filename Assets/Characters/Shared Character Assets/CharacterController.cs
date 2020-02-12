@@ -280,6 +280,7 @@ public class CharacterController : MonoBehaviour
         transform.position = new Vector3(assailantPos.x + dir * 0.15f, assailantPos.y, 0);
         // Let the animator know we're being grabbed
         animator.SetBool("Grabbed", true);
+        animator.SetTrigger("BeginGrabbed");
 
         // Switch to the "Grabbed" script and disable the character controller
         Grabbed ourGrabbed = GetComponent<Grabbed>();
@@ -690,6 +691,7 @@ public class CharacterController : MonoBehaviour
         animator.ResetTrigger("DownPunch");
         animator.ResetTrigger("Hang");
         animator.ResetTrigger("Grab");
+        animator.ResetTrigger("BeginGrabbed");
     }
 
 }
