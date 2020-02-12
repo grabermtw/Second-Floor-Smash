@@ -32,6 +32,7 @@ public class PlayerNumberManager : MonoBehaviour
                 if (characters[i].tag == choice)
                 {
                     Debug.Log("Instantiating " + characters[i].tag);
+                    Debug.Log("Device Number " + deviceNum + " out of " + playerDevices.Count);
                     PlayerInput.Instantiate(characters[i], i, null, -1, playerDevices[deviceNum]);
                     Debug.Log("Instantiated " + characters[i].tag);
                     deviceNum++;
