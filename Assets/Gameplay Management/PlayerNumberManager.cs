@@ -21,14 +21,20 @@ public class PlayerNumberManager : MonoBehaviour
         playerChoices = playerCharList.GetCharList();
         playerDevices = playerCharList.GetDeviceList();
 
+        Debug.Log("Bout to enter the foreach!");
         // Instantiate all the chosen characters
+        int deviceNum = 0;
         foreach (string choice in playerChoices)
         {
+            Debug.Log("In the foreach!");
             for (int i = 0; i < characters.Length; i++)
             {
                 if (characters[i].tag == choice)
                 {
-                    PlayerInput.Instantiate(characters[i], i, null, -1, playerDevices[i]);
+                    Debug.Log("Instantiating " + characters[i].tag);
+                    PlayerInput.Instantiate(characters[i], i, null, -1, playerDevices[deviceNum]);
+                    Debug.Log("Instantiated " + characters[i].tag);
+                    deviceNum++;
                 }
             }
         }
