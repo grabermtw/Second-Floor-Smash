@@ -89,6 +89,19 @@ public class CharacterSelectControl : MonoBehaviour
         }
     }
 
+    // Change our selected character's skin (currently only Calvin has another skin option)
+    private void OnChangeSkin()
+    {
+        if(ready)
+        {
+            if(!hold)
+            {
+                tokCtrl.ChangeSkin();
+            }
+        }
+
+    }
+
     // Start Button (normally "+" in Smash) is pressed to begin the game
     private void OnStart()
     {

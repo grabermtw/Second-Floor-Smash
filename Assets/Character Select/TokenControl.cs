@@ -59,6 +59,32 @@ public class TokenControl : MonoBehaviour
         }
     }
 
+    // Change the tag of the selected character to change their appearance
+    public void ChangeSkin()
+    {
+        switch(currentCharacter)
+        {
+            case null:
+                break;
+            case "Calvin Crunkleton":
+                currentCharacter = "Calvin Crunkleton Shirtless";
+                Debug.Log("Calvin lost his shirt!");
+                // Reselect Calvin so that he's now shirtless
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin Crunkleton Shirtless":
+                currentCharacter = "Calvin Crunkleton";
+                Debug.Log("Calvin found his shirt!");
+                // Reselect Calvin so that he's no longer shirtless
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            default:
+                break;
+        }
+    }
+
     // Update whether we are being held by the hand
     public void SetHeld(bool hold)
     {
