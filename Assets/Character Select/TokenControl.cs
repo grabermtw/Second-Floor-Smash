@@ -80,6 +80,18 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Nate Rogers":
+                currentCharacter = "Nate Rogers ShortHair";
+                Debug.Log("Nate cut his hair!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Nate Rogers ShortHair":
+                currentCharacter = "Nate Rogers";
+                Debug.Log("Nate grew out his hair!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
