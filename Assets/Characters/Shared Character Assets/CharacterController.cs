@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement; // remove this if no longer needed
 
 public class CharacterController : MonoBehaviour
 {
@@ -677,6 +678,13 @@ public class CharacterController : MonoBehaviour
 
         // Add our force to launch us
         rb.AddForce(new Vector2(launchEnergy * Mathf.Cos(angle) * launchDirection, launchEnergy * Mathf.Sin(angle)), ForceMode2D.Impulse);
+    }
+
+    // ---------------- TEMPORARY RESET MECHANISM -------------------------
+    private void OnSelect()
+    {
+        Destroy(GameObject.Find("PlayerCharacterList"));
+        SceneManager.LoadScene(0);
     }
 
 
