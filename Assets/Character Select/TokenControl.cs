@@ -92,6 +92,24 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Tim Henderson":
+                currentCharacter = "Tim Tastings";
+                Debug.Log("Welcome back to Tim's Tastings");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim Tastings":
+                currentCharacter = "Tim Tastings Hat";
+                Debug.Log("Welcome back to Tim's Tastings, today we have a hat");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim Tastings Hat":
+                currentCharacter = "Tim Henderson";
+                Debug.Log("That's all for today, come back next week when I'll be tasting... who knows what?");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
