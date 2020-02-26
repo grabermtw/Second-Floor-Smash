@@ -110,6 +110,18 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Jasmine Lim":
+                currentCharacter = "Jasmine Lim Casual";
+                Debug.Log("Jasmine got out of work!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jasmine Lim Casual":
+                currentCharacter = "Jasmine Lim";
+                Debug.Log("Jasmine went to work!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
