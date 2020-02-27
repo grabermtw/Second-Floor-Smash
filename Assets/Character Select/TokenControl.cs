@@ -122,6 +122,18 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Jordan Woo":
+                currentCharacter = "Jordan Woo Banana";
+                Debug.Log("Jordan has his banana shirt on!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jordan Woo Banana":
+                currentCharacter = "Jordan Woo";
+                Debug.Log("Jordan isn't wearing his banana shirt anymore.");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
