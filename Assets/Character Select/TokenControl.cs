@@ -146,6 +146,18 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Fred Delawie":
+                currentCharacter = "Fred Delawie Uniform";
+                Debug.Log("Fred has joined ROTC!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Fred Delawie Uniform":
+                currentCharacter = "Fred Delawie";
+                Debug.Log("Fred finished ROTC!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
