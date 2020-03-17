@@ -182,6 +182,18 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Bebo Harraz":
+                currentCharacter = "Bebo Harraz Glasses";
+                Debug.Log("Bebo put on glasses!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Bebo Harraz Glasses":
+                currentCharacter = "Bebo Harraz";
+                Debug.Log("Bebo took off his glasses!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
