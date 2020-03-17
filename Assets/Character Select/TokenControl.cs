@@ -74,9 +74,27 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Calvin Crunkleton Shirtless":
-                currentCharacter = "Calvin Crunkleton";
-                Debug.Log("Calvin found his shirt!");
+                currentCharacter = "Calvin Crunkleton Red";
+                Debug.Log("Calvin got red shorts!");
                 // Reselect Calvin so that he's no longer shirtless
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin Crunkleton Red":
+                currentCharacter = "Calvin Crunkleton Red Shirtless";
+                Debug.Log("Calvin lost his shirt!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin Crunkleton Red Shirtless":
+                currentCharacter = "Calvin Crunkleton Rio";
+                Debug.Log("Ya boi went to Rio!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin Crunkleton Rio":
+                currentCharacter = "Calvin Crunkleton";
+                Debug.Log("Coronavirus came and sent Calvin back home.");
                 SetHeld(true);
                 SetHeld(false);
                 break;
