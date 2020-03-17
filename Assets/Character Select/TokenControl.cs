@@ -170,6 +170,18 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Flo Ning":
+                currentCharacter = "Flo Ning Haircut";
+                Debug.Log("Flo cut her hair!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Flo Ning Haircut":
+                currentCharacter = "Flo Ning";
+                Debug.Log("Flo grew out her hair!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
