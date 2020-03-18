@@ -212,6 +212,36 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "AJ Shannon":
+                currentCharacter = "AJ Shannon Sweatshirt";
+                Debug.Log("AJ sweatshirt (boutta battle tim)");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "AJ Shannon Sweatshirt":
+                currentCharacter = "AJ Shannon Tee";
+                Debug.Log("AJ Tee");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "AJ Shannon Tee":
+                currentCharacter = "AJ Shannon Tank";
+                Debug.Log("AJ Tank");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "AJ Shannon Tank":
+                currentCharacter = "AJ Shannon Buttondown";
+                Debug.Log("AJ Buttondown");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "AJ Shannon Buttondown":
+                currentCharacter = "AJ Shannon";
+                Debug.Log("AJ fratty");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
