@@ -242,6 +242,72 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Amanda OShaughnessy":
+                currentCharacter = "Amanda OShaughnessy V2";
+                Debug.Log("Amanda V2");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Amanda OShaughnessy V2":
+                currentCharacter = "Amanda OShaughnessy";
+                Debug.Log("Amanda");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Anders Julin":
+                currentCharacter = "Anders Sweatshirt";
+                Debug.Log("Anders Sweatshirt");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Anders Sweatshirt":
+                currentCharacter = "Anders Casual";
+                Debug.Log("Anders Casual");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Anders Casual":
+                currentCharacter = "Anders XR";
+                Debug.Log("Anders XR");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Anders XR":
+                currentCharacter = "Anders Freshman";
+                Debug.Log("Anders Freshman");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Anders Freshman":
+                currentCharacter = "Anders Julin";
+                Debug.Log("Anders Julin");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Christina Huang":
+                currentCharacter = "Christina Huang Bangs";
+                Debug.Log("Christina Bangs");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Christina Huang Bangs":
+                currentCharacter = "Christina Huang";
+                Debug.Log("Christina sans Bangs");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Graber":
+                currentCharacter = "Graber Syr";
+                Debug.Log("Graber Syr");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Graber Syr":
+                currentCharacter = "Graber";
+                Debug.Log("Graber gray");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
