@@ -303,8 +303,98 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Graber Syr":
+                currentCharacter = "Graber TMM Hat";
+                Debug.Log("Graber TMM Hat");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Graber TMM Hat":
+                currentCharacter = "Graber TMM";
+                Debug.Log("Graber TMM");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Graber TMM":
+                currentCharacter = "Graber TMM 2019";
+                Debug.Log("Graber TMM 2019");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Graber TMM 2019":
                 currentCharacter = "Graber";
-                Debug.Log("Graber gray");
+                Debug.Log("Graber gray shirt");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jesse Bent Metal":
+                currentCharacter = "Jesse Sweatshirt";
+                Debug.Log("Jessse sweatshirt");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jesse Sweatshirt":
+                currentCharacter = "Jesse Longsleeves";
+                Debug.Log("Jessse longsleeves");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jesse Longsleeves":
+                currentCharacter = "Jesse Parreira";
+                Debug.Log("Jessse Parreira");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jesse Parreira":
+                currentCharacter = "Jesse XR";
+                Debug.Log("Jessse XR");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jesse XR":
+                currentCharacter = "Jesse Bent Metal";
+                Debug.Log("Jessse Bent Metal");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball":
+                currentCharacter = "John Ball Adinkra";
+                Debug.Log("John adinkra");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball Adinkra":
+                currentCharacter = "John Ball Adinkra Shades";
+                Debug.Log("John adinkra shades");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball Adinkra Shades":
+                currentCharacter = "John Ball XR";
+                Debug.Log("John XR");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball XR":
+                currentCharacter = "John Ball Bent Metal";
+                Debug.Log("John bent metal");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball Bent Metal":
+                currentCharacter = "John Ball Desmesmert";
+                Debug.Log("John desmesmert");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball Desmesmert":
+                currentCharacter = "John Ball Freshman";
+                Debug.Log("John freshman");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "John Ball Freshman":
+                currentCharacter = "John Ball";
+                Debug.Log("John ballll");
                 SetHeld(true);
                 SetHeld(false);
                 break;
