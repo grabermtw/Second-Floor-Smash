@@ -99,14 +99,32 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Nate Rogers":
+                currentCharacter = "Nate Rogers LongHair";
+                Debug.Log("Nate grew his hair!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Nate Rogers LongHair":
                 currentCharacter = "Nate Rogers ShortHair";
                 Debug.Log("Nate cut his hair!");
                 SetHeld(true);
                 SetHeld(false);
                 break;
             case "Nate Rogers ShortHair":
+                currentCharacter = "Nate Rogers LongestHair";
+                Debug.Log("Nate grew out his hair more! this is freshman year");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Nate Rogers LongestHair":
+                currentCharacter = "Nate Rogers Beau";
+                Debug.Log("there aint no ghost in this hallway");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Nate Rogers Beau":
                 currentCharacter = "Nate Rogers";
-                Debug.Log("Nate grew out his hair!");
+                Debug.Log("present nate");
                 SetHeld(true);
                 SetHeld(false);
                 break;
@@ -147,8 +165,14 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Jordan Woo Banana":
+                currentCharacter = "Jordan Woo Ghost";
+                Debug.Log("I am the Ghost of Prince Frederick");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Jordan Woo Ghost":
                 currentCharacter = "Jordan Woo";
-                Debug.Log("Jordan isn't wearing his banana shirt anymore.");
+                Debug.Log("This body is failing me.");
                 SetHeld(true);
                 SetHeld(false);
                 break;
