@@ -422,6 +422,42 @@ public class TokenControl : MonoBehaviour
                 SetHeld(true);
                 SetHeld(false);
                 break;
+            case "Omer Bowman":
+                currentCharacter = "Omer XR";
+                Debug.Log("omer joined xr club");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Omer XR":
+                currentCharacter = "Omer Jacket";
+                Debug.Log("cold out for omer");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Omer Jacket":
+                currentCharacter = "Omer Bowman";
+                Debug.Log("it's omer");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Quinn Morris":
+                currentCharacter = "Quinn XR";
+                Debug.Log("Quinn joined xr club");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Quinn XR":
+                currentCharacter = "Quinn Concert";
+                Debug.Log("Quinn is at the GSO concert");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Quinn Concert":
+                currentCharacter = "Quinn Morris";
+                Debug.Log("It's quinn with his snazzy hat");
+                SetHeld(true);
+                SetHeld(false);
+                break;
             default:
                 break;
         }
