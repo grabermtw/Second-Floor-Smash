@@ -141,8 +141,50 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Tim Tastings Hat":
-                currentCharacter = "Tim Henderson";
+                currentCharacter = "Tim Tastings S3";
                 Debug.Log("That's all for today, come back next week when I'll be tasting... who knows what?");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim Tastings S3":
+                currentCharacter = "Tim TMM";
+                Debug.Log("tim tmm");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim TMM":
+                currentCharacter = "Tim TMM Shades";
+                Debug.Log("tmm shades");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim TMM Shades":
+                currentCharacter = "Tim O Thee Shades";
+                Debug.Log("tim o thee");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim O Thee Shades":
+                currentCharacter = "Tim O Thee";
+                Debug.Log("tim o thee no shades!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim O Thee":
+                currentCharacter = "Tim TMM 2019";
+                Debug.Log("tim tmm 2019");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim TMM 2019":
+                currentCharacter = "Tim Bent Metal";
+                Debug.Log("i am johnny's agent");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim Bent Metal":
+                currentCharacter = "Tim Henderson";
+                Debug.Log("back to usual tim");
                 SetHeld(true);
                 SetHeld(false);
                 break;
