@@ -219,8 +219,20 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Tom Zong":
+                currentCharacter = "Tom Concert";
+                Debug.Log("Tom is going to a concert!");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tom Concert":
+                currentCharacter = "Tom Tastings";
+                Debug.Log("Tom's tastings breaks for no man");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tom Tastings":
                 currentCharacter = "Tom Zong Shades";
-                Debug.Log("Tom is wearing shades!");
+                Debug.Log("Tom's got shades");
                 SetHeld(true);
                 SetHeld(false);
                 break;
@@ -387,6 +399,12 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Graber TMM 2019":
+                currentCharacter = "Graber TT Hat";
+                Debug.Log("Graber tt hat");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Graber TT Hat":
                 currentCharacter = "Graber";
                 Debug.Log("Graber gray shirt");
                 SetHeld(true);
@@ -497,6 +515,78 @@ public class TokenControl : MonoBehaviour
             case "Quinn Concert":
                 currentCharacter = "Quinn Morris";
                 Debug.Log("It's quinn with his snazzy hat");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg Longsleeves":
+                currentCharacter = "Vorsteg Jimmy";
+                Debug.Log("jimmy buffet shirt");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg Jimmy":
+                currentCharacter = "Vorsteg";
+                Debug.Log("vorsteg jacket");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg":
+                currentCharacter = "Vorsteg TT Hat";
+                Debug.Log("vorsteg tastings hat");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg TT Hat":
+                currentCharacter = "Vorsteg TMM";
+                Debug.Log("vorsteg tmm");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg TMM":
+                currentCharacter = "Vorsteg TMM Shades";
+                Debug.Log("vorsteg tmm shades");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg TMM Shades":
+                currentCharacter = "Vorsteg TMM 2019";
+                Debug.Log("vorsteg tmm 2019");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg TMM 2019":
+                currentCharacter = "Vorsteg Concert";
+                Debug.Log("vorsteg at a concert");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Vorsteg Concert":
+                currentCharacter = "Vorsteg Longsleeves";
+                Debug.Log("vorsteg's fave shirt");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Emily Whittaker":
+                currentCharacter = "Emily Dr";
+                Debug.Log("Uh, hi, I'm Dr. Whittaker. It appears you suffered a mild heart attack.");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Emily Dr":
+                currentCharacter = "Emily Whittaker";
+                Debug.Log("Standard emily");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Emma Mirizio":
+                currentCharacter = "Emma NASA";
+                Debug.Log("I have 500 NASA stickers");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Emma NASA":
+                currentCharacter = "Emma Mirizio";
+                Debug.Log("regular emma");
                 SetHeld(true);
                 SetHeld(false);
                 break;
