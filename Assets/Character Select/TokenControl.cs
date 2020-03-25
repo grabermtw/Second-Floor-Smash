@@ -87,6 +87,30 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Calvin Crunkleton Red Shirtless":
+                currentCharacter = "Calvin EV";
+                Debug.Log("escape velocity");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin EV":
+                currentCharacter = "Calvin Green Day";
+                Debug.Log("green day");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin Green Day":
+                currentCharacter = "Calvin Jean Jacket";
+                Debug.Log("jean jacket");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin Jean Jacket":
+                currentCharacter = "Calvin HSM";
+                Debug.Log("hard space math");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Calvin HSM":
                 currentCharacter = "Calvin Crunkleton Rio";
                 Debug.Log("Ya boi went to Rio!");
                 SetHeld(true);
@@ -345,6 +369,12 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Anders Casual":
+                currentCharacter = "Anders EV";
+                Debug.Log("Anders EV");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Anders EV":
                 currentCharacter = "Anders XR";
                 Debug.Log("Anders XR");
                 SetHeld(true);
@@ -587,6 +617,18 @@ public class TokenControl : MonoBehaviour
             case "Emma NASA":
                 currentCharacter = "Emma Mirizio";
                 Debug.Log("regular emma");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "June Xu":
+                currentCharacter = "June Xu Sweatshirt";
+                Debug.Log("june sweatshirt");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "June Xu Sweatshirt":
+                currentCharacter = "June Xu";
+                Debug.Log("june");
                 SetHeld(true);
                 SetHeld(false);
                 break;
