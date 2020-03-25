@@ -207,6 +207,12 @@ public class TokenControl : MonoBehaviour
                 SetHeld(false);
                 break;
             case "Tim Bent Metal":
+                currentCharacter = "Tim White Shirt";
+                Debug.Log("white shirt tim");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Tim White Shirt":
                 currentCharacter = "Tim Henderson";
                 Debug.Log("back to usual tim");
                 SetHeld(true);
@@ -629,6 +635,18 @@ public class TokenControl : MonoBehaviour
             case "June Xu Sweatshirt":
                 currentCharacter = "June Xu";
                 Debug.Log("june");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Patrick Vorsteg":
+                currentCharacter = "Patrick Vorsteg TT Hat";
+                Debug.Log("mr vorsteg tims tastings");
+                SetHeld(true);
+                SetHeld(false);
+                break;
+            case "Patrick Vorsteg TT Hat":
+                currentCharacter = "Patrick Vorsteg";
+                Debug.Log("mr vorsteg orange hat");
                 SetHeld(true);
                 SetHeld(false);
                 break;

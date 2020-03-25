@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1536
     height: 731
-  m_MinSize: {x: 677, y: 492}
-  m_MaxSize: {x: 14001, y: 14042}
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 91
+  controlID: 60
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 92
+  controlID: 65
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 288
     height: 731
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d0a20200
-      m_LastClickedID: 172752
-      m_ExpandedIDs: 20e7fbff92a20200d0a2020012a30200
+      m_SelectedIDs: 2ea20000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 1073feff1274feffd4d0ffff00d5ffff14d5ffff6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -457,9 +457,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.3313097, y: 2.862412, z: -1.1557138}
+    m_Target: {x: -2.5235188, y: 1.7539322, z: 1.9363061}
     speed: 2
-    m_Value: {x: 0.1421541, y: 1.7125034, z: -3.230055}
+    m_Value: {x: -2.5235188, y: 1.7539322, z: 1.9363061}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_SceneViewState:
     showFog: 1
     showMaterialUpdate: 0
-    showSkybox: 0
+    showSkybox: 1
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -505,13 +505,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.012687615, y: -0.9413175, z: 0.035607796, w: 0.33540767}
+    m_Target: {x: -0.06623549, y: 0.38031122, z: -0.027323155, w: -0.9220995}
     speed: 2
-    m_Value: {x: -0.0035952348, y: 0.99640477, z: 0.059546225, w: 0.060157675}
+    m_Value: {x: -0.06627515, y: 0.37892053, z: -0.02722326, w: -0.9226515}
   m_Size:
-    m_Target: 3.070862
+    m_Target: 3.4336126
     speed: 2
-    m_Value: 4.5809455
+    m_Value: 3.4336126
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1651,20 +1651,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Characters/Patrick Vorsteg
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Characters/Patrick Vorsteg
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Matthew\Documents\Unity\GitHub\Second-Floor-Smash
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 486.40884}
-    m_SelectedIDs: d25e0000
-    m_LastClickedID: 24274
-    m_ExpandedIDs: 00000000885e00008a5e00008c5e00008e5e0000905e0000925e00001061000000ca9a3b
+    scrollPos: {x: 0, y: 2115}
+    m_SelectedIDs: ec610000
+    m_LastClickedID: 25068
+    m_ExpandedIDs: 00000000945e0000965e0000985e00009a5e00009c5e00009e5e000034610000d461000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1692,7 +1692,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000885e00008a5e00008c5e00008e5e0000905e0000925e0000
+    m_ExpandedIDs: 00000000945e0000965e0000985e00009a5e00009c5e00009e5e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1747,7 +1747,7 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
-  m_DirectoriesAreaWidth: 169
+  m_DirectoriesAreaWidth: 173
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
