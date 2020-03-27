@@ -9,9 +9,8 @@ public class PlayerNumberManager : MonoBehaviour
     private int playerNumber = 1;
     public GameObject[] playerTextObjects;
     public GameObject[] playerDamageTexts;
-    public GameObject[] characters;
     PlayerCharList playerCharList;
-    List<string> playerChoices;
+    List<GameObject> playerChoices;
     List<InputDevice> playerDevices;
 
     // Start is called before the first frame update
@@ -24,20 +23,16 @@ public class PlayerNumberManager : MonoBehaviour
         Debug.Log("Bout to enter the foreach!");
         // Instantiate all the chosen characters
         int deviceNum = 0;
-        foreach (string choice in playerChoices)
+        foreach (GameObject choice in playerChoices)
         {
             Debug.Log("In the foreach!");
-            for (int i = 0; i < characters.Length; i++)
-            {
-                if (characters[i].tag == choice)
-                {
-                    Debug.Log("Instantiating " + characters[i].tag);
-                    Debug.Log("Device Number " + deviceNum + " out of " + playerDevices.Count);
-                    PlayerInput.Instantiate(characters[i], i, null, -1, playerDevices[deviceNum]);
-                    Debug.Log("Instantiated " + characters[i].tag);
-                    deviceNum++;
-                }
-            }
+
+            Debug.Log("Instantiating " + choice.tag);
+            Debug.Log("Device Number " + deviceNum + " out of " + playerDevices.Count);
+            PlayerInput.Instantiate(choice, -1, null, -1, playerDevices[deviceNum]);
+            Debug.Log("Instantiated " + choice.tag);
+            deviceNum++;
+
         }
 
     }

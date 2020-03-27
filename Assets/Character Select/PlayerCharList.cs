@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCharList : MonoBehaviour
 {
-    List<string> playerChoices;
+    List<GameObject> playerChoices;
     List<InputDevice> playerDevices;
     bool finishedSelect = false;
 
@@ -17,7 +17,7 @@ public class PlayerCharList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerChoices = new List<string>();
+        playerChoices = new List<GameObject>();
         playerDevices = new List<InputDevice>();
     }
 
@@ -34,7 +34,7 @@ public class PlayerCharList : MonoBehaviour
     }
 
     // Choose characters
-    public void ChooseCharacter(string character, int player)
+    public void ChooseCharacter(GameObject character, int player)
     {
         playerChoices[player - 1] = character;
         if (character != null)
@@ -61,7 +61,7 @@ public class PlayerCharList : MonoBehaviour
         return finishedSelect;
     }
 
-    public List<string> GetCharList()
+    public List<GameObject> GetCharList()
     {
         return playerChoices;
     }
