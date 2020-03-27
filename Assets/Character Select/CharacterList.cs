@@ -32,6 +32,7 @@ public class CharacterList : MonoBehaviour
     public GameObject[] OmerBowman;
     public GameObject[] PatrickVorsteg;
     public GameObject[] QuinnMorris;
+    public GameObject[] Robos;
     public GameObject[] Testudo;
     public GameObject[] TimHenderson;
     public GameObject[] TomZong;
@@ -78,6 +79,7 @@ public class CharacterList : MonoBehaviour
         characters.Add("Omer Bowman", OmerBowman);
         characters.Add("Patrick Vorsteg", PatrickVorsteg);
         characters.Add("Quinn Morris", QuinnMorris);
+        characters.Add("VorstegBot", Robos);
         characters.Add("Testudo", Testudo);
         characters.Add("Tim Henderson", TimHenderson);
         characters.Add("Tom Zong", TomZong);
