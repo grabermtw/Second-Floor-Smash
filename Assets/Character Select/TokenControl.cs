@@ -17,12 +17,15 @@ public class TokenControl : MonoBehaviour
     private string currCharTag = ""; // This is the name of the character (like the actual name, not the skin's name)
     private int currSkin = 0; // This is the index of the currently selected skin in the character's skin array
     private GameObject podium; // The podium in the character select screen upon which our selected character will stand
+    private Vector3 podPos; // This is the standard position of the podium
+    private float heightAdjust; // This is the amount that the character's podium's height should be adjusted
     private GameObject charPreview; // This will be the character that's currently on our podium
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         // Assign our player number
         playerNum = int.Parse(gameObject.tag.Substring(gameObject.tag.IndexOf(" ")));
 
@@ -32,7 +35,7 @@ public class TokenControl : MonoBehaviour
 
         // Find the appropriate player podium
         podium = GameObject.Find("P" + playerNum + " Podium");
-        Debug.Log(podium);
+        podPos = podium.transform.position;
 
         // Find the CharacterList, which has all the characters and their skins
         characterList = GameObject.Find("CharacterManager").GetComponent<CharacterList>();
@@ -65,6 +68,7 @@ public class TokenControl : MonoBehaviour
                         currCharTag = result.gameObject.tag;
                         currSkin = 0;
                         currentCharacter = characterList.GetCharacterArray(currCharTag);
+                        heightAdjust = characterList.GetHeightOffset(currCharTag);
                         Debug.Log(currentCharacter);
                         break;
                     }
@@ -96,20 +100,28 @@ public class TokenControl : MonoBehaviour
             // Select the current character
             playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
             charPreview = Instantiate(currentCharacter[currSkin], podium.transform);
-            charPreview.transform.localPosition = new Vector3(0,0,0);
-            charPreview.transform.eulerAngles = new Vector3(0,90,0);
+
+            // Change the height of the podium so that the character isn't blocked by/blocking the icons
+            podium.transform.position = podPos + new Vector3(0, heightAdjust, 0);
+
+            // Change and disable a bunch of things on the instantiated character so that it doesn't break everything
+            charPreview.transform.localPosition = new Vector3(0, 0, 0);
+            charPreview.transform.eulerAngles = new Vector3(0, 90, 0);
             charPreview.GetComponent<CharacterController>().enabled = false;
             charPreview.GetComponent<DamageControl>().enabled = false;
             charPreview.GetComponent<Grab>().enabled = false;
             charPreview.GetComponent<Grabbed>().enabled = false;
             charPreview.GetComponent<PlayerInput>().enabled = false;
-            charPreview.transform.Find("StandingCollider").transform.localEulerAngles = new Vector3(0,90,0);
+            charPreview.transform.Find("StandingCollider").transform.localEulerAngles = new Vector3(0, 90, 0);
         }
         else
         {
             // Deselect the character by setting it as null
             playerCharList.ChooseCharacter(null, playerNum);
+
+            // Remove the preview character from the podium
             Destroy(charPreview);
+
         }
     }
 
