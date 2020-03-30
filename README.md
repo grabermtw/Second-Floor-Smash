@@ -1,6 +1,8 @@
 # _Second Floor Smash_
 A _Super Smash Brothers_ clone using custom assets enabling a wider variety of characters and stages. It is a work-in-progress.
 
+Note that this currently requires a USB gamepad to play. Upon running the game, press any button on each gamepad to get a character selection hand and token for each player, and select your characters. Press the right bumper on the gamepad to change your character's skin. Press the start button to begin the game, and press the select button to return to the character selection screen.
+
 ## Adding your own character to _Second Floor Smash_
 #### One of the main goals of this project is to make it as easy as possible for anyone to add their own custom characters to the game. This will be a guide for the process I use to do so, from creation of the character model to inclusion in the game to updating the character selection screen. This guide assumes that you have a basic understanding of the Unity game engine, and that you have already cloned the repository.
 ### Part 1: Creating your character's model
@@ -56,4 +58,46 @@ Depending on what kind of character you aim to include, there are many different
 18. Drag the "Shield" GameObject so that it is the immediate child of the "mixamorig:Hips" GameObject in the heirarchy. This will tie the position of the shield to the movement of the character's torso when the character performs its shield action in the game.
 19. Click on the GameObject at the top of the heirarchy. Change the GameObject's tag to be the character's name.
 ### Part 4: Update the Character Selection screen
-#### While completion of Part 3 will give you a playable character, we must first update the character selection screen so that we may select that character to play as.
+#### While completion of Part 3 will give you a playable character, we must first update the character selection screen so that it is actually possible to select that character from within the game.
+1. Exit the opened prefab to return to the view of the scene called "CharacterSelect."
+2. In the heirarchy, expand the "Canvas" GameObject, and then expand the "CharacterIcons" GameObject.
+3. Duplicate one of the children of CharacterIcons and rename it appropriately. This duplicate will be initially located on top of one of the existing icons. Modify the position values of its "Rect Transform" component to move it so that it is no longer in the way of any other icons.
+    1. You may want to consider rearranging all of the icons using this method to accomodate the addition of your new character.
+4. Change your character's icon's GameObject's tag so that it is the name of your character.
+5. From the top of the Assets folder, go to Assets/Character Select/Icons. Within this Icons folder is each character's icon for the character select screen. One of these icons is titled "template." Use Ctrl-D to duplicate this template, rename the duplicate, and then double-click it to open it in Adobe Photoshop (its filetype is already a .psd). Edit it as appropriate to represent your new character.
+6. Click on the GameObject for the new character icon that you made in the heirarchy. It will have an "Image" component with a field called "Source Image." Drag your newly-edited character icon from the Icons folder into this field. This will give your character's icon on the character selection screen its distinctive appearance.
+7. Find and select the GameObject called "CharacterManager" in the heirarchy. There will be a script attached to it called "Character List." Right-click this script, and then select "Edit Script" to open it in your IDE.
+8. In the CharacterList.cs script, you will see a series of declarations of public GameObject arrays and public floats, one of each for each character. Add one of each for your new character, like so:
+
+        public GameObject[] NewCharacter;
+        public float NewCharacterHeightOffset;
+
+9. Scroll down until you reach the `void Start()` function. Within this function, you will find a series of statements adding to a dictionary called `characters` and a dictionary called `heightOffsets`. Add a statement adding your character's public GameObject array and your character's public float that you declared in the last step to `characters` and `heightOffsets`, respectively. For each dictionary's key, enter the exact string that you used for your character's tag that you assigned to your character's icon. For example:
+
+        characters.Add("New Character", NewCharacter);
+        heightOffsets.Add("New Character", NewCharacterHeightOffset);
+
+10. Save the script and return to the Unity window, with the CharacterManager GameObject again selected.
+11. In the Inspector, you should now see a new field appear on the Character List script component for both your character's GameObject array and your character's height offset.
+12. Navigate to Assets/Characters and then enter the folder you created for your character, where your character's prefab is stored. Expand your character's GameObject array in the Character List script component in the Inspector, set the size of the array to 1, and then drag your character's prefab into the GameObject field that appears.
+    1. Note: if you ever create alternate skins/outfits for your character, simply expand the size of the array and drag them into the slots to add them to the game.
+### Part 5: Final adjustments
+#### At this point, if you click the play button to run the game, you will be able to select your character and play as that character in the game. However, there are two minor adjustments that may need to be made.
+1. First, we will make sure that the character's feet are actually on the ground. Because not all characters are the same height, the duplication and modification technique we used to create our new character leaves it with the same collider size that the character it was copied from had, which is often the wrong size for the new character.
+    1. Click the play button, and then select your character with your gamepad. You will see the model of your character appear below the character icons on the character selection screen.
+    2. Without pausing the game or exiting play mode, switch tabs from the Game view to the Scene view.
+    3. In the heirarchy, expand the GameObject called "P1 Podium." One of its children will be an instance of your character's prefab. Double-click on this GameObject in the heirarchy to fly directly to it in the scene view, and then adjust your view so that you can see whether or not your character's feet are touching the podium.
+    4. If the bottom of your character's feet seem to be appropriately touching the podium, you can move on to the next step of Part 5. Otherwise, expand the instance of your character's prefab and click on the child GameObject called "StandingCollider."
+    5. The StandingCollider GameObject is responsible for keeping your character from falling through the floor. Ideally, in your character's neutral animation state (which your character should be in when viewed on the character selection screen), the bottom of your character's StandingCollider should line up with the bottom of your character's feet. If the collider's bottom is too high above your character's feet, your character's feet will have sunk into the floor (in this case, the podium), and if the collider's bottom is too low below the feet, your character will appear to be floating above the floor/podium.
+    6. To adjust the standing collider so that it lines up with the character's feet, adust the StandingCollider's "Capsule Collider 2D" component's "Offset" field's y-component along with the "Size" field's y-component. The Offset field dictates the altitude of the collider on the character, and the Size field dictates the size of the collider as a whole. You should be able to adjust the values of these fields through trial and error so that the bottom of the collider lines up with the character's feet and the top of the collider lines up with the character's head.
+    7. Once you are satisfied with your adjustment of the StandingCollider, right-click the Capsule Collider 2D component and click "Copy Component." Then exit play mode. It is important to copy the Capsule Collider 2D component while still in play mode because any changes you make to a Unity project while in play mode are lost as soon as you exit play mode.
+    8. Navigate to your character's prefab within your character's folder in Assets/Characters, and double-click to open it. Find and select the StandingCollider GameObject in the prefab's heirarchy.
+    9. Right-click on the Capsule Collider 2D component within the Inspector and click "Paste Component Values." This will give our character's StandingCollider the offset and size adjustments that it had while in play mode so that the character's feet will be appropriately grounded.
+2. After adjusting the StandingCollider, the final adjustment that may need to be made is the character's preview height. When a character is selected on the character selection screen and the preview model appears, without proper adjustment, the character may be so tall that they are partially obscured by the character selection icons, or they might be too short to be adequately seen. To remedy this, each character has a unique offset that is applied to the podium they stand on in the character selection screen.
+    1. Click the play button to enter play mode. Use your gamepad to select a character other than your own, and note the approximate distance between the top of the character's head and the bottom of the character selection icons. Then select your character, and compare the distance between the top of their head and the bottom of the character selection icons to that of the other character.
+        1. If the distances are approximately the same, then you've finished adding your character to _Second Floor Smash_.
+        2. If the distances are different, then (without exiting play mode), click on the "P1 Podium" GameObject, and then adjust the y-component of the position field in the P1 Podium GameObject's Transform component until your character's head appears to be at an appropriate height in the game view.
+    3. Calculate the difference between -1.5 (P1 Podium's default y-coordinate) and it's new y-coordinate. Do not take the absolute value. For example, if the new y-coordinate were -1.75, then the difference would be -0.25. This is your height adjustment value.
+    4. Exit play mode and select the CharacterManager GameObject in the heirarchy.
+    5. In the Inspector, find your character's height offset field, and enter in your calculated height adjustment value.
+3. Click the play button and select your character to verify that both adjustments are satisfactory. If that is the case, then your character has been successfully and fully added to _Second Floor Smash_!
