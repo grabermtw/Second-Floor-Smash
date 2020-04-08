@@ -10,6 +10,9 @@ Depending on what kind of character you aim to include, there are many different
 1. Install Adobe Fuse. Fuse is available for free from Adobe, and its installation instructions can be found on Adobe's website [here](https://www.adobe.com/products/fuse.html).
 2. Run Adobe Fuse.
     1. This may be harder than it sounds. There are several known bugs with Adobe Fuse that Adobe has neglected to resolve, one of which is opening the program, as simply running it as you would any other application often fails to yield results. As discussed [here in an Adobe Support forum](https://community.adobe.com/t5/fuse-beta/fuse-won-t-start/m-p/8247719?page=1#M260), the most reliable way to open Fuse is to click rapidly on its icon within the Adobe Creative Cloud Desktop application.
+
+<img align="right" width="371" height="269" src="Images/fuse.JPG">
+
 3. Within Fuse, create your character.
     1. Start with the "Assemble" tab. Here, you will pick the character model you will start with, by choosing the desired head, torso, legs, and arms.
     2. In the "Customize" tab, you can adjust the many sliders that are listed in order to adjust your character's facial features and body proportions.
@@ -20,6 +23,11 @@ Depending on what kind of character you aim to include, there are many different
 #### Now that we've created a custom character, we need to first extract its textures and rig the character so that it may be animated.
 1. First, we must export our character from Adobe Fuse. We will begin by exporting the character's textures.
     1. In Adobe Fuse, go to File->Export->Export Textures.
+    
+    
+    <img align="right" width="303" height="254" src="Images/fuseTextures.JPG">
+    
+    
     2. A new window will appear. Enter the desired Character Prefix (usually just the character's name), select your desired output directory, ensure that the "Export in new folder" option is checked, and set the "Configuration" to be "Unity 5." Then click "OK."
     3. This will create a new folder containing all of your character's textures within the selected output directory, the title of which will be the Character Prefix that you specified.
 2. Next, we will send our character to [Mixamo](https://www.mixamo.com/#/) to be rigged, essentially allowing for the character to be animated.
