@@ -69,19 +69,20 @@ public class CharacterList : MonoBehaviour
     public float TomZongHeightOffset;
     public GameObject[] Vorsteg;
     public float VorstegHeightOffset;
-    
+
+    public bool DontDestroyOnLoad;
+
     private Dictionary<string, GameObject[]> characters;
     private Dictionary<string, float> heightOffsets;
 
     void Awake()
     {
-        // We'd like to keep this consistent throughout the project
-        DontDestroyOnLoad(this.gameObject);
-    }
+        if (DontDestroyOnLoad)
+        {
+            // We'd like to keep this consistent throughout the project
+            DontDestroyOnLoad(this.gameObject);
+        }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         // Put all the above arrays into a the characters dictionary
         characters = new Dictionary<string, GameObject[]>();
         heightOffsets = new Dictionary<string, float>();
@@ -150,22 +151,28 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Tom Zong", TomZongHeightOffset);
         characters.Add("Vorsteg", Vorsteg);
         heightOffsets.Add("Vorsteg", VorstegHeightOffset);
-   }
+    }
 
+    // Returns the array of skins for a specific character
     public GameObject[] GetCharacterArray(string characterName)
     {
         return characters[characterName];
     }
 
+    // Returns the height offset for the specific character (this is for the character selection screen)
     public float GetHeightOffset(string characterName)
     {
         return heightOffsets[characterName];
     }
 
-
-    // Update is called once per frame
-    void Update()
+    // Returns a list of all the arrays of skins for each character
+    public List<GameObject[]> GetAllCharactersList()
     {
-        
+        List<GameObject[]> charList = new List<GameObject[]>();
+        foreach (KeyValuePair<string, GameObject[]> p in characters)
+        {
+            charList.Add(p.Value);
+        }
+        return charList;
     }
 }

@@ -42,11 +42,15 @@ public class CharacterController : MonoBehaviour
     public GameObject shield;
 
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         damageControl = GetComponent<DamageControl>();
+    }
+
+    void Start()
+    {
 
         standCollider = transform.GetChild(0).gameObject;
         crouchCollider = transform.GetChild(1).gameObject;
