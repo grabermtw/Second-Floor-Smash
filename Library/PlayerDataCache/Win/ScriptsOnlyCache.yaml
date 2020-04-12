@@ -15,6 +15,7 @@ ScriptsOnlyBuild:
     - Grab
     - Grabbed
     - KinematicSanity
+    - OpeningManager
     - PlayerCharList
     - PlayerNumberCharacterSelect
     - PlayerNumberManager
@@ -43,8 +44,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -76,8 +79,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
     - Class: 61
@@ -88,6 +89,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -97,8 +100,6 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
-      Script: {instanceID: 0}
-    - Class: 109
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11182}
@@ -117,8 +118,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11968}
     - Class: 114
-      Script: {instanceID: 12002}
-    - Class: 114
       Script: {instanceID: 12028}
     - Class: 114
       Script: {instanceID: 12078}
@@ -129,45 +128,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12264}
     - Class: 114
-      Script: {instanceID: 12672}
+      Script: {instanceID: 12674}
     - Class: 114
-      Script: {instanceID: 12722}
+      Script: {instanceID: 12724}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 12798}
     - Class: 114
-      Script: {instanceID: 12812}
+      Script: {instanceID: 12844}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12906}
     - Class: 114
-      Script: {instanceID: 12904}
+      Script: {instanceID: 13052}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 13128}
     - Class: 114
-      Script: {instanceID: 13126}
+      Script: {instanceID: 13184}
     - Class: 114
-      Script: {instanceID: 13182}
+      Script: {instanceID: 13282}
     - Class: 114
-      Script: {instanceID: 13280}
+      Script: {instanceID: 13302}
     - Class: 114
-      Script: {instanceID: 13300}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13320}
+      Script: {instanceID: 13340}
     - Class: 114
-      Script: {instanceID: 13334}
+      Script: {instanceID: 13500}
     - Class: 114
-      Script: {instanceID: 13338}
+      Script: {instanceID: 13542}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13582}
     - Class: 114
-      Script: {instanceID: 13540}
+      Script: {instanceID: 13626}
     - Class: 114
-      Script: {instanceID: 13580}
+      Script: {instanceID: 13644}
     - Class: 114
-      Script: {instanceID: 13624}
-    - Class: 114
-      Script: {instanceID: 13642}
-    - Class: 114
-      Script: {instanceID: 13676}
+      Script: {instanceID: 13678}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -185,6 +180,83 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    Assets/Scenes/Opening.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 70
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 109
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 12002}
+    - Class: 114
+      Script: {instanceID: 12078}
+    - Class: 114
+      Script: {instanceID: 12296}
+    - Class: 114
+      Script: {instanceID: 12674}
+    - Class: 114
+      Script: {instanceID: 12798}
+    - Class: 114
+      Script: {instanceID: 12814}
+    - Class: 114
+      Script: {instanceID: 13322}
+    - Class: 114
+      Script: {instanceID: 13542}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 258
       Script: {instanceID: 0}
     Assets/Scenes/ProvingGround.unity:
     - Class: 1
@@ -252,35 +324,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12264}
     - Class: 114
-      Script: {instanceID: 12672}
+      Script: {instanceID: 12674}
     - Class: 114
-      Script: {instanceID: 12722}
+      Script: {instanceID: 12724}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 12798}
     - Class: 114
-      Script: {instanceID: 12904}
+      Script: {instanceID: 12906}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 13052}
     - Class: 114
-      Script: {instanceID: 13126}
+      Script: {instanceID: 13128}
     - Class: 114
-      Script: {instanceID: 13182}
+      Script: {instanceID: 13184}
     - Class: 114
-      Script: {instanceID: 13300}
+      Script: {instanceID: 13302}
     - Class: 114
-      Script: {instanceID: 13334}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13338}
+      Script: {instanceID: 13340}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13500}
     - Class: 114
-      Script: {instanceID: 13580}
+      Script: {instanceID: 13582}
     - Class: 114
-      Script: {instanceID: 13624}
+      Script: {instanceID: 13626}
     - Class: 114
-      Script: {instanceID: 13642}
+      Script: {instanceID: 13644}
     - Class: 114
-      Script: {instanceID: 13676}
+      Script: {instanceID: 13678}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -650,6 +722,12 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: f93fe70db9fac4f7f65852f5853100a7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OpeningManager
+  - hash:
+      serializedVersion: 2
       Hash: bfeb96683d3796cadaab890bfdfe92be
     assemblyName: Unity.InputSystem.dll
     namespaceName: UnityEngine.InputSystem.Editor
@@ -932,7 +1010,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMesh
   - hash:
       serializedVersion: 2
-      Hash: 65e2bc0733c2513db4519c5f7a5170a3
+      Hash: 4369259f90f8204a7c2e91ade285655d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterList
@@ -1022,6 +1100,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 5
   scenePathNames:
+  - Assets/Scenes/Opening.unity
   - Assets/Scenes/CharacterSelect.unity
   - Assets/Scenes/ProvingGround.unity
   playerPath: C:/Users/Matthew/Documents/Unity/GitHub/Second-Floor-Smash/Build/Second

@@ -110,7 +110,7 @@ public class CharacterSelectControl : MonoBehaviour
             // Determine if all the players have selected a character
             if (playerCharList.AllSelected())
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         }
     }
