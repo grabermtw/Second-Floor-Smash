@@ -666,6 +666,14 @@
       <Project>{6c0acba0-0bb2-49ee-dd0e-68258229c60a}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{280ffa29-35bc-d4c7-0dc0-dc93ec8c3983}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{ee2a84e9-ee1d-d096-d8a7-c43dfde4641b}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
