@@ -27,10 +27,13 @@ ScriptsOnlyBuild:
     - UpPunch
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
+    - Cinemachine.CinemachineGroupComposer
     - Cinemachine.CinemachinePOV
     - Cinemachine.CinemachinePipeline
     - Cinemachine.CinemachineSmoothPath
+    - Cinemachine.CinemachineTargetGroup
     - Cinemachine.CinemachineTrackedDolly
+    - Cinemachine.CinemachineTransposer
     - Cinemachine.CinemachineVirtualCamera
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.Editor.InputActionEditorWindow
@@ -51,10 +54,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -349,11 +350,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12368}
     - Class: 114
+      Script: {instanceID: 12524}
+    - Class: 114
+      Script: {instanceID: 12714}
+    - Class: 114
+      Script: {instanceID: 12834}
+    - Class: 114
       Script: {instanceID: 12856}
     - Class: 114
       Script: {instanceID: 12908}
     - Class: 114
+      Script: {instanceID: 12912}
+    - Class: 114
       Script: {instanceID: 12992}
+    - Class: 114
+      Script: {instanceID: 13084}
     - Class: 114
       Script: {instanceID: 13116}
     - Class: 114
@@ -370,6 +381,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13604}
     - Class: 114
       Script: {instanceID: 13770}
+    - Class: 114
+      Script: {instanceID: 13828}
     - Class: 114
       Script: {instanceID: 13860}
     - Class: 114
@@ -813,7 +826,7 @@ ScriptsOnlyBuild:
     className: Grabbed
   - hash:
       serializedVersion: 2
-      Hash: 047ff7ccdd805d4c1fc5796726491477
+      Hash: 1afbb715429e40528c4bbf1ef55f085f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerNumberManager
