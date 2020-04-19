@@ -51,29 +51,7 @@ public class TokenControl : MonoBehaviour
     {
         if (held)
         {
-            // Do the raycast
-            pointEventData.position = transform.position;
-            List<RaycastResult> results = new List<RaycastResult>();
-            gr.Raycast(pointEventData, results);
-
-            // Analyze the results
-            if (results.Count > 1)
-            {
-                foreach (RaycastResult result in results)
-                {
-                    // We've got an icon!
-                    if (result.gameObject.layer == 16 && currCharTag != result.gameObject.tag)
-                    {
-                        // This is our current character
-                        currCharTag = result.gameObject.tag;
-                        currSkin = 0;
-                        currentCharacter = characterList.GetCharacterArray(currCharTag);
-                        heightAdjust = characterList.GetHeightOffset(currCharTag);
-                        Debug.Log(currentCharacter);
-                        break;
-                    }
-                }
-            }
+            
 
         }
     }
@@ -97,25 +75,60 @@ public class TokenControl : MonoBehaviour
         held = hold;
         if (!hold)
         {
-            // Select the current character
-            playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
-            charPreview = Instantiate(currentCharacter[currSkin], podium.transform);
+            Transform newParent = null;
 
-            // Change the height of the podium so that the character isn't blocked by/blocking the icons
-            podium.transform.position = podPos + new Vector3(0, heightAdjust, 0);
+            // Do the raycast
+            pointEventData.position = transform.position;
+            List<RaycastResult> results = new List<RaycastResult>();
+            gr.Raycast(pointEventData, results);
 
-            // Change and disable a bunch of things on the instantiated character so that it doesn't break everything
-            charPreview.transform.localPosition = new Vector3(0, 0, 0);
-            charPreview.transform.eulerAngles = new Vector3(0, 90, 0);
-            charPreview.GetComponent<CharacterController>().enabled = false;
-            charPreview.GetComponent<DamageControl>().enabled = false;
-            charPreview.GetComponent<Grab>().enabled = false;
-            charPreview.GetComponent<Grabbed>().enabled = false;
-            charPreview.GetComponent<PlayerInput>().enabled = false;
-            charPreview.transform.Find("StandingCollider").transform.localEulerAngles = new Vector3(0, 90, 0);
+            // Analyze the results
+            if (results.Count > 1)
+            {
+                foreach (RaycastResult result in results)
+                {
+                    // We've got an icon!
+                    if (result.gameObject.layer == 16 && currCharTag != result.gameObject.tag)
+                    {
+                        // This is our current character
+                        currCharTag = result.gameObject.tag;
+                        currSkin = 0;
+                        currentCharacter = characterList.GetCharacterArray(currCharTag);
+                        heightAdjust = characterList.GetHeightOffset(currCharTag);
+                        Debug.Log(currentCharacter);
+
+                        newParent = result.gameObject.transform;
+                        break;
+                    }
+                }
+            }
+            if (currentCharacter != null)
+            {
+                // Set the new parent
+                transform.SetParent(newParent);
+
+                // Select the current character
+                playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
+                charPreview = Instantiate(currentCharacter[currSkin], podium.transform);
+
+                // Change the height of the podium so that the character isn't blocked by/blocking the icons
+                podium.transform.position = podPos + new Vector3(0, heightAdjust, 0);
+
+                // Change and disable a bunch of things on the instantiated character so that it doesn't break everything
+                charPreview.transform.localPosition = new Vector3(0, 0, 0);
+                charPreview.transform.eulerAngles = new Vector3(0, 90, 0);
+                charPreview.GetComponent<CharacterController>().enabled = false;
+                charPreview.GetComponent<DamageControl>().enabled = false;
+                charPreview.GetComponent<Grab>().enabled = false;
+                charPreview.GetComponent<Grabbed>().enabled = false;
+                charPreview.GetComponent<PlayerInput>().enabled = false;
+                charPreview.transform.Find("StandingCollider").transform.localEulerAngles = new Vector3(0, 90, 0);
+            }
         }
         else
         {
+            currentCharacter = null;
+
             // Deselect the character by setting it as null
             playerCharList.ChooseCharacter(null, playerNum);
 

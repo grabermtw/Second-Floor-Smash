@@ -29,7 +29,6 @@ public class CharacterController : MonoBehaviour
     ContactFilter2D attackFilter;
     ContactFilter2D grabFilter;
     DamageControl damageControl;
-    PlayerNumberManager playerManager;
     int playerNumber;
 
 
@@ -62,12 +61,10 @@ public class CharacterController : MonoBehaviour
         currShieldAmt = maxShield;
 
 
-        // Get player number and assign it as layer
-        playerManager = GameObject.Find("PlayerInputManager").GetComponent<PlayerNumberManager>();
-        playerNumber = playerManager.GetPlayerNumber();
+        // Get player number from the layer (it would've been given immediately after we were instantiated)
+        playerNumber = gameObject.layer - 8;
         Debug.Log("PLAYER " + playerNumber + " JOINED");
-      //  gameObject.tag = "Player " + playerNumber;
-        gameObject.layer = 8 + playerNumber;
+        //gameObject.tag = "Player " + playerNumber;
         foreach (Collider2D collider in gameObject.transform.GetComponentsInChildren<Collider2D>(true))
         {
             collider.gameObject.layer = 8 + playerNumber;
@@ -688,7 +685,7 @@ public class CharacterController : MonoBehaviour
     private void OnSelect()
     {
         Destroy(GameObject.Find("PlayerCharacterList"));
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 

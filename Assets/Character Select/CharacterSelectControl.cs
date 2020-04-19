@@ -33,6 +33,10 @@ public class CharacterSelectControl : MonoBehaviour
         cursor = token.GetComponentsInChildren<Transform>()[1];
         tokCtrl = token.gameObject.GetComponent<TokenControl>();
 
+        // Get the player number
+        int playerNum = int.Parse(token.gameObject.tag.Substring(token.tag.Length - 1));
+        transform.localPosition = new Vector2((playerNum - 1) * 400 + -645, -300);
+
         // Find the player character list for checking whether we can begin the game in OnStart
         playerCharList = GameObject.Find("PlayerCharacterList").GetComponent<PlayerCharList>();
 
@@ -64,7 +68,7 @@ public class CharacterSelectControl : MonoBehaviour
         {
             if (hold)
             {
-                token.SetParent(canvas);
+                //token.SetParent(canvas);
                 cursor.SetParent(transform);
                 Debug.Log(token.parent);
                 hold = false;

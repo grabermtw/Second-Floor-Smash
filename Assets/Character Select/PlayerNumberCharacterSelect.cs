@@ -8,18 +8,6 @@ public class PlayerNumberCharacterSelect : MonoBehaviour
     public GameObject[] playerCursors;
     public PlayerCharList playerCharList;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public GameObject GetPlayerCursor()
     {
         playerNumber++;
