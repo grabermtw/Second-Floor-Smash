@@ -75,7 +75,7 @@ public class TokenControl : MonoBehaviour
         held = hold;
         if (!hold)
         {
-            Transform newParent = null;
+            //Transform newParent = null;
 
             // Do the raycast
             pointEventData.position = transform.position;
@@ -97,15 +97,16 @@ public class TokenControl : MonoBehaviour
                         heightAdjust = characterList.GetHeightOffset(currCharTag);
                         Debug.Log(currentCharacter);
 
-                        newParent = result.gameObject.transform;
+                       // newParent = result.gameObject.transform;
                         break;
                     }
                 }
             }
             if (currentCharacter != null)
             {
+                
                 // Set the new parent
-                transform.SetParent(newParent);
+                //transform.SetParent(newParent);
 
                 // Select the current character
                 playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
@@ -127,7 +128,7 @@ public class TokenControl : MonoBehaviour
         }
         else
         {
-            currentCharacter = null;
+            //currentCharacter = null;
 
             // Deselect the character by setting it as null
             playerCharList.ChooseCharacter(null, playerNum);

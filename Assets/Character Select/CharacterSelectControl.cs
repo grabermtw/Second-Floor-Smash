@@ -16,12 +16,14 @@ public class CharacterSelectControl : MonoBehaviour
     PlayerCharList playerCharList;
     TokenControl tokCtrl;
     bool hold = true;
+    Transform iconsParent;
 
 
     void Awake()
     {
         canvas = GameObject.Find("Canvas").transform;
         transform.parent = canvas;
+        iconsParent = GameObject.Find("CharacterIcons").transform;
     }
 
     // Start is called before the first frame update
@@ -68,7 +70,7 @@ public class CharacterSelectControl : MonoBehaviour
         {
             if (hold)
             {
-                //token.SetParent(canvas);
+                token.SetParent(iconsParent);
                 cursor.SetParent(transform);
                 Debug.Log(token.parent);
                 hold = false;
