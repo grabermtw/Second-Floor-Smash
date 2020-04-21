@@ -10,6 +10,7 @@ public class OpeningManager : MonoBehaviour
     public CharacterList characterList;
     public Transform charPosParent;
     private Transform[] charPositions;
+    private AudioManager audio;
 
 
     // Start is called before the first frame update
@@ -50,6 +51,12 @@ public class OpeningManager : MonoBehaviour
 
             }
         }
+    }
+
+    void Start()
+    {
+        audio = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+        audio.Play("Music");
     }
 
     // Update is called once per frame
