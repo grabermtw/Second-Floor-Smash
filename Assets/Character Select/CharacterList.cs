@@ -51,6 +51,8 @@ public class CharacterList : MonoBehaviour
     public float JudyTramHeightOffset;
     public GameObject[] JuneXu;
     public float JuneXuHeightOffset;
+    public GameObject[] MeghanGraber;
+    public float MeghanGraberHeightOffset;
     public GameObject[] MelissaBaum;
     public float MelissaBaumHeightOffset;
     public GameObject[] NateRogers;
@@ -135,6 +137,8 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Judy Tram", JudyTramHeightOffset);
         characters.Add("June Xu", JuneXu);
         heightOffsets.Add("June Xu", JuneXuHeightOffset);
+        characters.Add("Meghan Graber", MeghanGraber);
+        heightOffsets.Add("Meghan Graber", MeghanGraberHeightOffset);
         characters.Add("Melissa Baum", MelissaBaum);
         heightOffsets.Add("Melissa Baum", MelissaBaumHeightOffset);
         characters.Add("Nate Rogers", NateRogers);
@@ -175,7 +179,7 @@ public class CharacterList : MonoBehaviour
         List<GameObject[]> charList = new List<GameObject[]>();
         foreach (KeyValuePair<string, GameObject[]> p in characters)
         {
-            if(p.Key != "Elizabeth K") // temporarily
+            if(p.Key != "Elizabeth K" && p.Key != "Meghan Graber") // temporarily
             {
                 charList.Add(p.Value);
             }
