@@ -7645,6 +7645,49 @@ Transform:
   m_Father: {fileID: 1150533147}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -92.38, z: 0}
+--- !u!1 &531966235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531966237}
+  - component: {fileID: 531966236}
+  m_Layer: 0
+  m_Name: ApplicationQuitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &531966236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531966235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13163fcbda7de6f48a424538f1cb8883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &531966237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531966235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0167801, y: 2.5687904, z: 3.4629626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &621236071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6937495641367386741, guid: 56fd45aa8c644a64ba1fa3f6c5840b65,
@@ -28516,6 +28559,13 @@ MonoBehaviour:
   - {fileID: 6205316382487275622, guid: 7a2449a1400b0ec4981f39e782bacf20, type: 3}
   - {fileID: 6205316382487275622, guid: 346a28b135d196048b00ba1218f4afb9, type: 3}
   BeboHarrazHeightOffset: 0
+  BenEassa:
+  - {fileID: 6205316382487275622, guid: c5d208c0d3e7e934eb975d9d682fc1bf, type: 3}
+  - {fileID: 6205316382487275622, guid: 9966164c62983e94ba99df5fd7c3181e, type: 3}
+  - {fileID: 6205316382487275622, guid: b3ef8734b687f9b458d2de4b10ebf618, type: 3}
+  - {fileID: 6205316382487275622, guid: a8925ac569938d741bc74c0529e496a1, type: 3}
+  - {fileID: 6205316382487275622, guid: 2069adec69f7ac749b64073b531987c1, type: 3}
+  BenEassaHeightOffset: 0
   BrianDeLorenzo:
   - {fileID: 6205316382487275622, guid: fd2c996ae3f79f344823212914676671, type: 3}
   - {fileID: 6205316382487275622, guid: 982aa90440415854cb5f935032f4c862, type: 3}
