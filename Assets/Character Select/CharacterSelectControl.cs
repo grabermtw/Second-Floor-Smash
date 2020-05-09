@@ -16,14 +16,12 @@ public class CharacterSelectControl : MonoBehaviour
     PlayerCharList playerCharList;
     TokenControl tokCtrl;
     bool hold = true;
-    Transform iconsParent;
 
 
     void Awake()
     {
         canvas = GameObject.Find("Canvas").transform;
         transform.parent = canvas;
-        iconsParent = GameObject.Find("CharacterIcons").transform;
     }
 
     // Start is called before the first frame update
@@ -70,7 +68,8 @@ public class CharacterSelectControl : MonoBehaviour
         {
             if (hold)
             {
-                token.SetParent(iconsParent);
+                // Use FindWithTag here because it entirely depends on which group of character icons is currently active
+                token.SetParent(GameObject.FindWithTag("CharacterIcons").transform);
                 cursor.SetParent(transform);
                 Debug.Log(token.parent);
                 hold = false;

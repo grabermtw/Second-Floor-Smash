@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,14 +14,24 @@ public class CharacterList : MonoBehaviour
     public float AndersJulinHeightOffset;
     public GameObject[] BeboHarraz;
     public float BeboHarrazHeightOffset;
+    public GameObject[] BellaLay;
+    public float BellaLayHeightOffset;
     public GameObject[] BenEassa;
     public float BenEassaHeightOffset;
     public GameObject[] BrianDeLorenzo;
     public float BrianDeLorenzoHeightOffset;
     public GameObject[] CalvinCrunkleton;
     public float CalvinCrunkletonHeightOffset;
+    public GameObject[] ChicoLiu;
+    public float ChicoLiuHeightOffset;
     public GameObject[] ChristinaHuang;
     public float ChristinaHuangHeightOffset;
+    public GameObject[] CormacBowman;
+    public float CormacBowmanHeightOffset;
+    public GameObject[] DanielleKennedy;
+    public float DanielleKennedyHeightOffset;
+    public GameObject[] DaveHoag;
+    public float DaveHoagHeightOffset;
     public GameObject[] DefaultCharacter;
     public float DefaultCharacterHeightOffset;
     public GameObject[] ElizabethKilpatrick;
@@ -55,10 +66,20 @@ public class CharacterList : MonoBehaviour
     public float JudyTramHeightOffset;
     public GameObject[] JuneXu;
     public float JuneXuHeightOffset;
+    public GameObject[] KateBenware;
+    public float KateBenwareHeightOffset;
+    public GameObject[] LoreDixon;
+    public float LoreDixonHeightOffset;
+    public GameObject[] MariaOliva;
+    public float MariaOlivaHeightOffset;
     public GameObject[] MeghanGraber;
     public float MeghanGraberHeightOffset;
     public GameObject[] MelissaBaum;
     public float MelissaBaumHeightOffset;
+    public GameObject[] MilanGupta;
+    public float MilanGuptaHeightOffset;
+    public GameObject[] MollyOyer;
+    public float MollyOyerHeightOffset;
     public GameObject[] NateRogers;
     public float NateRogersHeightOffset;
     public GameObject[] OmerBowman;
@@ -84,6 +105,7 @@ public class CharacterList : MonoBehaviour
 
     private Dictionary<string, GameObject[]> characters;
     private Dictionary<string, float> heightOffsets;
+    public string[] excludeFromOpening;
 
     void Awake()
     {
@@ -105,14 +127,24 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Anders Julin", AndersJulinHeightOffset);
         characters.Add("Bebo Harraz", BeboHarraz);
         heightOffsets.Add("Bebo Harraz", BeboHarrazHeightOffset);
+        characters.Add("Bella Lay", BellaLay);
+        heightOffsets.Add("Bella Lay", BellaLayHeightOffset);
         characters.Add("Ben Eassa", BenEassa);
         heightOffsets.Add("Ben Eassa", BenEassaHeightOffset);
         characters.Add("Brian DeLorenzo", BrianDeLorenzo);
         heightOffsets.Add("Brian DeLorenzo", BrianDeLorenzoHeightOffset);
         characters.Add("Calvin Crunkleton", CalvinCrunkleton);
         heightOffsets.Add("Calvin Crunkleton", CalvinCrunkletonHeightOffset);
+        characters.Add("Chico Liu", ChicoLiu);
+        heightOffsets.Add("Chico Liu", ChicoLiuHeightOffset);
         characters.Add("Christina Huang", ChristinaHuang);
         heightOffsets.Add("Christina Huang", ChristinaHuangHeightOffset);
+        characters.Add("Cormac Bowman", CormacBowman);
+        heightOffsets.Add("Cormac Bowman", CormacBowmanHeightOffset);
+        characters.Add("Danielle Kennedy", DanielleKennedy);
+        heightOffsets.Add("Danielle Kennedy", DanielleKennedyHeightOffset);
+        characters.Add("Dave Hoag", DaveHoag);
+        heightOffsets.Add("Dave Hoag", DaveHoagHeightOffset);
         characters.Add("DefaultCharacter", DefaultCharacter);
         heightOffsets.Add("DefaultCharacter", DefaultCharacterHeightOffset);
         characters.Add("Elizabeth K", ElizabethKilpatrick);
@@ -147,10 +179,20 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Judy Tram", JudyTramHeightOffset);
         characters.Add("June Xu", JuneXu);
         heightOffsets.Add("June Xu", JuneXuHeightOffset);
+        characters.Add("Kate Benware", KateBenware);
+        heightOffsets.Add("Kate Benware", KateBenwareHeightOffset);
+        characters.Add("Lore Dixon", LoreDixon);
+        heightOffsets.Add("Lore Dixon", LoreDixonHeightOffset);
+        characters.Add("Maria Oliva", MariaOliva);
+        heightOffsets.Add("Maria Oliva", MariaOlivaHeightOffset);
         characters.Add("Meghan Graber", MeghanGraber);
         heightOffsets.Add("Meghan Graber", MeghanGraberHeightOffset);
         characters.Add("Melissa Baum", MelissaBaum);
         heightOffsets.Add("Melissa Baum", MelissaBaumHeightOffset);
+        characters.Add("Milan Gupta", MilanGupta);
+        heightOffsets.Add("Milan Gupta", MilanGuptaHeightOffset);
+        characters.Add("Molly Oyer", MollyOyer);
+        heightOffsets.Add("Molly Oyer", MollyOyerHeightOffset);
         characters.Add("Nate Rogers", NateRogers);
         heightOffsets.Add("Nate Rogers", NateRogersHeightOffset);
         characters.Add("Omer Bowman", OmerBowman);
@@ -191,8 +233,7 @@ public class CharacterList : MonoBehaviour
         List<GameObject[]> charList = new List<GameObject[]>();
         foreach (KeyValuePair<string, GameObject[]> p in characters)
         {
-            if (p.Key != "Elizabeth K" && p.Key != "Meghan Graber" && p.Key != "Brian DeLorenzo"
-            && p.Key != "Sam Polhemus" && p.Key != "Ben Eassa") // temporarily
+            if (!Array.Exists(excludeFromOpening, element => element == p.Key)) // temporarily
             {
                 charList.Add(p.Value);
             }
