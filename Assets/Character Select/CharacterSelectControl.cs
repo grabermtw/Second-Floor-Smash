@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CharacterSelectControl : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class CharacterSelectControl : MonoBehaviour
     PlayerCharList playerCharList;
     TokenControl tokCtrl;
     bool hold = true;
+    private PointerEventData pointEventData = new PointerEventData(null);
+    private GraphicRaycaster gr;
 
 
     void Awake()
@@ -32,6 +36,9 @@ public class CharacterSelectControl : MonoBehaviour
         token = Instantiate(playerManager.GetPlayerCursor(), transform).transform;
         cursor = token.GetComponentsInChildren<Transform>()[1];
         tokCtrl = token.gameObject.GetComponent<TokenControl>();
+
+        // Prepare the graphics raycaster so we can click on things
+        gr = canvas.GetComponent<GraphicRaycaster>();
 
         // Get the player number
         int playerNum = int.Parse(token.gameObject.tag.Substring(token.tag.Length - 1));
@@ -66,7 +73,29 @@ public class CharacterSelectControl : MonoBehaviour
     {
         if (ready)
         {
-            if (hold)
+            bool done = false;
+
+            // Do graphics raycast to see if we clicked a button
+            pointEventData.position = transform.position;
+            List<RaycastResult> results = new List<RaycastResult>();
+            gr.Raycast(pointEventData, results);
+
+            // Analyze the results
+            if (results.Count > 1)
+            {
+                foreach (RaycastResult result in results)
+                {
+                    // We've got a button!
+                    if (result.gameObject.CompareTag("CursorButton"))
+                    {
+                        result.gameObject.GetComponent<ICursorButtonable>().Click();
+                        done = true;
+                        break;
+                    }
+                }
+            }
+
+            if (hold && !done)
             {
                 // Use FindWithTag here because it entirely depends on which group of character icons is currently active
                 token.SetParent(GameObject.FindWithTag("CharacterIcons").transform);
