@@ -78,7 +78,7 @@ public class TokenControl : MonoBehaviour
             //Transform newParent = null;
 
             // Do the raycast
-            pointEventData.position = transform.position;
+            pointEventData.position = Camera.main.WorldToScreenPoint(transform.position);
             List<RaycastResult> results = new List<RaycastResult>();
             gr.Raycast(pointEventData, results);
 
@@ -107,6 +107,9 @@ public class TokenControl : MonoBehaviour
                 
                 // Set the new parent
                 //transform.SetParent(newParent);
+
+                // Reset the podium
+                podium.GetComponent<PodiumControl>().ResetRotation();
 
                 // Select the current character
                 playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);

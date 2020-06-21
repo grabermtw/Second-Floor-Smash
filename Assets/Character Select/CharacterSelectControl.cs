@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class CharacterSelectControl : MonoBehaviour
 {
     Vector2 leftJoystick; // holds the directions that the left joystick is pointing
-    float trackingSpeed = 500f; // how fast should the cursor move
+    float trackingSpeed = 4f; // how fast should the cursor move
     Transform token; // The token we'll use to select our character
     Transform cursor; // Our cursor
     Transform canvas;
@@ -20,6 +20,8 @@ public class CharacterSelectControl : MonoBehaviour
     bool hold = true;
     private PointerEventData pointEventData = new PointerEventData(null);
     private GraphicRaycaster gr;
+    private int playerNum;
+    private PodiumControl podium;
 
 
     void Awake()
@@ -41,13 +43,16 @@ public class CharacterSelectControl : MonoBehaviour
         gr = canvas.GetComponent<GraphicRaycaster>();
 
         // Get the player number
-        int playerNum = int.Parse(token.gameObject.tag.Substring(token.tag.Length - 1));
+        playerNum = int.Parse(token.gameObject.tag.Substring(token.tag.Length - 1));
         transform.localPosition = new Vector2((playerNum - 1) * 400 + -645, -300);
 
         // Find the player character list for checking whether we can begin the game in OnStart
         playerCharList = GameObject.Find("PlayerCharacterList").GetComponent<PlayerCharList>();
 
         playerCharList.AddPlayer(GetComponent<PlayerInput>().devices[0]);
+
+        // Find our podium
+        podium = GameObject.Find("P" + playerNum + " Podium").GetComponent<PodiumControl>();
 
         // All set!
         ready = true;
@@ -76,7 +81,7 @@ public class CharacterSelectControl : MonoBehaviour
             bool done = false;
 
             // Do graphics raycast to see if we clicked a button
-            pointEventData.position = transform.position;
+            pointEventData.position = Camera.main.WorldToScreenPoint(transform.position);
             List<RaycastResult> results = new List<RaycastResult>();
             gr.Raycast(pointEventData, results);
 
@@ -86,6 +91,7 @@ public class CharacterSelectControl : MonoBehaviour
                 foreach (RaycastResult result in results)
                 {
                     // We've got a button!
+                    Debug.Log("Hit");
                     if (result.gameObject.CompareTag("CursorButton"))
                     {
                         result.gameObject.GetComponent<ICursorButtonable>().Click();
@@ -144,9 +150,22 @@ public class CharacterSelectControl : MonoBehaviour
             // Determine if all the players have selected a character
             if (playerCharList.AllSelected())
             {
-                SceneManager.LoadScene(2);
+                GameObject sceneManage = GameObject.FindWithTag("SceneManager");
+                // For development purposes so we don't have to start from the opening scene every time
+                if(sceneManage != null)
+                {
+                    sceneManage.GetComponent<SceneControl>().LoadNextScene(2, false);
+                }
+                else
+                {
+                    SceneManager.LoadScene(2);
+                }
             }
         }
     }
 
+    private void OnToggleRotate()
+    {
+        podium.ToggleRotate();
+    }
 }

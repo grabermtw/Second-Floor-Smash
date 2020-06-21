@@ -101,7 +101,7 @@ public class CharacterList : MonoBehaviour
     public GameObject[] Vorsteg;
     public float VorstegHeightOffset;
 
-    public bool DontDestroyOnLoad;
+    public bool DontDestroyOnLoadBool;
 
     private Dictionary<string, GameObject[]> characters;
     private Dictionary<string, float> heightOffsets;
@@ -109,7 +109,7 @@ public class CharacterList : MonoBehaviour
 
     void Awake()
     {
-        if (DontDestroyOnLoad)
+        if (DontDestroyOnLoadBool)
         {
             // We'd like to keep this consistent throughout the project
             DontDestroyOnLoad(this.gameObject);

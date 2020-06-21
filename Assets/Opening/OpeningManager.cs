@@ -10,6 +10,7 @@ public class OpeningManager : MonoBehaviour
     public CharacterList characterList;
     public Transform charPosParent;
     private Transform[] charPositions;
+ 
 
 
     // Start is called before the first frame update
@@ -50,6 +51,7 @@ public class OpeningManager : MonoBehaviour
 
             }
         }
+        
     }
 
     void Start()
@@ -66,6 +68,8 @@ public class OpeningManager : MonoBehaviour
     // Start Button (normally "+" in Smash) is pressed to begin the game
     private void OnStart()
     {
-        SceneManager.LoadScene(1);
+        GameObject sceneManage = GameObject.FindWithTag("SceneManager");
+        sceneManage.GetComponent<SceneControl>().LoadNextScene(1, true);
     }
+    
 }

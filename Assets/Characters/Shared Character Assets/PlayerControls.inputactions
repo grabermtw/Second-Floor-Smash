@@ -340,6 +340,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ToggleRotate",
+                    "type": "Button",
+                    "id": "7ef16c99-8d3e-482e-8d37-9f843ec8a342",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -395,6 +403,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8de65770-a63f-411c-b507-d8f9e19cf885",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleRotate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
