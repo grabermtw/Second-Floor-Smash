@@ -45,14 +45,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Character Select\CharacterList.cs" />
-     <Compile Include="Assets\Character Select\CharacterSelectControl.cs" />
-     <Compile Include="Assets\Character Select\ICursorButtonable.cs" />
-     <Compile Include="Assets\Character Select\PlayerCharList.cs" />
-     <Compile Include="Assets\Character Select\PlayerNumberCharacterSelect.cs" />
-     <Compile Include="Assets\Character Select\PodiumControl.cs" />
-     <Compile Include="Assets\Character Select\StateGroupButton.cs" />
-     <Compile Include="Assets\Character Select\TokenControl.cs" />
      <Compile Include="Assets\Characters\Shared Character Assets\Animation Behaviors\AirPunch.cs" />
      <Compile Include="Assets\Characters\Shared Character Assets\Animation Behaviors\AirPunchDown.cs" />
      <Compile Include="Assets\Characters\Shared Character Assets\Animation Behaviors\AirPunchUp.cs" />
@@ -71,6 +63,14 @@
      <Compile Include="Assets\Characters\Shared Character Assets\Grabbed.cs" />
      <Compile Include="Assets\Gameplay Management\KO Effects\KOFinish.cs" />
      <Compile Include="Assets\Gameplay Management\PlayerNumberManager.cs" />
+     <Compile Include="Assets\Hub\Character Select\CharacterList.cs" />
+     <Compile Include="Assets\Hub\Character Select\CharacterSelectControl.cs" />
+     <Compile Include="Assets\Hub\Character Select\ICursorButtonable.cs" />
+     <Compile Include="Assets\Hub\Character Select\PlayerCharList.cs" />
+     <Compile Include="Assets\Hub\Character Select\PlayerNumberCharacterSelect.cs" />
+     <Compile Include="Assets\Hub\Character Select\PodiumControl.cs" />
+     <Compile Include="Assets\Hub\Character Select\StateGroupButton.cs" />
+     <Compile Include="Assets\Hub\Character Select\TokenControl.cs" />
      <Compile Include="Assets\Opening\OpeningManager.cs" />
      <Compile Include="Assets\Stages\Shared Stage Prefabs\EdgeHangTrigger.cs" />
      <Compile Include="Assets\Utilities\ApplicationQuitter.cs" />
