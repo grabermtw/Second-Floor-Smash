@@ -21,12 +21,6 @@ public class PlayerCharList : MonoBehaviour
         playerDevices = new List<InputDevice>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void AddPlayer(InputDevice device)
     {
         playerChoices.Add(null);
@@ -69,5 +63,12 @@ public class PlayerCharList : MonoBehaviour
     public List<InputDevice> GetDeviceList()
     {
         return playerDevices;
+    }
+
+    // Called when we're exiting the character select screen
+    public void ClearAll()
+    {
+        playerChoices.Clear();
+        playerDevices.Clear();
     }
 }

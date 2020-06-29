@@ -28,6 +28,7 @@ public class CharacterSelectControl : MonoBehaviour
     {
         canvas = GameObject.Find("CharacterSelectCanvas").transform;
         transform.parent = canvas;
+        transform.rotation = canvas.parent.rotation;
     }
 
     // Start is called before the first frame update

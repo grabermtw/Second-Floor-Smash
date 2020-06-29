@@ -120,7 +120,7 @@ public class TokenControl : MonoBehaviour
 
                 // Change and disable a bunch of things on the instantiated character so that it doesn't break everything
                 charPreview.transform.localPosition = new Vector3(0, 0, 0);
-                charPreview.transform.eulerAngles = new Vector3(0, 90, 0);
+                charPreview.transform.eulerAngles = new Vector3(0, -90, 0);
                 charPreview.GetComponent<CharacterController>().enabled = false;
                 charPreview.GetComponent<DamageControl>().enabled = false;
                 charPreview.GetComponent<Grab>().enabled = false;
