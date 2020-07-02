@@ -10,6 +10,15 @@ public class FPSToCharSelect : HubInteractor
     public PlayableDirector charToFps;
     public PlayerInputManager charSelectInput;
     public PlayerInputManager fpInput;
+    public PlayerCharList playerCharList;
+    private PodiumControl[] podiums;
+    
+    private bool exitedOnceAlready = false;
+
+    void Start()
+    {
+        podiums = (PodiumControl[])FindObjectsOfType(typeof(PodiumControl));
+    }
 
     void Update()
     {
@@ -23,13 +32,22 @@ public class FPSToCharSelect : HubInteractor
 
     public void Transition(bool toChar = false)
     {
-        if(toChar)
+        if (toChar)
         {
+            foreach(PodiumControl podium in podiums)
+            {
+                podium.ResetPosition();
+            }
             charToFps.Stop();
             fpsToChar.Play();
             fpInput.enabled = false;
             charSelectInput.enabled = true;
             charToFps.time = 0;
+            if (exitedOnceAlready)
+            {
+                playerCharList.RecreateExitedPlayers();
+            }
+            exitedOnceAlready = true;
         }
         else
         {
@@ -40,4 +58,5 @@ public class FPSToCharSelect : HubInteractor
             fpsToChar.time = 0;
         }
     }
+
 }

@@ -20611,6 +20611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7da6e1325d46846885b03dfb056c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorPrefab: {fileID: 4546987420769345357, guid: 7d7146d15cfb5ff45b5475670b94e967,
+    type: 3}
 --- !u!1 &855779112
 GameObject:
   m_ObjectHideFlags: 0
@@ -34863,6 +34865,7 @@ MonoBehaviour:
   charToFps: {fileID: 903090226}
   charSelectInput: {fileID: 1930709243}
   fpInput: {fileID: 2031384609}
+  playerCharList: {fileID: 855430762}
 --- !u!1 &1420975267
 GameObject:
   m_ObjectHideFlags: 0
@@ -40394,7 +40397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitioner: {fileID: 1420966484}
-  playerCharList: {fileID: 855430762}
   playerNumberCharacterSelect: {fileID: 1930709242}
 --- !u!114 &1679729593
 MonoBehaviour:
@@ -46433,7 +46435,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930709241}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 

@@ -5,8 +5,12 @@ using UnityEngine;
 public class ExitButton : MonoBehaviour, ICursorButtonable
 {
     public FPSToCharSelect transitioner;
-    public PlayerCharList playerCharList;
     public PlayerNumberCharacterSelect playerNumberCharacterSelect;
+
+    private TokenControl[] tokens;
+    private CharacterSelectControl[] hands;
+    
+
     public void Hover()
     {
 
@@ -16,15 +20,26 @@ public class ExitButton : MonoBehaviour, ICursorButtonable
     {
         // Exit back to the second floor
         transitioner.Transition();
-        // Clean it all up
-        playerCharList.ClearAll();
         playerNumberCharacterSelect.ClearAll();
-        TokenControl[] tokens = (TokenControl[])FindObjectsOfType(typeof(TokenControl));
-        CharacterSelectControl[] hands = (CharacterSelectControl[])FindObjectsOfType(typeof(CharacterSelectControl));
-        for(int i = 0; i < tokens.Length; i++)
+        DestroyHands();
+    }
+
+
+    // Destroys all the hands
+    private void DestroyHands()
+    {
+        tokens = (TokenControl[])FindObjectsOfType(typeof(TokenControl));
+        hands = (CharacterSelectControl[])FindObjectsOfType(typeof(CharacterSelectControl));
+        if (tokens != null)
         {
-            Destroy(tokens[i].gameObject);
-            Destroy(hands[i].gameObject);
+            // Destroy them
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                Destroy(tokens[i].gameObject);
+            }
+            for (int i = 0; i < hands.Length; i++){
+                Destroy(hands[i].gameObject);
+            }
         }
     }
 }

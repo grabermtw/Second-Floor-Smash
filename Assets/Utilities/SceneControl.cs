@@ -9,6 +9,7 @@ public class SceneControl : MonoBehaviour
     public Animator fader;
     public Image darkness;
     private bool fadeInNextScene = true;
+    private int previousScene;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +35,7 @@ public class SceneControl : MonoBehaviour
 
     public void LoadNextScene(int sceneNum, bool fadeIn)
     {
+        previousScene = SceneManager.GetActiveScene().buildIndex;
         fadeInNextScene = fadeIn;
         // Make sure the screen is dark
         if(fadeInNextScene)
@@ -49,5 +51,10 @@ public class SceneControl : MonoBehaviour
         {
             fader.SetTrigger("FadeIn");
         }
+    }
+
+    public int GetPreviousSceneNumber()
+    {
+        return previousScene;
     }
 }

@@ -35,7 +35,7 @@ public class TokenControl : MonoBehaviour
 
         // Find the appropriate player podium
         podium = GameObject.Find("P" + playerNum + " Podium");
-        podPos = podium.transform.position;
+        podPos = podium.GetComponent<PodiumControl>().GetInitialLocalPosition();
 
         // Find the CharacterList, which has all the characters and their skins
         characterList = GameObject.Find("CharacterManager").GetComponent<CharacterList>();
@@ -114,9 +114,12 @@ public class TokenControl : MonoBehaviour
                 // Select the current character
                 playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
                 charPreview = Instantiate(currentCharacter[currSkin], podium.transform);
+                
+                // Let the podium know who it's got on it
+                podium.GetComponent<PodiumControl>().AssignCurrentCharacter(charPreview);
 
                 // Change the height of the podium so that the character isn't blocked by/blocking the icons
-                podium.transform.position = podPos + new Vector3(0, heightAdjust, 0);
+                podium.transform.localPosition = podPos + new Vector3(0, heightAdjust, 0);
 
                 // Change and disable a bunch of things on the instantiated character so that it doesn't break everything
                 charPreview.transform.localPosition = new Vector3(0, 0, 0);

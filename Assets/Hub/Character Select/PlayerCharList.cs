@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerCharList : MonoBehaviour
 {
+    public GameObject cursorPrefab;
     List<GameObject> playerChoices;
     List<InputDevice> playerDevices;
     bool finishedSelect = false;
+    bool recreatingExitedPlayers = false;
 
     void Awake()
     {
@@ -23,8 +25,24 @@ public class PlayerCharList : MonoBehaviour
 
     public void AddPlayer(InputDevice device)
     {
-        playerChoices.Add(null);
-        playerDevices.Add(device);
+        // Prevent the device from needlessly being added to the device list again
+        if (!playerDevices.Contains(device))
+        {
+            Debug.Log("Adding " + device);
+            playerChoices.Add(null);
+            playerDevices.Add(device);
+        }
+    }
+
+    // This gets called when we re-enter the character select screen after previously exiting it
+    // We need to do this so that the player cursors are mapped to the correct devices.
+    public void RecreateExitedPlayers()
+    {
+        for (int i = 0; i < playerDevices.Count; i++)
+        {
+            Debug.Log("Instiantiating player number " + (i + 1));
+            PlayerInput.Instantiate(cursorPrefab, -1, null, -1, playerDevices[i]);
+        }
     }
 
     // Choose characters
@@ -63,12 +81,5 @@ public class PlayerCharList : MonoBehaviour
     public List<InputDevice> GetDeviceList()
     {
         return playerDevices;
-    }
-
-    // Called when we're exiting the character select screen
-    public void ClearAll()
-    {
-        playerChoices.Clear();
-        playerDevices.Clear();
     }
 }

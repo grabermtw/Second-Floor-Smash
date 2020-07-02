@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PodiumControl : MonoBehaviour
 {
-
+    private Vector3 initialLocalPosition;
+    private GameObject currentCharacter;
     private bool rotate = false;
+    
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        initialLocalPosition = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -37,9 +39,27 @@ public class PodiumControl : MonoBehaviour
         }
     }
 
+    // Called by Token Control whenever a new character preview is instantiated
+    public void AssignCurrentCharacter(GameObject character)
+    {
+        currentCharacter = character;
+    }
+
     public void ResetRotation()
     {
         rotate = false;
         transform.eulerAngles = new Vector3(0, 0, 0);
+    }
+
+    // Called by FPSToCharSelect, resets the position and clears out any leftover character previews.
+    public void ResetPosition()
+    {
+        transform.localPosition = initialLocalPosition;
+        Destroy(currentCharacter);
+    }
+
+    public Vector3 GetInitialLocalPosition()
+    {
+        return initialLocalPosition;
     }
 }

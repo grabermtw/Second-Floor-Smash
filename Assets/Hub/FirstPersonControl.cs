@@ -20,6 +20,19 @@ public class FirstPersonControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         fpCam = transform.GetChild(0);
+
+        // Determine where in Prince Frederick to start
+        GameObject sceneManage = GameObject.FindWithTag("SceneManager");
+        int prevScene = 0;
+        if(sceneManage != null)
+        {
+            prevScene = sceneManage.GetComponent<SceneControl>().GetPreviousSceneNumber();
+        }
+        // If we didn't just come from the opening scene, then put us near the character select.
+        if(prevScene != 0)
+        {
+            transform.position = new Vector3(-16.91f,1.173f,-26.89f);
+        }
     }
 
     // When the left joystick is moved

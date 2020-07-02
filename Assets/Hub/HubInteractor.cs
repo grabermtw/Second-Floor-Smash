@@ -11,6 +11,7 @@ public abstract class HubInteractor : MonoBehaviour
     protected FirstPersonControl playerControl;
     private bool playerNear = false;
 
+
     void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -27,6 +28,7 @@ public abstract class HubInteractor : MonoBehaviour
             {
                 playerNear = true;
                 playerControl.SetInteract(this, message);
+                
             }
             else
             {
