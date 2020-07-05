@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerCharList : MonoBehaviour
 {
+    public PlayerInputManager charSelectInput;
     public GameObject cursorPrefab;
     List<GameObject> playerChoices;
     List<InputDevice> playerDevices;
     bool finishedSelect = false;
-    bool recreatingExitedPlayers = false;
 
     void Awake()
     {
@@ -32,6 +32,7 @@ public class PlayerCharList : MonoBehaviour
             playerChoices.Add(null);
             playerDevices.Add(device);
         }
+        charSelectInput.EnableJoining();
     }
 
     // This gets called when we re-enter the character select screen after previously exiting it
