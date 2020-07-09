@@ -20,6 +20,8 @@ public class RoomAudioControl : MonoBehaviour
     private int audioIndex = 0;
     private bool firstPlay = true;
 
+    private static bool pause = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +30,16 @@ public class RoomAudioControl : MonoBehaviour
         {
             audioClipsQueue.Shuffle();
         }
+        else // When playing in order, start playing at random audio clip in the queue
+        {
+            audioIndex = Random.Range(0, audioClipsQueue.Count);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (audioClipsQueue.Count > 0)
+        if (!pause && audioClipsQueue.Count > 0)
         {
             bool playing = false;
             // Determine if we're playing anything at them moment.
@@ -55,18 +61,46 @@ public class RoomAudioControl : MonoBehaviour
                     currentAudio.timeSamples = startTime;
                     firstPlay = false;
                 }
+                else
+                {
+                    currentAudio.timeSamples = 0;
+                }
                 currentAudio.Play();
                 audioIndex += 1;
+                // Wrap around
                 if (audioIndex >= audioClipsQueue.Count)
                 {
-                    audioClipsQueue.Shuffle();
                     audioIndex = 0;
-                    // Ensure we don't play the same clip twice in a row
-                    if (currentAudio.clip == audioClipsQueue[0].audioClip)
+                    if (shuffle)
                     {
-                        audioIndex = 1;
+                        audioClipsQueue.Shuffle();
+                        // Ensure we don't play the same clip twice in a row
+                        if (currentAudio.clip == audioClipsQueue[0].audioClip)
+                        {
+                            audioIndex = 1;
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    public void TogglePause()
+    {
+        if(!pause)
+        {
+            pause = true;
+            foreach (AudioSource audio in audioSources)
+            {
+                audio.Pause();   
+            }
+        }
+        else
+        {
+            pause = false;
+            foreach (AudioSource audio in audioSources)
+            {
+                audio.UnPause();
             }
         }
     }
