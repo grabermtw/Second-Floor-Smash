@@ -82,4 +82,52 @@ public class FirstPersonControl : MonoBehaviour
         
     }
 
+    // ----------- Keyboard Actions (for when you don't have a gamepad handy) ------------
+    void OnMoveLeftKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        movement = transform.TransformDirection(new Vector3(- inputVal * moveSpeed, 0, 0));
+    }
+
+    void OnMoveRightKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        movement = transform.TransformDirection(new Vector3(inputVal * moveSpeed, 0, 0));
+    }
+
+    void OnMoveForwardKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        movement = transform.TransformDirection(new Vector3(0, 0, inputVal * moveSpeed));
+    }
+
+    void OnMoveBackwardKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        movement = transform.TransformDirection(new Vector3(0, 0, - inputVal * moveSpeed));
+    }
+
+    void OnLookUpKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        lookVertical = - inputVal * lookSensitivity;
+    }
+
+    void OnLookDownKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        lookVertical = inputVal * lookSensitivity;
+    }
+
+    void OnLookLeftKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        lookHorizontal = - inputVal * lookSensitivity;
+    }
+
+    void OnLookRightKeyboard(InputValue value)
+    {
+        float inputVal = value.Get<float>();
+        lookHorizontal = inputVal * lookSensitivity;
+    }
 }

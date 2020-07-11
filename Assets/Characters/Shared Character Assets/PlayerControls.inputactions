@@ -443,6 +443,17 @@
                     "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6474b9c3-55ed-4b84-b886-70ee913224fc",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -470,6 +481,70 @@
                     "name": "Action",
                     "type": "Button",
                     "id": "adc0860e-63df-48f6-9bf2-983ba8b61ed6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveLeftKeyboard",
+                    "type": "Value",
+                    "id": "05841c9e-5356-49ca-ae06-000892ee55c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveRightKeyboard",
+                    "type": "Value",
+                    "id": "a5d989e3-036e-4abf-bac5-0ea2db3c2502",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveForwardKeyboard",
+                    "type": "Value",
+                    "id": "1f81b8b6-2b9f-4af7-833e-69cbb0bd8a96",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveBackwardKeyboard",
+                    "type": "Value",
+                    "id": "5657b515-94d5-4dd8-a511-640eb8c39438",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LookUpKeyboard",
+                    "type": "Value",
+                    "id": "e3365f05-44db-42ad-9f32-a345851a2fe2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LookDownKeyboard",
+                    "type": "Value",
+                    "id": "590c8609-1d0f-4e2b-87c1-55913c67801a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LookLeftKeyboard",
+                    "type": "Value",
+                    "id": "7535c259-cb2d-48ef-a161-458efaf743b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LookRightKeyboard",
+                    "type": "Value",
+                    "id": "0b9c36d8-f63c-4d28-9b6d-ad63ffd39178",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -506,6 +581,105 @@
                     "processors": "",
                     "groups": "",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47feef1a-b450-4ec6-95f1-b5702d2cdde3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6167d174-5613-4f8a-a372-58762c7b001c",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeftKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fcc151f6-bb04-4f26-a129-8d9bbf8b39bc",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRightKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03916b65-f2ad-4b6c-99cd-93d5dfdee8cd",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveForwardKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b31f3914-f370-484a-97c7-2b743e6cb68a",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveBackwardKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66ec21a0-8eac-46cc-88e4-fc8156ff3a87",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookUpKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c482cba-1a9a-4e63-a99c-0bf05918b0c3",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookDownKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdc685b0-50db-46d8-9f2d-b28d5282d0a5",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookLeftKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e9731eb-5ed2-4851-99b9-7d8009c22325",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookRightKeyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
