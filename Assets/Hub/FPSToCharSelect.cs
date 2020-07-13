@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
-public class FPSToCharSelect : HubInteractor
+public class FPSToCharSelect : HubInteractor, ITransitionable
 {
     public PlayableDirector fpsToChar;
     public PlayableDirector charToFps;
@@ -30,9 +30,9 @@ public class FPSToCharSelect : HubInteractor
         Transition(true);
     }
 
-    public void Transition(bool toChar = false)
+    public void Transition(bool forward = false)
     {
-        if (toChar)
+        if (forward)
         {
             foreach(PodiumControl podium in podiums)
             {

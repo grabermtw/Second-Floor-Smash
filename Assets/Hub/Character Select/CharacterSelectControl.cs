@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class CharacterSelectControl : MonoBehaviour
 {
-    Vector2 leftJoystick; // holds the directions that the left joystick is pointing
-    float trackingSpeed = 4f; // how fast should the cursor move
+    private Vector2 leftJoystick; // holds the directions that the left joystick is pointing
+    private float trackingSpeed = 3.5f; // how fast should the cursor move
     Transform token; // The token we'll use to select our character
     Transform cursor; // Our cursor
     Transform canvas;
@@ -22,6 +22,7 @@ public class CharacterSelectControl : MonoBehaviour
     private GraphicRaycaster gr;
     private int playerNum;
     private PodiumControl podium;
+    private CharToStageSelect charToStageSelect;
 
 
     void Awake()
@@ -54,6 +55,9 @@ public class CharacterSelectControl : MonoBehaviour
 
         // Find our podium
         podium = GameObject.Find("P" + playerNum + " Podium").GetComponent<PodiumControl>();
+
+        // Find charToStageSelect
+        charToStageSelect = GameObject.Find("CharStageSelect").GetComponent<CharToStageSelect>();
 
         // All set!
         ready = true;
@@ -151,16 +155,8 @@ public class CharacterSelectControl : MonoBehaviour
             // Determine if all the players have selected a character
             if (playerCharList.AllSelected())
             {
-                GameObject sceneManage = GameObject.FindWithTag("SceneManager");
-                // For development purposes so we don't have to start from the opening scene every time
-                if(sceneManage != null)
-                {
-                    sceneManage.GetComponent<SceneControl>().LoadNextScene(2, false);
-                }
-                else
-                {
-                    SceneManager.LoadScene(2);
-                }
+                // transition to the stage select screen
+                charToStageSelect.Transition(true);
             }
         }
     }

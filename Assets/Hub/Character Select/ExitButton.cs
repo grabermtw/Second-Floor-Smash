@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ExitButton : MonoBehaviour, ICursorButtonable
 {
-    public FPSToCharSelect transitioner;
-    public PlayerNumberCharacterSelect playerNumberCharacterSelect;
+    public bool stageSelect;
+    public GameObject transitioner;
+    public PlayerNumberCharacterSelect playerNumberCharacterSelect;    
 
     private TokenControl[] tokens;
     private CharacterSelectControl[] hands;
@@ -18,10 +19,13 @@ public class ExitButton : MonoBehaviour, ICursorButtonable
 
     public void Click()
     {
-        // Exit back to the second floor
-        transitioner.Transition();
+        // Exit back to previous state
+        transitioner.GetComponent<ITransitionable>().Transition();
+        
+        // Clear hands
         playerNumberCharacterSelect.ClearAll();
         DestroyHands();
+        
     }
 
 
