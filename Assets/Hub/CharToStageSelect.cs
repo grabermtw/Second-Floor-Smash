@@ -11,7 +11,7 @@ public class CharToStageSelect : MonoBehaviour, ITransitionable
     public GameObject stageSelectCursorPrefab;
     private TokenControl[] tokens;
     private CharacterSelectControl[] hands;
-    private PlayerCharList playerCharList;
+    private SmashSettings playerCharList;
     private PlayerInput cursorPlayerInput;
     private PodiumControl[] podiums;
 
@@ -19,7 +19,7 @@ public class CharToStageSelect : MonoBehaviour, ITransitionable
     // Start is called before the first frame update
     void Start()
     {
-        playerCharList = GameObject.FindWithTag("PlayerCharacterList").GetComponent<PlayerCharList>();
+        playerCharList = GameObject.FindWithTag("SmashSettings").GetComponent<SmashSettings>();
         podiums = (PodiumControl[])FindObjectsOfType(typeof(PodiumControl));
     }
 

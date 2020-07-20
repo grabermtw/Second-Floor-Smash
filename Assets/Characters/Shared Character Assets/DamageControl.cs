@@ -7,7 +7,7 @@ public class DamageControl : MonoBehaviour
 {
     public float initialDamage;
     private float damage;
-    private PlayerNumberManager playerManager;
+    private GameplayManager playerManager;
     private int playerNumber;
     private TextMeshProUGUI damageDisplay;
 
@@ -21,7 +21,7 @@ public class DamageControl : MonoBehaviour
     {
         // Get the player number
         playerNumber = playerNum;
-        playerManager = GameObject.Find("PlayerInputManager").GetComponent<PlayerNumberManager>();
+        playerManager = GameObject.Find("GameplayManager").GetComponent<GameplayManager>();
         // Display the damage reading for this player
         damageDisplay = playerManager.GetDamageText(playerNumber);
         Debug.Log(damageDisplay);

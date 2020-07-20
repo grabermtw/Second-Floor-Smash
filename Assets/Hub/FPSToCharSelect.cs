@@ -10,7 +10,7 @@ public class FPSToCharSelect : HubInteractor, ITransitionable
     public PlayableDirector charToFps;
     public PlayerInputManager charSelectInput;
     public PlayerInputManager fpInput;
-    public PlayerCharList playerCharList;
+    public SmashSettings playerCharList;
     private PodiumControl[] podiums;
     
     private bool exitedOnceAlready = false;
@@ -56,6 +56,7 @@ public class FPSToCharSelect : HubInteractor, ITransitionable
             charSelectInput.enabled = false;
             fpInput.enabled = true;
             fpsToChar.time = 0;
+            playerCharList.ResetStock();
         }
     }
 

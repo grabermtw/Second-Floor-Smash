@@ -5,35 +5,40 @@ using TMPro;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-public class PlayerNumberManager : MonoBehaviour
+public class GameplayManager : MonoBehaviour
 {
-    public float maxUpVelocity; //
+    public float maxUpVelocity;
     public float upBoundary; // Go past this with a greater y velocity than maxUpVelocity and you die
     public float downBoundary; // Go past this and you die
     public float sideBoundary; // If |your x position| > this then you die
-    public GameObject[] playerTextObjects;
-    public GameObject[] playerDamageTexts;
-    public GameObject[] KOs;
+    public GameObject[] playerTextObjects; // UI objects containing all the players' UI
+    public GameObject[] playerDamageTexts; // GameObjects with the damage text TextMeshes on them
+    public TextMeshProUGUI[] playerStockTexts; // TextMeshes with the remaining stock text
+    public GameObject[] KOs; // Gameobjects containing the KO GameObjects (the fwooshes)
     public CinemachineTargetGroup targetGroup;
     public GameObject intialPositions;
-    private PlayerCharList playerCharList;
+    private SmashSettings playerCharList;
     private List<GameObject> playerChoices;
     private List<InputDevice> playerDevices;
     private Rigidbody2D[] playerRbs;
+    private int[] playerStocks;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerCharList = GameObject.Find("PlayerCharacterList").GetComponent<PlayerCharList>();
+        playerCharList = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
         playerChoices = playerCharList.GetCharList();
         playerDevices = playerCharList.GetDeviceList();
         playerRbs = new Rigidbody2D[playerChoices.Count];
+        playerStocks = new int[playerChoices.Count];
 
         Debug.Log("Bout to enter the foreach!");
         // Instantiate all the chosen characters
+        // Also assign stocks
         for (int i = 0; i < playerChoices.Count; i++)
         {
             Spawn(i, true);
+            playerStocks[i] = playerCharList.GetStock();
         }
     }
 
@@ -88,6 +93,7 @@ public class PlayerNumberManager : MonoBehaviour
     public TextMeshProUGUI GetDamageText(int playerNum)
     {
         playerTextObjects[playerNum - 1].SetActive(true);
+        playerStockTexts[playerNum - 1].text = "Stock: " + playerStocks[playerNum - 1];
         return playerDamageTexts[playerNum - 1].GetComponent<TextMeshProUGUI>();
     }
 
@@ -130,5 +136,9 @@ public class PlayerNumberManager : MonoBehaviour
 
         // Destroy the KO'd player
         Destroy(playerRbs[playerIndex].gameObject);
+
+        // Subtrack from their remaining stock
+        playerStocks[playerIndex] -= 1;
+        playerStockTexts[playerIndex].text = "Stock: " + playerStocks[playerIndex];
     }
 }

@@ -15,7 +15,7 @@ public class CharacterSelectControl : MonoBehaviour
     Transform canvas;
     bool ready = false; // Make sure everything's set before taking input
     PlayerNumberCharacterSelect playerManager;
-    PlayerCharList playerCharList;
+    SmashSettings playerCharList;
     TokenControl tokCtrl;
     bool hold = true;
     private PointerEventData pointEventData = new PointerEventData(null);
@@ -49,7 +49,7 @@ public class CharacterSelectControl : MonoBehaviour
         transform.localPosition = new Vector2((playerNum - 1) * 400 + -645, -300);
 
         // Find the player character list for checking whether we can begin the game in OnStart
-        playerCharList = GameObject.Find("PlayerCharacterList").GetComponent<PlayerCharList>();
+        playerCharList = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
 
         playerCharList.AddPlayer(GetComponent<PlayerInput>().devices[0]);
 

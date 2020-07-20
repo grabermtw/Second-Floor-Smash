@@ -10,7 +10,7 @@ public class TokenControl : MonoBehaviour
     private GraphicRaycaster gr;
     private PointerEventData pointEventData = new PointerEventData(null);
     bool held = true;
-    PlayerCharList playerCharList;
+    SmashSettings playerCharList;
     CharacterList characterList;
     int playerNum;
     private GameObject[] currentCharacter; //This is the array of the selected character's skins
@@ -41,7 +41,7 @@ public class TokenControl : MonoBehaviour
         characterList = GameObject.Find("CharacterManager").GetComponent<CharacterList>();
 
         // Find the player character list for assigning our character selections
-        playerCharList = GameObject.Find("PlayerCharacterList").GetComponent<PlayerCharList>();
+        playerCharList = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
 
         Debug.Log(gameObject.tag + " is currently using " + Gamepad.current);
     }

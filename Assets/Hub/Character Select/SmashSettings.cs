@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
-public class PlayerCharList : MonoBehaviour
+public class SmashSettings : MonoBehaviour
 {
+    private const int DEFAULT_STOCK = 3;
+
     public PlayerInputManager charSelectInput;
     public GameObject cursorPrefab;
+    public TextMeshProUGUI counterText;
+    private int stock;
     List<GameObject> playerChoices;
     List<InputDevice> playerDevices;
     bool finishedSelect = false;
 
+    
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        playerChoices = new List<GameObject>();
+        playerDevices = new List<InputDevice>();
+        ResetStock();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerChoices = new List<GameObject>();
-        playerDevices = new List<InputDevice>();
+        
     }
 
     public void AddPlayer(InputDevice device)
@@ -82,5 +91,24 @@ public class PlayerCharList : MonoBehaviour
     public List<InputDevice> GetDeviceList()
     {
         return playerDevices;
+    }
+
+    // Stock Section:
+
+    public void IncrementStock(int increment)
+    {
+        stock += increment;
+        counterText.text = stock.ToString();
+    }
+    
+    public void ResetStock()
+    {
+        stock = DEFAULT_STOCK;
+        counterText.text = stock.ToString();
+    }
+
+    public int GetStock()
+    {
+        return stock;
     }
 }

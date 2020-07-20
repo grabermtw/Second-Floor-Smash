@@ -55,8 +55,6 @@ public class StageSelectControl : MonoBehaviour
     {
         if (ready)
         {
-            bool done = false;
-
             // Do graphics raycast to see if we clicked a button
             pointEventData.position = Camera.main.WorldToScreenPoint(transform.position);
             List<RaycastResult> results = new List<RaycastResult>();
@@ -72,7 +70,6 @@ public class StageSelectControl : MonoBehaviour
                     if (result.gameObject.CompareTag("CursorButton"))
                     {
                         result.gameObject.GetComponent<ICursorButtonable>().Click();
-                        done = true;
                         break;
                     }
                 }

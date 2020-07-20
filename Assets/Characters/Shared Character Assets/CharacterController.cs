@@ -684,7 +684,7 @@ public class CharacterController : MonoBehaviour
     // ---------------- TEMPORARY RESET MECHANISM -------------------------
     private void OnSelect()
     {
-        Destroy(GameObject.Find("PlayerCharacterList"));
+        Destroy(GameObject.Find("SmashSettings"));
         SceneManager.LoadScene(1);
     }
 
