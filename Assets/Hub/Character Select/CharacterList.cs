@@ -121,8 +121,8 @@ public class CharacterList : MonoBehaviour
 
         characters.Add("AJ Shannon", AJShannon);
         heightOffsets.Add("AJ Shannon", AJShannonHeightOffset);
-        characters.Add("Amanda OShaughnessy", AmandaOShaughnessy);
-        heightOffsets.Add("Amanda OShaughnessy", AmandaOShaughnessyHeightOffset);
+        characters.Add("Amanda O'Shaughnessy", AmandaOShaughnessy);
+        heightOffsets.Add("Amanda O'Shaughnessy", AmandaOShaughnessyHeightOffset);
         characters.Add("Anders Julin", AndersJulin);
         heightOffsets.Add("Anders Julin", AndersJulinHeightOffset);
         characters.Add("Bebo Harraz", BeboHarraz);
@@ -147,8 +147,8 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Dave Hoag", DaveHoagHeightOffset);
         characters.Add("DefaultCharacter", DefaultCharacter);
         heightOffsets.Add("DefaultCharacter", DefaultCharacterHeightOffset);
-        characters.Add("Elizabeth K", ElizabethKilpatrick);
-        heightOffsets.Add("Elizabeth K", ElizabethKilpatrickHeightOffset);
+        characters.Add("Elizabeth Kilpatrick", ElizabethKilpatrick);
+        heightOffsets.Add("Elizabeth Kilpatrick", ElizabethKilpatrickHeightOffset);
         characters.Add("Emily Whittaker", EmilyWhittaker);
         heightOffsets.Add("Emily Whittaker", EmilyWhittakerHeightOffset);
         characters.Add("Emma Mirizio", EmmaMirizio);
@@ -167,8 +167,8 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Jasmine Lim", JasmineLimHeightOffset);
         characters.Add("Jesse Parreira", JesseParreira);
         heightOffsets.Add("Jesse Parreira", JesseParreiraHeightOffset);
-        characters.Add("Jimbo", Jimbo);
-        heightOffsets.Add("Jimbo", JimboHeightOffset);
+        characters.Add("Jim Boeheim", Jimbo);
+        heightOffsets.Add("Jim Boeheim", JimboHeightOffset);
         characters.Add("John Ball", JohnBall);
         heightOffsets.Add("John Ball", JohnBallHeightOffset);
         characters.Add("Jordan Woo", JordanWoo);
@@ -201,8 +201,8 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Patrick Vorsteg", PatrickVorstegHeightOffset);
         characters.Add("Quinn Morris", QuinnMorris);
         heightOffsets.Add("Quinn Morris", QuinnMorrisHeightOffset);
-        characters.Add("VorstegBot", Robos);
-        heightOffsets.Add("VorstegBot", RobosHeightOffset);
+        characters.Add("Robois", Robos);
+        heightOffsets.Add("Robois", RobosHeightOffset);
         characters.Add("Sam Polhemus", SamPolhemus);
         heightOffsets.Add("Sam Polhemus", SamPolhemusHeightOffset);
         characters.Add("Testudo", Testudo);

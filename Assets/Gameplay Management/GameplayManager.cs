@@ -12,7 +12,7 @@ public class GameplayManager : MonoBehaviour
     public float downBoundary; // Go past this and you die
     public float sideBoundary; // If |your x position| > this then you die
     public GameObject[] playerTextObjects; // UI objects containing all the players' UI
-    public GameObject[] playerDamageTexts; // GameObjects with the damage text TextMeshes on them
+    public TextMeshProUGUI[] playerDamageTexts; // GameObjects with the damage text TextMeshes on them
     public TextMeshProUGUI[] playerStockTexts; // TextMeshes with the remaining stock text
     public GameObject[] KOs; // Gameobjects containing the KO GameObjects (the fwooshes)
     public CinemachineTargetGroup targetGroup;
@@ -94,7 +94,7 @@ public class GameplayManager : MonoBehaviour
     {
         playerTextObjects[playerNum - 1].SetActive(true);
         playerStockTexts[playerNum - 1].text = "Stock: " + playerStocks[playerNum - 1];
-        return playerDamageTexts[playerNum - 1].GetComponent<TextMeshProUGUI>();
+        return playerDamageTexts[playerNum - 1];
     }
 
 
@@ -140,5 +140,19 @@ public class GameplayManager : MonoBehaviour
         // Subtrack from their remaining stock
         playerStocks[playerIndex] -= 1;
         playerStockTexts[playerIndex].text = "Stock: " + playerStocks[playerIndex];
+    }
+
+
+    public void FinishKO(int playerIndex)
+    {
+        // If we still have stock left, respawn
+        if(playerStocks[playerIndex] > 0)
+        {
+            Spawn(playerIndex, false);
+        }
+        else // No stock so we dead
+        {
+            playerDamageTexts[playerIndex].text = "KO";
+        }
     }
 }

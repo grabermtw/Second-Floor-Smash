@@ -26,6 +26,8 @@ public class DamageControl : MonoBehaviour
         damageDisplay = playerManager.GetDamageText(playerNumber);
         Debug.Log(damageDisplay);
         damageDisplay.text = initialDamage.ToString("F") + "%";
+        // Display the character's name
+        damageDisplay.gameObject.transform.parent.gameObject.GetComponent<TextMeshProUGUI>().text = "Player " + playerNumber + "\n" + gameObject.tag;
     }
 
     // Literally just returns the current damage
