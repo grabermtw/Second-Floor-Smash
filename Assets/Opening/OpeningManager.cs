@@ -47,7 +47,8 @@ public class OpeningManager : MonoBehaviour
                 GameObject[] currChar = charList[charIndex];
                 charList.RemoveAt(charIndex);
 
-                Instantiate(currChar[(int)Random.Range(0, currChar.Length)], charPositions[i]);
+                // Instantiate the non-game version of the characterm which we can get from the character controller component
+                Instantiate(currChar[(int)Random.Range(0, currChar.Length)].GetComponent<CharacterController>().GetNonGameCharacter(), charPositions[i]);
 
             }
         }

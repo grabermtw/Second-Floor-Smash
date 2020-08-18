@@ -39,6 +39,8 @@ public class CharacterController : MonoBehaviour
     public float grabHeight; // Height on the player that grabbing occurs at
     public float grabRange; // How far is the player's reach?
     public GameObject shield;
+    public GameObject nonGameCharacter; // This is a reference to the "Non-Game" version of the character,
+                                        // for use in opening animation and basically any 3D environment
 
 
     void Awake()
@@ -681,14 +683,6 @@ public class CharacterController : MonoBehaviour
         rb.AddForce(new Vector2(launchEnergy * Mathf.Cos(angle) * launchDirection, launchEnergy * Mathf.Sin(angle)), ForceMode2D.Impulse);
     }
 
-    // ---------------- TEMPORARY RESET MECHANISM -------------------------
-    private void OnSelect()
-    {
-        Destroy(GameObject.Find("SmashSettings"));
-        SceneManager.LoadScene(1);
-    }
-
-
     // Use LateUpdate to reset the triggers so that they can be evaluated within the animation controller
     // and then reset all within the same frame.
     void LateUpdate()
@@ -701,6 +695,20 @@ public class CharacterController : MonoBehaviour
         animator.ResetTrigger("Hang");
         animator.ResetTrigger("Grab");
         animator.ResetTrigger("BeginGrabbed");
+    }
+
+    // ---------------- UTILITY ----------------------------
+    public GameObject GetNonGameCharacter()
+    {
+        return nonGameCharacter;
+    }
+
+
+    // ---------------- TEMPORARY RESET MECHANISM -------------------------
+    private void OnSelect()
+    {
+        Destroy(GameObject.Find("SmashSettings"));
+        SceneManager.LoadScene(1);
     }
 
 }

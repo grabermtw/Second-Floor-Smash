@@ -31,11 +31,12 @@ public class PodiumControl : MonoBehaviour
         {
             // Make sure that rotating doesn't make them fall off the poduim.
             // This is a lazy solution I know
-            Rigidbody2D charRb = GetComponentInChildren<Rigidbody2D>();
+            Rigidbody charRb = GetComponentInChildren<Rigidbody>();
             if (charRb != null)
             {
                 charRb.isKinematic = true;
             }
+            
         }
     }
 

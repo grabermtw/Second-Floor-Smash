@@ -12,17 +12,19 @@ public class SmashSettings : MonoBehaviour
     public GameObject cursorPrefab;
     public TextMeshProUGUI counterText;
     private int stock;
-    List<GameObject> playerChoices;
-    List<InputDevice> playerDevices;
+    List<GameObject> playerChoices; // List of characters the players will be using
+    List<InputDevice> playerDevices; // List of devices the players will be using
+    List<int> results; // List of the players in order of who won to who lost for use in GameFinish
     bool finishedSelect = false;
 
-    
+
 
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
         playerChoices = new List<GameObject>();
         playerDevices = new List<InputDevice>();
+        results = new List<int>();
         ResetStock();
     }
 
@@ -31,6 +33,10 @@ public class SmashSettings : MonoBehaviour
     {
         
     }
+
+
+    // ------------- CHARACTER SELECT SECTION -------------
+    // These are called when we're in the Hub at the character select screen.
 
     public void AddPlayer(InputDevice device)
     {
@@ -83,18 +89,7 @@ public class SmashSettings : MonoBehaviour
         return finishedSelect;
     }
 
-    public List<GameObject> GetCharList()
-    {
-        return playerChoices;
-    }
-
-    public List<InputDevice> GetDeviceList()
-    {
-        return playerDevices;
-    }
-
-    // Stock Section:
-
+    // Stock Stuff:
     public void IncrementStock(int increment)
     {
         stock += increment;
@@ -107,8 +102,38 @@ public class SmashSettings : MonoBehaviour
         counterText.text = stock.ToString();
     }
 
+
+    // ------------- GAMEPLAY SECTION -------------
+    // These are called when setting up a stage to smash on
+
     public int GetStock()
     {
         return stock;
+    }
+
+    public List<GameObject> GetCharList()
+    {
+        return playerChoices;
+    }
+
+    public List<InputDevice> GetDeviceList()
+    {
+        return playerDevices;
+    }
+
+
+    // ------------- POST-GAMEPLAY SECTION -------------
+    // These are called when the game is over and we're going to the GameFinish scene
+
+    // Add a fallen player to the results list
+    public void AddToResults(int playerIndex)
+    {
+        results.Add(playerIndex);
+    }
+
+    // Return the results list
+    public List<int> GetResults()
+    {
+        return results;
     }
 }

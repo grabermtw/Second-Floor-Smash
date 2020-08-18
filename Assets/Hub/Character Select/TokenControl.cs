@@ -113,7 +113,7 @@ public class TokenControl : MonoBehaviour
 
                 // Select the current character
                 playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
-                charPreview = Instantiate(currentCharacter[currSkin], podium.transform);
+                charPreview = Instantiate(currentCharacter[currSkin].GetComponent<CharacterController>().GetNonGameCharacter(), podium.transform);
                 
                 // Let the podium know who it's got on it
                 podium.GetComponent<PodiumControl>().AssignCurrentCharacter(charPreview);
@@ -124,12 +124,6 @@ public class TokenControl : MonoBehaviour
                 // Change and disable a bunch of things on the instantiated character so that it doesn't break everything
                 charPreview.transform.localPosition = new Vector3(0, 0, 0);
                 charPreview.transform.eulerAngles = new Vector3(0, -90, 0);
-                charPreview.GetComponent<CharacterController>().enabled = false;
-                charPreview.GetComponent<DamageControl>().enabled = false;
-                charPreview.GetComponent<Grab>().enabled = false;
-                charPreview.GetComponent<Grabbed>().enabled = false;
-                charPreview.GetComponent<PlayerInput>().enabled = false;
-                charPreview.transform.Find("StandingCollider").transform.localEulerAngles = new Vector3(0, 90, 0);
             }
         }
         else

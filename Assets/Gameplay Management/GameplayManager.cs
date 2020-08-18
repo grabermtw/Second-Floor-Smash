@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.SceneManagement; // this is only needed when running from Unity editor
 
 public class GameplayManager : MonoBehaviour
 {
@@ -17,18 +18,26 @@ public class GameplayManager : MonoBehaviour
     public GameObject[] KOs; // Gameobjects containing the KO GameObjects (the fwooshes)
     public CinemachineTargetGroup targetGroup;
     public GameObject intialPositions;
-    private SmashSettings playerCharList;
+    private SmashSettings smashSettings;
     private List<GameObject> playerChoices;
     private List<InputDevice> playerDevices;
     private Rigidbody2D[] playerRbs;
     private int[] playerStocks;
+    private GameObject sceneManage;
+
+
+    void Awake()
+    {
+        // Find the scene manager if it's here
+        sceneManage = GameObject.FindWithTag("SceneManager");
+        smashSettings = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerCharList = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
-        playerChoices = playerCharList.GetCharList();
-        playerDevices = playerCharList.GetDeviceList();
+        playerChoices = smashSettings.GetCharList();
+        playerDevices = smashSettings.GetDeviceList();
         playerRbs = new Rigidbody2D[playerChoices.Count];
         playerStocks = new int[playerChoices.Count];
 
@@ -38,7 +47,7 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0; i < playerChoices.Count; i++)
         {
             Spawn(i, true);
-            playerStocks[i] = playerCharList.GetStock();
+            playerStocks[i] = smashSettings.GetStock();
         }
     }
 
@@ -146,13 +155,42 @@ public class GameplayManager : MonoBehaviour
     public void FinishKO(int playerIndex)
     {
         // If we still have stock left, respawn
-        if(playerStocks[playerIndex] > 0)
+        if (playerStocks[playerIndex] > 0)
         {
             Spawn(playerIndex, false);
         }
         else // No stock so we dead
         {
             playerDamageTexts[playerIndex].text = "KO";
+            smashSettings.AddToResults(playerIndex);
+
+            List<int> results = smashSettings.GetResults();
+
+            // Is the round over? Is everyone but the champion dead?
+            if (results.Count >= playerChoices.Count - 1)
+            {
+                if (playerChoices.Count > 1)
+                {
+                    // We need to add the winning player's index to the end of the results
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (playerChoices.Count >= 1 + i && !results.Contains(i))
+                        {
+                            smashSettings.AddToResults(i);
+                        }
+                    }
+                }
+
+                // Round is over. Time to go to the finish screen!
+                if (sceneManage != null) // For development purposes so we don't have to start from the opening scene every time
+                {
+                    sceneManage.GetComponent<SceneControl>().LoadNextScene(2, false);
+                }
+                else
+                {   
+                    SceneManager.LoadScene(2);
+                }
+            }
         }
     }
 }
