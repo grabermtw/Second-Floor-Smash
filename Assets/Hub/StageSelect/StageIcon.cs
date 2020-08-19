@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StageIcon : MonoBehaviour, ICursorButtonable
 {
     public string stageName;
     public int sceneIndex;
+    [SerializeField]
+    private TextMeshProUGUI stageText = default;
     private GameObject sceneManage;
 
     // Start is called before the first frame update
@@ -15,9 +18,20 @@ public class StageIcon : MonoBehaviour, ICursorButtonable
         sceneManage = GameObject.FindWithTag("SceneManager");
     }
 
-    public void Hover()
+    public void HoverBegin()
+    {
+        stageText.enabled = true;
+        stageText.text = stageName;
+    }
+
+    public void HoverStay()
     {
 
+    }
+
+    public void HoverExit()
+    {
+        stageText.enabled = false;
     }
 
     public void Click()

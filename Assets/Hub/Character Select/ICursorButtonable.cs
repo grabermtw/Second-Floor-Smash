@@ -1,5 +1,7 @@
 ﻿public interface ICursorButtonable
 {
-    void Hover();
+    void HoverBegin();
+    void HoverStay();
+    void HoverExit();
     void Click();
 }

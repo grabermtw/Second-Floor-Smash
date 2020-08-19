@@ -12,6 +12,7 @@ public class StageSelectControl : MonoBehaviour
     private Transform canvas;
     private PointerEventData pointEventData = new PointerEventData(null);
     private GraphicRaycaster gr;
+    private ICursorButtonable currentButton;
     private bool ready = false;
 
 
@@ -40,6 +41,49 @@ public class StageSelectControl : MonoBehaviour
     {
         // Move the cursor
         transform.Translate(leftJoystick.x * Time.deltaTime * trackingSpeed, leftJoystick.y * Time.deltaTime * trackingSpeed, 0);
+        
+        // Do graphics raycast to see if we're hovering over a button
+        pointEventData.position = Camera.main.WorldToScreenPoint(transform.position);
+        List<RaycastResult> results = new List<RaycastResult>();
+        gr.Raycast(pointEventData, results);
+
+        // Analyze the results
+        if (results.Count > 1)
+        {
+            foreach (RaycastResult result in results)
+            {
+                // We've got a button!
+                if (result.gameObject.CompareTag("CursorButton"))
+                {
+                    // New button so call HoverBegin() to begin hovering
+                    if (currentButton == null)
+                    {
+                        currentButton = result.gameObject.GetComponent<ICursorButtonable>();
+                        currentButton.HoverBegin();
+                        break;
+                    }
+                    // Same button so call HoverStay() to continue hovering
+                    else if (currentButton == result.gameObject.GetComponent<ICursorButtonable>())
+                    {
+                        currentButton.HoverStay();
+                    }
+                    else // Switch straight from one button to the next
+                    {
+                        currentButton.HoverExit();
+                        currentButton = result.gameObject.GetComponent<ICursorButtonable>();
+                        currentButton.HoverBegin();
+                    }
+                }
+            }
+        }
+        else // hit nothing so get rid of the currentButton
+        {
+            if (currentButton != null)
+            {
+                currentButton.HoverExit();
+                currentButton = null;
+            }
+        }
     }
 
     private void OnMove(InputValue value)
@@ -53,27 +97,9 @@ public class StageSelectControl : MonoBehaviour
     // When the user presses the select button
     void OnSelect()
     {
-        if (ready)
+        if (ready && currentButton != null)
         {
-            // Do graphics raycast to see if we clicked a button
-            pointEventData.position = Camera.main.WorldToScreenPoint(transform.position);
-            List<RaycastResult> results = new List<RaycastResult>();
-            gr.Raycast(pointEventData, results);
-
-            // Analyze the results
-            if (results.Count > 1)
-            {
-                foreach (RaycastResult result in results)
-                {
-                    // We've got a button!
-                    Debug.Log("Hit");
-                    if (result.gameObject.CompareTag("CursorButton"))
-                    {
-                        result.gameObject.GetComponent<ICursorButtonable>().Click();
-                        break;
-                    }
-                }
-            }
+            currentButton.Click();
         }
     }
 }

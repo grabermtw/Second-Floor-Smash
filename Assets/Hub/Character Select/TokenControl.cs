@@ -38,7 +38,7 @@ public class TokenControl : MonoBehaviour
         podPos = podium.GetComponent<PodiumControl>().GetInitialLocalPosition();
 
         // Find the CharacterList, which has all the characters and their skins
-        characterList = GameObject.Find("CharacterManager").GetComponent<CharacterList>();
+        characterList = GameObject.Find("CharacterList").GetComponent<CharacterList>();
 
         // Find the player character list for assigning our character selections
         playerCharList = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();

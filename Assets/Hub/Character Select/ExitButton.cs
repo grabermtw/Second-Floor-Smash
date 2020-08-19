@@ -11,8 +11,18 @@ public class ExitButton : MonoBehaviour, ICursorButtonable
     private TokenControl[] tokens;
     private CharacterSelectControl[] hands;
     
+    
+    public void HoverBegin()
+    {
 
-    public void Hover()
+    }
+
+    public void HoverStay()
+    {
+
+    }
+
+    public void HoverExit()
     {
 
     }

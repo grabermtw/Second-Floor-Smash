@@ -13,8 +13,18 @@ public class StockCounter : MonoBehaviour, ICursorButtonable
     {
         smashSettings = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
     }
+    
+    public void HoverBegin()
+    {
 
-    public void Hover()
+    }
+
+    public void HoverStay()
+    {
+
+    }
+
+    public void HoverExit()
     {
 
     }

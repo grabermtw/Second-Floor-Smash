@@ -7,7 +7,17 @@ public class StateGroupButton : MonoBehaviour, ICursorButtonable
     public GameObject md;
     public GameObject ny;
 
-    public void Hover()
+    public void HoverBegin()
+    {
+
+    }
+
+    public void HoverStay()
+    {
+
+    }
+
+    public void HoverExit()
     {
 
     }

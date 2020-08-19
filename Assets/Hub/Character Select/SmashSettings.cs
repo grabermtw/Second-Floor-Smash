@@ -11,6 +11,8 @@ public class SmashSettings : MonoBehaviour
     public PlayerInputManager charSelectInput;
     public GameObject cursorPrefab;
     public TextMeshProUGUI counterText;
+    [SerializeField]
+    private GameObject pressStart = default; // GameObject that will be activated whenever all players have selected a character
     private int stock;
     List<GameObject> playerChoices; // List of characters the players will be using
     List<InputDevice> playerDevices; // List of devices the players will be using
@@ -40,6 +42,9 @@ public class SmashSettings : MonoBehaviour
 
     public void AddPlayer(InputDevice device)
     {
+        // We can't continue until the new person has selected a character
+        finishedSelect = false;
+        pressStart.SetActive(false);
         // Prevent the device from needlessly being added to the device list again
         if (!playerDevices.Contains(device))
         {
@@ -77,10 +82,12 @@ public class SmashSettings : MonoBehaviour
             if (playerChoices[i] == null)
             {
                 finishedSelect = false;
+                pressStart.SetActive(false);
                 return;
             }
         }
         finishedSelect = true;
+        pressStart.SetActive(true);
     }
 
     // Lets us know if we're all selected so we can begin playing the game
