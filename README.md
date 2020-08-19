@@ -8,7 +8,7 @@ If you do not have a gamepad but would still like to explore Prince Frederick Ha
 ## Contributing
 If you'd like to contribute to this project (which is encouraged and apppreciated), fork the repository, add your contribution, and then make a pull request and I will merge your contribution with the main project if all looks good.
 
-Documentation is available for the following types of contributions:
+#### Documentation is available for the following types of contributions:
 
 1. [Adding additional stages](Documentation/AddingStages.md)
 2. [Adding additional characters](Documentation/AddingCharacters.md)
