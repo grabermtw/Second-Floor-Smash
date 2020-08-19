@@ -8,16 +8,17 @@ using UnityEngine.SceneManagement; // this is only needed when running from Unit
 
 public class GameplayManager : MonoBehaviour
 {
-    public float maxUpVelocity;
+
     public float upBoundary; // Go past this with a greater y velocity than maxUpVelocity and you die
     public float downBoundary; // Go past this and you die
     public float sideBoundary; // If |your x position| > this then you die
+    public CinemachineTargetGroup targetGroup;
+    public GameObject intialPositions;
+    public float maxUpVelocity;
     public GameObject[] playerTextObjects; // UI objects containing all the players' UI
     public TextMeshProUGUI[] playerDamageTexts; // GameObjects with the damage text TextMeshes on them
     public TextMeshProUGUI[] playerStockTexts; // TextMeshes with the remaining stock text
     public GameObject[] KOs; // Gameobjects containing the KO GameObjects (the fwooshes)
-    public CinemachineTargetGroup targetGroup;
-    public GameObject intialPositions;
     private SmashSettings smashSettings;
     private List<GameObject> playerChoices;
     private List<InputDevice> playerDevices;

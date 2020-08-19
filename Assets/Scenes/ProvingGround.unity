@@ -217,10 +217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace3e1d66dc6bc34fbd9c25803859e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxUpVelocity: 1
   upBoundary: 9
   downBoundary: -6
   sideBoundary: 11
+  targetGroup: {fileID: 884619334}
+  intialPositions: {fileID: 2118324695}
+  maxUpVelocity: 1
   playerTextObjects:
   - {fileID: 970961345}
   - {fileID: 2594546861518102595}
@@ -241,8 +243,6 @@ MonoBehaviour:
   - {fileID: 6246742893019215746, guid: 808537d6ac573f6408fe3d5fa9982822, type: 3}
   - {fileID: 6246742893019215746, guid: 29d09b01989c38342b39845516785da5, type: 3}
   - {fileID: 6246742893019215746, guid: d5821611f2103204eafe0ad8441f4b0c, type: 3}
-  targetGroup: {fileID: 884619334}
-  intialPositions: {fileID: 2118324695}
   testCharacter: {fileID: 6205316382487275622, guid: cabd627290aa52c478e8d1553b8a9447,
     type: 3}
 --- !u!1 &208187117
@@ -549,7 +549,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606118788}
-  m_LocalRotation: {x: 0.0000000029802323, y: -4.5219657e-25, z: 1.5173198e-16, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -0, z: 1.517348e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -799,7 +799,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 14.029612
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -824,7 +824,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0000000029802323, y: -4.5219657e-25, z: 1.5173198e-16, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -0, z: 1.517348e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
