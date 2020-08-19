@@ -14,7 +14,9 @@
     4. All edges/corners that a player should be able to grab and hang onto if falling/jumping should be marked with an instance of either the LeftEdgeHang prefab or the RightEdgeHang prefab depending on whether the edge/corner is facing the left or the right.
         1. The Left/RightEdgeHang prefabs can be found in the Assets/Stages/Shared Stage Assets folder.
         2. Add an instance of the appropriate EdgeHang prefab to your scene so that it is a child of your platform, and line up the instance's "center" (the Transform gizmo) on the edge/corner of your platform. Make sure the _Z_ position of the Left/RightEdgeHang instance remains at 0.
-        INSERT DIAGRAM HERE
+        
+![Diagram of the left side of the "Platform" GameObject that is in the ProvingGround scene](../Images/platformdiagram.jpg)
+        
 2. Feel free to add other things to your stage. Create a new folder with your stage's name as a subfolder in Assets/Stages and keep any assets you add to the project for your stage in there.
 3. If you create new types of platforms or obstacles or stage-related scripts or something fancy that you think could be useful in other future stages, put them in Assets/Stages/Shared Stage Assets.
 #### Note: to test your stage with one character, simply enter play mode while in your stage's scene. To test with more than one character at a time, you'll need to complete Part 4 of this guide and then run the game from the Hub scene and select the stage from the Stage Select screen.
