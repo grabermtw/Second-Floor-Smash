@@ -29,6 +29,10 @@ public class CharToStageSelect : MonoBehaviour, ITransitionable
         {
             tokens = (TokenControl[])FindObjectsOfType(typeof(TokenControl));
             hands = (CharacterSelectControl[])FindObjectsOfType(typeof(CharacterSelectControl));
+            foreach(CharacterSelectControl hand in hands)
+            {
+                hand.Freeze();
+            }
             // Instantiate the stage select cursor, assigning all input devices to control it
             cursorPlayerInput = PlayerInput.Instantiate(stageSelectCursorPrefab, -1, null, -1, playerCharList.GetDeviceList().ToArray());
             // Transition

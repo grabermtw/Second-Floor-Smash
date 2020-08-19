@@ -28,7 +28,7 @@ public class CharacterSelectControl : MonoBehaviour
     void Awake()
     {
         canvas = GameObject.Find("CharacterSelectCanvas").transform;
-        transform.parent = canvas;
+        transform.SetParent(canvas);
         transform.rotation = canvas.parent.rotation;
     }
 
@@ -67,7 +67,22 @@ public class CharacterSelectControl : MonoBehaviour
     void Update()
     {
         // Move the cursor
+        // Don't go out of bounds
+        if ((transform.position.x <= -19.75f && leftJoystick.x > 0) || (transform.position.x >= -13.25f && leftJoystick.x < 0))
+        {
+            leftJoystick = new Vector2(0, leftJoystick.y);
+        }
+        if ((transform.position.y >= 3.3f && leftJoystick.y > 0) || (transform.position.y <= -0.35f && leftJoystick.y < 0))
+        {
+            leftJoystick = new Vector2(leftJoystick.x, 0);
+        }
         transform.Translate(leftJoystick.x * Time.deltaTime * trackingSpeed, leftJoystick.y * Time.deltaTime * trackingSpeed, 0);
+    }
+
+    // this is called when we go to the stage select screen to prevent the hand from going wild in the background
+    public void Freeze()
+    {
+        ready = false;
     }
 
     private void OnMove(InputValue value)

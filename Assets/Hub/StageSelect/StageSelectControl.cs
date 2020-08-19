@@ -19,7 +19,7 @@ public class StageSelectControl : MonoBehaviour
     void Awake()
     {
         canvas = GameObject.Find("StageSelectCanvas").transform;
-        transform.parent = canvas;
+        transform.SetParent(canvas);
         transform.rotation = canvas.parent.rotation;
     }
 
@@ -40,6 +40,15 @@ public class StageSelectControl : MonoBehaviour
     void Update()
     {
         // Move the cursor
+        // Don't go out of bounds
+        if ((transform.position.x <= -19.75f && leftJoystick.x > 0) || (transform.position.x >= -13.25f && leftJoystick.x < 0))
+        {
+            leftJoystick = new Vector2(0, leftJoystick.y);
+        }
+        if ((transform.position.y >= 3.25f && leftJoystick.y > 0) || (transform.position.y <= -0.35f && leftJoystick.y < 0))
+        {
+            leftJoystick = new Vector2(leftJoystick.x, 0);
+        }
         transform.Translate(leftJoystick.x * Time.deltaTime * trackingSpeed, leftJoystick.y * Time.deltaTime * trackingSpeed, 0);
         
         // Do graphics raycast to see if we're hovering over a button

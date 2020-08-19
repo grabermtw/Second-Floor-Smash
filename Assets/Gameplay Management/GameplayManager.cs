@@ -25,76 +25,126 @@ public class GameplayManager : MonoBehaviour
     private int[] playerStocks;
     private GameObject sceneManage;
 
+    [SerializeField]
+    private GameObject testCharacter = default; // This will be used only for testing the stage so that you don't have to run it from the hub every time
+    private bool test = false;
 
     void Awake()
     {
         // Find the scene manager if it's here
         sceneManage = GameObject.FindWithTag("SceneManager");
-        smashSettings = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
+        try {
+            smashSettings = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
+        } catch {
+            smashSettings = null;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerChoices = smashSettings.GetCharList();
-        playerDevices = smashSettings.GetDeviceList();
-        playerRbs = new Rigidbody2D[playerChoices.Count];
-        playerStocks = new int[playerChoices.Count];
-
-        Debug.Log("Bout to enter the foreach!");
-        // Instantiate all the chosen characters
-        // Also assign stocks
-        for (int i = 0; i < playerChoices.Count; i++)
+        // If we're actually playing the game
+        if (smashSettings != null)
         {
-            Spawn(i, true);
-            playerStocks[i] = smashSettings.GetStock();
+            playerChoices = smashSettings.GetCharList();
+            playerDevices = smashSettings.GetDeviceList();
+            playerRbs = new Rigidbody2D[playerChoices.Count];
+            playerStocks = new int[playerChoices.Count];
+
+            Debug.Log("Bout to enter the foreach!");
+            // Instantiate all the chosen characters
+            // Also assign stocks
+            for (int i = 0; i < playerChoices.Count; i++)
+            {
+                Spawn(i, true);
+                playerStocks[i] = smashSettings.GetStock();
+            }
+        }
+        else // SmashSettings isn't present so we must be just doing a test run
+        {
+            test = true;
+            playerRbs = new Rigidbody2D[1];
+            playerStocks = new int[1];
+            playerStocks[0] = -1;
+            Spawn(0, true);
         }
     }
 
     public void Spawn(int playerIndex, bool initial)
     {
-        // Instantiate the players using PlayerInput so that the controllers are assigned correctly
-        Debug.Log("Instantiating " + playerChoices[playerIndex].tag);
-        Debug.Log("Device Number " + playerIndex + " out of " + playerDevices.Count);
-        PlayerInput newPlayer = PlayerInput.Instantiate(playerChoices[playerIndex], -1, null, -1, playerDevices[playerIndex]);
-        Debug.Log("Instantiated " + playerChoices[playerIndex].tag);
-
-        // Get the player's rigidbody
-        playerRbs[playerIndex] = newPlayer.gameObject.GetComponent<Rigidbody2D>();
-
-        // Set the character's layer. This will be how the character gets it's player number as well.
-        newPlayer.gameObject.layer = 9 + playerIndex;
-
-        if (initial)
+        if (!test) // If we're actually playing the game
         {
-            // Move the player to the appropriate initial position
-            newPlayer.transform.position = intialPositions.transform.Find("P" + (playerIndex + 1).ToString()).position;
-        }
-        else
-        {
-            newPlayer.transform.position = new Vector3(0, 5, 0);
-        }
+            // Instantiate the players using PlayerInput so that the controllers are assigned correctly
+            Debug.Log("Instantiating " + playerChoices[playerIndex].tag);
+            Debug.Log("Device Number " + playerIndex + " out of " + playerDevices.Count);
+            PlayerInput newPlayer = PlayerInput.Instantiate(playerChoices[playerIndex], -1, null, -1, playerDevices[playerIndex]);
+            Debug.Log("Instantiated " + playerChoices[playerIndex].tag);
 
-        // Add each character as a target for the camera
-        CinemachineTargetGroup.Target target;
-        target.target = null;
-        // Find the character's hips, because otherwise the camera will focus on their feet
-        foreach (Transform tr in newPlayer.gameObject.transform.GetComponentsInChildren<Transform>())
-        {
-            if (tr.gameObject.name == "mixamorig:Hips")
+            // Get the player's rigidbody
+            playerRbs[playerIndex] = newPlayer.gameObject.GetComponent<Rigidbody2D>();
+
+            // Set the character's layer. This will be how the character gets it's player number as well.
+            newPlayer.gameObject.layer = 9 + playerIndex;
+
+            if (initial)
             {
-                target.target = tr;
-                break;
+                // Move the player to the appropriate initial position
+                newPlayer.transform.position = intialPositions.transform.Find("P" + (playerIndex + 1).ToString()).position;
+            }
+            else
+            {
+                newPlayer.transform.position = new Vector3(0, 5, 0);
+            }
+
+            // Add each character as a target for the camera
+            CinemachineTargetGroup.Target target;
+            target.target = null;
+            // Find the character's hips, because otherwise the camera will focus on their feet
+            foreach (Transform tr in newPlayer.gameObject.transform.GetComponentsInChildren<Transform>())
+            {
+                if (tr.gameObject.name == "mixamorig:Hips")
+                {
+                    target.target = tr;
+                    break;
+                }
+            }
+            target.weight = 1;
+            target.radius = 1;
+            for (int i = 0; i < targetGroup.m_Targets.Length; i++)
+            {
+                if (targetGroup.m_Targets[i].target == null)
+                {
+                    targetGroup.m_Targets.SetValue(target, i);
+                    break;
+                }
             }
         }
-        target.weight = 1;
-        target.radius = 1;
-        for (int i = 0; i < targetGroup.m_Targets.Length; i++)
+        else // This is a test so do the default stuff
         {
-            if (targetGroup.m_Targets[i].target == null)
+            GameObject newPlayer = Instantiate(testCharacter);
+            playerRbs[playerIndex] = newPlayer.gameObject.GetComponent<Rigidbody2D>();
+            newPlayer.gameObject.layer = 9 + playerIndex;
+            // Add the character as a target for the camera
+            CinemachineTargetGroup.Target target;
+            target.target = null;
+            // Find the character's hips, because otherwise the camera will focus on their feet
+            foreach (Transform tr in newPlayer.gameObject.transform.GetComponentsInChildren<Transform>())
             {
-                targetGroup.m_Targets.SetValue(target, i);
-                break;
+                if (tr.gameObject.name == "mixamorig:Hips")
+                {
+                    target.target = tr;
+                    break;
+                }
+            }
+            target.weight = 1;
+            target.radius = 1;
+            for (int i = 0; i < targetGroup.m_Targets.Length; i++)
+            {
+                if (targetGroup.m_Targets[i].target == null)
+                {
+                    targetGroup.m_Targets.SetValue(target, i);
+                    break;
+                }
             }
         }
     }
@@ -147,15 +197,18 @@ public class GameplayManager : MonoBehaviour
         Destroy(playerRbs[playerIndex].gameObject);
 
         // Subtrack from their remaining stock
-        playerStocks[playerIndex] -= 1;
-        playerStockTexts[playerIndex].text = "Stock: " + playerStocks[playerIndex];
+        if (!test)
+        {
+            playerStocks[playerIndex] -= 1;
+            playerStockTexts[playerIndex].text = "Stock: " + playerStocks[playerIndex];
+        }
     }
 
 
     public void FinishKO(int playerIndex)
     {
         // If we still have stock left, respawn
-        if (playerStocks[playerIndex] > 0)
+        if (playerStocks[playerIndex] != 0)
         {
             Spawn(playerIndex, false);
         }
@@ -187,7 +240,7 @@ public class GameplayManager : MonoBehaviour
                     sceneManage.GetComponent<SceneControl>().LoadNextScene(2, false);
                 }
                 else
-                {   
+                {
                     SceneManager.LoadScene(2);
                 }
             }
