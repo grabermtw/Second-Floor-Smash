@@ -1,8 +1,12 @@
 # Adding your own character to _Second Floor Smash_
-#### One of the main goals of this project is to make it as easy as possible for anyone to add their own custom characters to the game. This will be a guide for the process I use to do so, from creation of the character model to inclusion in the game to updating the character selection screen. This guide assumes that you have a basic understanding of the Unity game engine and that you have already cloned the repository.
+#### One of the main goals of this project is to make it as easy as possible for anyone to add their own custom characters to the game. This will be a guide for the process used to do so, from creation of the character model to inclusion in the game to updating the character selection screen. This guide assumes that you have a basic understanding of the Unity game engine and that you have already cloned the repository.
+
+Please note that this guide contains screenshots from an older version of _Second Floor Smash_, so some things will not look exactly like they do in the screenshots.
+
 ### Part 1: Creating your character's model
 Depending on what kind of character you aim to include, there are many different ways you could go about creating your character's model. You could manually create it using software such as Blender, you could download a premade character off the Internet, or you could use a character creation software such as Adobe Fuse to create your character's model. This third option is the option I went with for creating my characters, and this is what we will be exploring in this part of the guide.
 1. Install Adobe Fuse. Fuse is available for free from Adobe, and its installation instructions can be found on Adobe's website [here](https://www.adobe.com/products/fuse.html).
+    1. Note: Adobe Fuse is set to be discontinued on September 13, 2020. [Mixamo Fuse](https://store.steampowered.com/app/257400/Fuse/) will likely still be available on Steam, but the import process to Unity will not work as smoothly with Mixamo Fuse.
 2. Run Adobe Fuse.
     1. This may be harder than it sounds. There are several known bugs with Adobe Fuse that Adobe has neglected to resolve, one of which is opening the program, as simply running it as you would any other application often fails to yield results. As discussed [here in an Adobe Support forum](https://community.adobe.com/t5/fuse-beta/fuse-won-t-start/m-p/8247719?page=1#M260), the most reliable way to open Fuse is to click rapidly on its icon within the Adobe Creative Cloud Desktop application.
 
@@ -34,9 +38,10 @@ Depending on what kind of character you aim to include, there are many different
         <img align="right" width="441" height="136" src="../Images/download.JPG">
     6. Put your downloaded FBX in the same directory that the folder of your character's textures is located within.
         1. _IMPORTANT_: Do not put the FBX in the folder _with_ the textures, rather, put the FBX in the folder that houses the folder with the textures.
+3. You can also upload characters made in programs other than Adobe Fuse directly to Mixamo and have them rigged and animated just like they would be if they were from Fuse.
 ### Part 3: Add your character to _Second Floor Smash_
 #### After rigging our character and obtaining its textures, it is time to import the character into our Unity project and give it all the properties that a playable character in the game has.
-1. Open the _Second Floor Smash_ Unity project if you haven't already. Make sure that you are in the scene titled "CharacterSelect."
+1. Open the _Second Floor Smash_ Unity project if you haven't already. Make sure that you are in the scene titled "Hub."
 2. The project has been set up to use [this script](https://forum.unity.com/threads/script-for-importing-adobe-fuse-character-model-into-unity-fixes-materials.482093/) for properly importing characters that were created with Adobe Fuse. This script provides us with the "Mixamo" drop-down in the toolbar at the top of the window.
 3. Click Mixamo->Import Character. A file explorer window will appear prompting you to select your character's FBX file.
     1. Assuming that your character's folder of textures is located within the same directory as the FBX and has the same filename, the folder full of textures will be imported with the character, and materials reflecting the character's appearance within Adobe Fuse will automatically be created.
@@ -44,7 +49,7 @@ Depending on what kind of character you aim to include, there are many different
 5. Within the Assets folder in the project explorer, navigate to the folder called "Characters." In this folder, you will find a folder for each character currently in the game.
 6. Select one of the character folders and use Ctrl-D (or Cmd-D for Mac) to duplicate it. Rename this duplicate to your new character's name.
     1. By duplicating an existing character's folder, we can take advantage of the work that has already been done to create our character, rather than doing everything from scratch.
-7. Enter the new folder for your character that you just created. Inside that folder, you will find all of the contents of the folder that was duplicated to create this folder, including an animation controller and at least one prefab for the character whose folder you duplicated. Delete everything in this folder except for the animation controller and one character prefab.
+7. Enter the new folder for your character that you just created. Inside that folder, you will find all of the contents of the folder that was duplicated to create this folder, including an animation controller, at least one prefab for the character whose folder you duplicated, and a folder called "Non-Game" containing prefabs that each correspond to the prefabs in the parent folder, but with a "1" appended to their names. Delete everything in this folder except for the animation controller, one character prefab, and the Non-Game folder, and then delete all but one of the prefabs in the Non-Game folder.
 8. Rename both the animation controller and the character prefab to your character's name. Then, double-click on the prefab to open it.
 9. With the GameObject at the top of the prefab's hierarchy selected, you will see a component in the Inspector called "Animator." One of the Animator component's fields is "Controller." Drag the animation controller with your character's name on it to this field.
 10. Leaving the prefab open, navigate back to the top of the Assets folder, and then enter the folder called "Mixamo." This is the folder in which the resources for all imported Adobe Fuse characters are stored. Within the Mixamo folder, find your character's folder and enter it.
@@ -66,19 +71,23 @@ Depending on what kind of character you aim to include, there are many different
 17. Click on the Body GameObject. Within the Transform component within the Inspector, change the Y-value of the Rotation field from 0 to 90. This will rotate your character 90 degrees.
 18. Drag the "Shield" GameObject so that it is the immediate child of the "mixamorig:Hips" GameObject in the hierarchy. This will tie the position of the shield to the movement of the character's torso when the character performs its shield action in the game.
 19. Click on the GameObject at the top of the hierarchy. Change the GameObject's tag to be the character's name.
+20. Enter the Non-Game folder, rename the prefab in that folder to your character's name (keep the "1" appended to the end of it), then double click to open the prefab.
+21. Repeat steps 10 through 19 with the Non-Game prefab while ignoring everything related to the "Shield" GameObject in steps 11 and 18.
+22. Open your character's game prefab (not the Non-Game one). There will be a field on the CharacterController component called "Non Game Character". Drag your character's corresponding Non-Game prefab into this field.
 ### Part 4: Update the Character Selection screen
 #### While completion of Part 3 will give you a playable character, we must first update the character selection screen so that it is actually possible to select that character from within the game.
-1. Exit the opened prefab to return to the view of the scene called "CharacterSelect."
-2. In the hierarchy, expand the "Canvas" GameObject, and then expand the "CharacterIcons" GameObject.
-3. Duplicate one of the children of CharacterIcons and rename it appropriately. This duplicate will be initially located on top of one of the existing icons. Modify the position values of its "Rect Transform" component to move it so that it is no longer in the way of any other icons.
-    1. You may want to consider rearranging all of the icons using this method to accommodate the addition of your new character.
+1. Exit the opened prefab to return to the view of the scene called "Hub."
+2. In the hierarchy, expand the "CharacterSelect" GameObject, and then expand the "CharacterSelectCanvas" GameObject. Choose either the "CharacterIconsUMD" GameObject or the "CharacterIconsNY" GameObject and expand it.
+    1. Currently in the project, there are two "tabs" of the Character Select screen, the default one being CharacterIconsUMD and containing characters from the University of Maryland, and the other being CharacterIconsNY and containing characters from New York State. You can add additional tabs if you want to figure out how to do that, or you can stick your character in either of these and, if applicable, I can move it to an additional tab after merging the pull request.
+3. Duplicate one of the children of the CharacterIcons GameObject you selected and rename it appropriately. This duplicate will be initially located on top of one of the existing icons. Modify the position values of its "Rect Transform" component to move it so that it is no longer in the way of any other icons.
+    1. You may want to consider rearranging all of the icons using this method to accommodate the addition of your new character if your character is from New York or University of Maryland.
 4. Change your character's icon's GameObject's tag so that it is the name of your character.
-5. From the top of the Assets folder, go to Assets/Character Select/Icons. Within this Icons folder is each character's icon for the character select screen. One of these icons is titled "template." Use Ctrl-D to duplicate this template, rename the duplicate, and then double-click it to open it in Adobe Photoshop (its filetype is already a .psd). Edit it as appropriate to represent your new character.
+5. From the top of the Assets folder, go to Assets/Hub/Character Select/CharacterIcons. Within this CharacterIcons folder is each character's icon for the character select screen. One of these icons is titled "template." Use Ctrl-D to duplicate this template, rename the duplicate, and then double-click it to open it in Adobe Photoshop (its filetype is already a .psd). Edit it as appropriate to represent your new character.
 
 <img align="right" width="233" height="434" src="../Images/sourceimage.JPG">
 
-6. Click on the GameObject for the new character icon that you made in the hierarchy. It will have an "Image" component with a field called "Source Image." Drag your newly edited character icon from the Icons folder into this field. This will give your character's icon on the character selection screen its distinctive appearance.
-7. Find and select the prefab in the Utilities folder called "CharacterList". There will be a script attached to it called "Character List." Right-click this script, and then select "Edit Script" to open it in your IDE.
+6. Click on the GameObject for the new character icon that you made in the hierarchy. It will have an "Image" component with a field called "Source Image." Drag your newly edited character icon from the CharacterIcons folder into this field. This will give your character's icon on the character selection screen its distinctive appearance.
+7. Find and select the prefab in the Utilities folder called "CharacterList". There will be a script attached to it called "CharacterList." Right-click this script, and then select "Edit Script" to open it in your IDE.
 8. In the CharacterList.cs script, you will see a series of declarations of public GameObject arrays and public floats, one of each for each character. Add one of each for your new character, like so:
 
         public GameObject[] NewCharacter;
@@ -105,20 +114,28 @@ Depending on what kind of character you aim to include, there are many different
     
     <img align="right" width="191" height="248" src="../Images/vorstegpodiumheir.JPG">
     
-    3. In the hierarchy, expand the GameObject called "P1 Podium." One of its children will be an instance of your character's prefab. Double-click on this GameObject in the hierarchy to fly directly to it in the scene view, and then adjust your view so that you can see whether or not your character's feet are touching the podium.
+    3. In the hierarchy, expand the GameObject called "P1 Podium." One of its children will be an instance of your character's Non-Game prefab. Double-click on this GameObject in the hierarchy to fly directly to it in the scene view, and then adjust your view so that you can see whether or not your character's feet are touching the podium.
     
     <img align="right" width="192" height="124" src="../Images/feet.JPG">
     
-    4. If the bottoms of your character's feet seem to be appropriately touching the podium, you can move on to the next step of Part 5. Otherwise, expand the instance of your character's prefab and click on the child GameObject called "StandingCollider."
-    5. The StandingCollider GameObject is responsible for keeping your character from falling through the floor. Ideally, in your character's neutral animation state (which your character should be in when viewed on the character selection screen), the bottom of your character's StandingCollider should line up with the bottom of your character's feet. If the collider's bottom is too high above your character's feet, your character's feet will have sunk into the floor (in this case, the podium), and if the collider's bottom is too low below the feet, your character will appear to be floating above the floor/podium.
+    4. If the bottoms of your character's feet seem to be appropriately touching the podium, you can move on to the next step of Part 5. Otherwise:
+        1. Select the instance of your character's Non-Game prefab.
+        2. Adjust the size and/or height of their CapsuleCollider so that your character's feet touch the podium without sinking into it.
+        3. Right click to copy the CapsuleCollider component values.
+        4. Exit play mode
+        5. Open your character's Non-Game prefab.
+        6. Right-Click the CapsuleCollider component and select "Paste Component Values".
+    5. Now we will do the same for the character's prefab as used in the game. Run the game, select your character, then continue on and select a stage so that you are in a round of _Smash_.
+    6. Without exiting play mode, expand the instance of your character's prefab and click on the child GameObject called "StandingCollider."
+    5. The StandingCollider GameObject is responsible for keeping your character from falling through the floor. Ideally, in your character's neutral animation state (which your character should be in when viewed on the character selection screen), the bottom of your character's StandingCollider should line up with the bottom of your character's feet. If the collider's bottom is too high above your character's feet, your character's feet will have sunk into the floor, and if the collider's bottom is too low below the feet, your character will appear to be floating above the floor.
     
     <img align="right" width="233" height="223" src="../Images/standincollider.JPG">
     
     6. To adjust the standing collider so that it lines up with the character's feet, adjust the StandingCollider's "Capsule Collider 2D" component's "Offset" field's y-component along with the "Size" field's y-component. The Offset field dictates the altitude of the collider on the character, and the Size field dictates the size of the collider as a whole. You should be able to adjust the values of these fields through trial and error so that the bottom of the collider lines up with the character's feet and the top of the collider lines up with the character's head.
-    7. Once you are satisfied with your adjustment of the StandingCollider, right-click the Capsule Collider 2D component and click "Copy Component." Then exit play mode. It is important to copy the Capsule Collider 2D component while still in play mode because any changes you make to a Unity project while in play mode are lost as soon as you exit play mode.
+    7. Once you are satisfied with your adjustment of the StandingCollider, right-click the Capsule Collider 2D component and click "Copy Component." Then exit play mode. It is important to copy the Capsule Collider 2D component while still in play mode and then exit play mode before continuing because any changes you make to a Unity project while in play mode are lost as soon as you exit play mode.
     8. Navigate to your character's prefab within your character's folder in Assets/Characters and double-click to open it. Find and select the StandingCollider GameObject in the prefab's hierarchy.
     9. Right-click on the Capsule Collider 2D component within the Inspector and click "Paste Component Values." This will give our character's StandingCollider the offset and size adjustments that it had while in play mode so that the character's feet will be appropriately grounded.
-2. After adjusting the StandingCollider, the final adjustment that may need to be made is the character's preview height. When a character is selected on the character selection screen and the preview model appears, without proper adjustment, the character may be so tall that they are partially obscured by the character selection icons, or they might be too short to be adequately seen. To remedy this, each character has a unique offset that is applied to the podium they stand on in the character selection screen.
+2. Once the feet are on the ground, the final adjustment that may need to be made is the character's preview height. When a character is selected on the character selection screen and the preview model appears, without proper adjustment, the character may be so tall that they are partially obscured by the character selection icons, or they might be too short to be adequately seen. To remedy this, each character has a unique offset that is applied to the podium they stand on in the character selection screen.
     
     <img align="right" width="205" height="233" src="../Images/heights.JPG">
     
