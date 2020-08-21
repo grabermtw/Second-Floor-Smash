@@ -34,6 +34,8 @@ public class CharacterList : MonoBehaviour
     public float DaveHoagHeightOffset;
     public GameObject[] DefaultCharacter;
     public float DefaultCharacterHeightOffset;
+    public GameObject[] DOUG;
+    public float DOUGHeightOffset;
     public GameObject[] ElizabethKilpatrick;
     public float ElizabethKilpatrickHeightOffset;
     public GameObject[] EmilyWhittaker;
@@ -147,6 +149,8 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Dave Hoag", DaveHoagHeightOffset);
         characters.Add("DefaultCharacter", DefaultCharacter);
         heightOffsets.Add("DefaultCharacter", DefaultCharacterHeightOffset);
+        characters.Add("D.O.U.G.", DOUG);
+        heightOffsets.Add("D.O.U.G.", DOUGHeightOffset);
         characters.Add("Elizabeth Kilpatrick", ElizabethKilpatrick);
         heightOffsets.Add("Elizabeth Kilpatrick", ElizabethKilpatrickHeightOffset);
         characters.Add("Emily Whittaker", EmilyWhittaker);
