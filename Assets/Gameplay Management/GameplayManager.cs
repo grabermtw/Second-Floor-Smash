@@ -27,16 +27,19 @@ public class GameplayManager : MonoBehaviour
     private GameObject sceneManage;
 
     [SerializeField]
-    private GameObject testCharacter = default; // This will be used only for testing the stage so that you don't have to run it from the hub every time
+    private GameObject[] testCharacters = default; // This will be used only for testing the stage so that you don't have to run it from the hub every time
     private bool test = false;
 
     void Awake()
     {
         // Find the scene manager if it's here
         sceneManage = GameObject.FindWithTag("SceneManager");
-        try {
+        try
+        {
             smashSettings = GameObject.Find("SmashSettings").GetComponent<SmashSettings>();
-        } catch {
+        }
+        catch
+        {
             smashSettings = null;
         }
     }
@@ -64,94 +67,81 @@ public class GameplayManager : MonoBehaviour
         else // SmashSettings isn't present so we must be just doing a test run
         {
             test = true;
-            playerRbs = new Rigidbody2D[1];
-            playerStocks = new int[1];
-            playerStocks[0] = -1;
-            Spawn(0, true);
+            playerRbs = new Rigidbody2D[testCharacters.Length];
+            playerStocks = new int[testCharacters.Length];
+            for (int i = 0; i < testCharacters.Length; i++)
+            {
+                playerStocks[i] = -1;
+                Spawn(i, true);
+            }
         }
     }
 
     public void Spawn(int playerIndex, bool initial)
     {
-        if (!test) // If we're actually playing the game
+        GameObject newPlayer;
+        if (test) // If we're simply testing our stage
+        {
+            newPlayer = Instantiate(testCharacters[playerIndex]);
+            
+            // We only want to move the first player, so remove the player inputs from everyone else
+            if (playerIndex != 0)
+            {
+                Destroy(newPlayer.GetComponent<PlayerInput>());
+            }
+        }
+        else // If we're actually playing the game
         {
             // Instantiate the players using PlayerInput so that the controllers are assigned correctly
             Debug.Log("Instantiating " + playerChoices[playerIndex].tag);
             Debug.Log("Device Number " + playerIndex + " out of " + playerDevices.Count);
-            PlayerInput newPlayer = PlayerInput.Instantiate(playerChoices[playerIndex], -1, null, -1, playerDevices[playerIndex]);
+            newPlayer = PlayerInput.Instantiate(playerChoices[playerIndex], -1, null, -1, playerDevices[playerIndex]).gameObject;
             Debug.Log("Instantiated " + playerChoices[playerIndex].tag);
+        }
+        // Get the player's rigidbody
+        playerRbs[playerIndex] = newPlayer.GetComponent<Rigidbody2D>();
 
-            // Get the player's rigidbody
-            playerRbs[playerIndex] = newPlayer.gameObject.GetComponent<Rigidbody2D>();
+        // Set the character's layer. This will be how the character gets its player number as well.
+        newPlayer.layer = 9 + playerIndex;
 
-            // Set the character's layer. This will be how the character gets it's player number as well.
-            newPlayer.gameObject.layer = 9 + playerIndex;
+        if (initial)
+        {
+            // Move the player to the appropriate initial position
+            newPlayer.transform.position = intialPositions.transform.Find("P" + (playerIndex + 1).ToString()).position;
+        }
+        else
+        {
+            newPlayer.transform.position = new Vector3(0, 5, 0);
+        }
 
-            if (initial)
+        // Add each character as a target for the camera
+        CinemachineTargetGroup.Target target;
+        target.target = null;
+        // Find the character's hips, because otherwise the camera will focus on their feet
+        foreach (Transform tr in newPlayer.transform.GetComponentsInChildren<Transform>())
+        {
+            if (tr.gameObject.name == "mixamorig:Hips")
             {
-                // Move the player to the appropriate initial position
-                newPlayer.transform.position = intialPositions.transform.Find("P" + (playerIndex + 1).ToString()).position;
-            }
-            else
-            {
-                newPlayer.transform.position = new Vector3(0, 5, 0);
-            }
-
-            // Add each character as a target for the camera
-            CinemachineTargetGroup.Target target;
-            target.target = null;
-            // Find the character's hips, because otherwise the camera will focus on their feet
-            foreach (Transform tr in newPlayer.gameObject.transform.GetComponentsInChildren<Transform>())
-            {
-                if (tr.gameObject.name == "mixamorig:Hips")
-                {
-                    target.target = tr;
-                    break;
-                }
-            }
-            target.weight = 1;
-            target.radius = 1;
-            for (int i = 0; i < targetGroup.m_Targets.Length; i++)
-            {
-                if (targetGroup.m_Targets[i].target == null)
-                {
-                    targetGroup.m_Targets.SetValue(target, i);
-                    break;
-                }
+                target.target = tr;
+                break;
             }
         }
-        else // This is a test so do the default stuff
+        target.weight = 1;
+        target.radius = 1;
+        for (int i = 0; i < targetGroup.m_Targets.Length; i++)
         {
-            GameObject newPlayer = Instantiate(testCharacter);
-            playerRbs[playerIndex] = newPlayer.gameObject.GetComponent<Rigidbody2D>();
-            newPlayer.gameObject.layer = 9 + playerIndex;
-            // Add the character as a target for the camera
-            CinemachineTargetGroup.Target target;
-            target.target = null;
-            // Find the character's hips, because otherwise the camera will focus on their feet
-            foreach (Transform tr in newPlayer.gameObject.transform.GetComponentsInChildren<Transform>())
+            if (targetGroup.m_Targets[i].target == null)
             {
-                if (tr.gameObject.name == "mixamorig:Hips")
-                {
-                    target.target = tr;
-                    break;
-                }
-            }
-            target.weight = 1;
-            target.radius = 1;
-            for (int i = 0; i < targetGroup.m_Targets.Length; i++)
-            {
-                if (targetGroup.m_Targets[i].target == null)
-                {
-                    targetGroup.m_Targets.SetValue(target, i);
-                    break;
-                }
+                targetGroup.m_Targets.SetValue(target, i);
+                break;
             }
         }
     }
 
+
     public TextMeshProUGUI GetDamageText(int playerNum)
     {
+
         playerTextObjects[playerNum - 1].SetActive(true);
         playerStockTexts[playerNum - 1].text = "Stock: " + playerStocks[playerNum - 1];
         return playerDamageTexts[playerNum - 1];
