@@ -80,25 +80,27 @@ public class CharacterController : MonoBehaviour
         attackFilter = new ContactFilter2D();
         // Same goes for grabbing, except that grabbing should work against shielded players
         grabFilter = new ContactFilter2D();
+        // We include the "Wall" layer in the masks because we will use that layer to shorten an attack's range if that's in
+        // the way of an opponent
         if (playerNumber == 1)
         {
-            attackFilter.SetLayerMask(LayerMask.GetMask("Player 2", "Player 3", "Player 4"));
-            grabFilter.SetLayerMask(LayerMask.GetMask("Player 2", "Player 3", "Player 4", "Shield"));
+            attackFilter.SetLayerMask(LayerMask.GetMask("Player 2", "Player 3", "Player 4", "Wall"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 2", "Player 3", "Player 4", "Shield", "Wall"));
         }
         else if (playerNumber == 2)
         {
-            attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 3", "Player 4"));
-            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 3", "Player 4", "Shield"));
+            attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 3", "Player 4", "Wall"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 3", "Player 4", "Shield", "Wall"));
         }
         else if (playerNumber == 3)
         {
-            attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 4"));
-            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 4", "Shield"));
+            attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 4", "Wall"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 4", "Shield", "Wall"));
         }
         else
         {
-            attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 3"));
-            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 3", "Shield"));
+            attackFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 3", "Wall"));
+            grabFilter.SetLayerMask(LayerMask.GetMask("Player 1", "Player 2", "Player 3", "Shield", "Wall"));
         }
 
         // Default the Shield animation parameter to -1. This way, later on, if it counts down to 0,
@@ -527,7 +529,8 @@ public class CharacterController : MonoBehaviour
     }
 
     // For dodging/sidestepping, most of the logic takes place within the animation behavior script, so we'll
-    // need to be able to give it the player number so that we can adjust the collision layer accordingly
+    // need to be able to give it the player number so that we can adjust the collision layer accordingly.
+    // Also used in other stage-specific scripts.
     public int GetThisPlayerNumber()
     {
         return playerNumber;
@@ -647,7 +650,14 @@ public class CharacterController : MonoBehaviour
         // TODO add striking to all struck things
         for (int i = 0; i < numHits; i++)
         {
-            results[i].rigidbody.gameObject.GetComponent<CharacterController>().Strike(addDamage, launchAngle, launchFactor, direction, useHitAnim);
+            try
+            {
+                results[i].rigidbody.gameObject.GetComponent<CharacterController>().Strike(addDamage, launchAngle, launchFactor, direction, useHitAnim);
+            }
+            catch // Error when we hit a wall, this will stop our attack, which is what we want
+            {
+                break;
+            }
         }
     }
 

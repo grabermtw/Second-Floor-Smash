@@ -114,11 +114,17 @@ public class GameplayManager : MonoBehaviour
             newPlayer.transform.position = new Vector3(0, 5, 0);
         }
 
-        // Add each character as a target for the camera
+        // Add each player as a target for the camera
+        AddPlayerToTargetGroup(newPlayer);
+    }
+
+    public void AddPlayerToTargetGroup(GameObject player)
+    {
+        // Add character as a target for the camera
         CinemachineTargetGroup.Target target;
         target.target = null;
         // Find the character's hips, because otherwise the camera will focus on their feet
-        foreach (Transform tr in newPlayer.transform.GetComponentsInChildren<Transform>())
+        foreach (Transform tr in player.transform.GetComponentsInChildren<Transform>())
         {
             if (tr.gameObject.name == "mixamorig:Hips")
             {
@@ -158,26 +164,22 @@ public class GameplayManager : MonoBehaviour
             {
                 if (playerRbs[i].position.y < downBoundary)
                 {
-                    KO(i, 0);
+                    KO(i);
                 }
                 else if (Mathf.Abs(playerRbs[i].position.x) > sideBoundary)
                 {
-                    KO(i, 2);
+                    KO(i);
                 }
                 else if (playerRbs[i].position.y > upBoundary && playerRbs[i].velocity.y > maxUpVelocity)
                 {
-                    KO(i, 1);
+                    KO(i);
                 }
             }
         }
     }
 
     // Handle KOs
-    // KOSide referrs to the direction they were KO'd in
-    // KOSide=0: Down
-    // KOSide=1: Up
-    // KOSide=2: left or right
-    private void KO(int playerIndex, int KOSide)
+    private void KO(int playerIndex)
     {
         // Use the player's KO position to instantiate the particle effect for the KO and orient it appropriately
         Vector3 pos = playerRbs[playerIndex].gameObject.transform.position;
@@ -187,6 +189,37 @@ public class GameplayManager : MonoBehaviour
         // Destroy the KO'd player
         Destroy(playerRbs[playerIndex].gameObject);
 
+        // Subtrack from their remaining stock
+        if (!test)
+        {
+            playerStocks[playerIndex] -= 1;
+            playerStockTexts[playerIndex].text = "Stock: " + playerStocks[playerIndex];
+        }
+    }
+
+    // This is an overload to be called externally when a player object has already been destroyed by other means.
+    // Example: When Tim drinks someone in the Tim's Tastings stage.
+    // Parameters:
+    // playerIndex: index of the player being killed (0-3)
+    // koInitialPos: starting point of the fwoosh.
+    // koTargetPos: ending point of the fwoosh.
+    // (optional) fwoosh: if true then do the fwoosh
+    // (optional) condemned: GameObject to be destroyed at this time, if applicable. Exclude if not applicable.
+    public void KO(int playerIndex, Vector3 koInitialPos, Vector3 koTargetPos, bool fwoosh = true, GameObject condemned = null)
+    {
+        // Destroy the condemned
+        if (condemned != null)
+        {
+            Destroy(condemned);
+        }
+
+        // Do fwoosh if applicable
+        if (fwoosh)
+        {
+            GameObject koParticles = Instantiate(KOs[playerIndex], koInitialPos, Quaternion.identity);
+            koParticles.transform.LookAt(koTargetPos);
+        }
+        
         // Subtrack from their remaining stock
         if (!test)
         {
