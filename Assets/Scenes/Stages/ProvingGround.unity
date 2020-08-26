@@ -552,7 +552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606118788}
-  m_LocalRotation: {x: 0.0000000029802323, y: -4.5220505e-25, z: 1.5173482e-16, w: 1}
+  m_LocalRotation: {x: 0.0000000029802323, y: -4.5221e-25, z: 1.5173649e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -827,7 +827,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0000000029802323, y: -4.5220505e-25, z: 1.5173482e-16, w: 1}
+  m_LocalRotation: {x: 0.0000000029802323, y: -4.5221e-25, z: 1.5173649e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -997,6 +997,7 @@ Transform:
   - {fileID: 2080485832}
   - {fileID: 705507995}
   - {fileID: 2118324696}
+  - {fileID: 1741639491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1093,6 +1094,81 @@ Transform:
   m_Father: {fileID: 2118324696}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1741639490
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1469716525}
+    m_Modifications:
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895038, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: m_Name
+      value: StageMusic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba133df9b19ffd74dae13de13c675f0b, type: 3}
+--- !u!4 &1741639491 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1741639490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1748110857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3604790091541428353, guid: 894f6c8cbf3c1bb42a3ed7054a1c3235,
