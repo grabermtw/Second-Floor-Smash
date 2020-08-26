@@ -24,14 +24,14 @@
 If your stage is significantly bigger or smaller than ProvingGround, you'll want to change the boundaries.
 
 1. Expand the "StageManagement" GameObject, and then expand the "CameraTargets" GameObject.
-2. CenterCameraTarget's _X_ and _Y_ positions should put it approximately in the center of the stage, LeftCameraTarget should be located about 75% of the distance from CenterCameraTarget to the intended left boundary of the stage, and RightCameraTarget should be located about 75% of the distance from CenterCameraTarget to the intended right boundary of the stage.
+2. CenterCameraTarget's _X_ and _Y_ positions should put it approximately in the center of the stage, LeftCameraTarget should be located about 75% of the distance from CenterCameraTarget to the intended left boundary of the stage, and RightCameraTarget should be located about 75% of the distance from CenterCameraTarget to the intended right boundary of the stage. Just do trial and error and feel free to add more targets if necessary.
 3. Select the "GameplayManager" GameObject. On the attached GameplayManager component, set the "Up Boundary" field to be the maximum _Y_ height that a character can reach before being KO'd, set the "Down Boundary" field to be the maximum _Y_ depth that a character can fall downward before being KO'd, and set the "Side Boundary" field to be the maximum distance to the left or right that the character can reach before being KO'd.
 4. Expand the "InitialPositions" GameObject and move the positions of its four children to appropriate spots to spawn four player at the start of a round in this stage. Keep in mind that the center of each of these child GameObjects will be located at the feet of the spawned players.
 ## Part 4: Adding your stage to the Stage Selection menu
 1. Within your stage's scene, go to File->Build Settings (CTRL+Shift+B), and then click "Add Open Scenes." This will add your new stage's scene to the "Scenes in Build" list and assign your scene an index.
 2. Go to the Hub scene.
 3. In the hierarchy, find the "StageSelectCanvas" GameObject (a child of "CharacterSelect") and double-click it to view the Stage Select menu.
-4. You will see the icons of the current stages. Select the "Proving Ground" icon GameObject in the hierarchy, use CTRL/CMD+D to duplicate it, then rename the duplicate to be your scene's name.
+4. You will see the icons of the current stages listed under the "StageIcons" GameObject. Select the "Proving Ground" icon GameObject in the hierarchy, use CTRL/CMD+D to duplicate it, then rename the duplicate to be your scene's name.
 5. Move your newly-created duplicate so that it is no longer overlapping the Proving Ground icon. You can move around or resize the other stage icons if you need to make room.
 6. Select your stage's new icon. In the Inspector, find the attached StageIcon script, and change the "Stage Name" field to your stage's name and the "Stage Index" to your stage's index in the build list (you can check this by again going to File->Build Settings (CTRL+Shift+B).
 7. Go to Assets/Hub/StageSelect/StageIcons. In this folder, there will be a .PSD file imported as a sprite called "stage_icon_template". Duplicate this file and double-click it to open it in Photoshop.
