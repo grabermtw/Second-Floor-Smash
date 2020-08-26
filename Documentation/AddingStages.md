@@ -28,7 +28,7 @@ If your stage is significantly bigger or smaller than ProvingGround, you'll want
 3. Select the "GameplayManager" GameObject. On the attached GameplayManager component, set the "Up Boundary" field to be the maximum _Y_ height that a character can reach before being KO'd, set the "Down Boundary" field to be the maximum _Y_ depth that a character can fall downward before being KO'd, and set the "Side Boundary" field to be the maximum distance to the left or right that the character can reach before being KO'd.
 4. Expand the "InitialPositions" GameObject and move the positions of its four children to appropriate spots to spawn four player at the start of a round in this stage. Keep in mind that the center of each of these child GameObjects will be located at the feet of the spawned players.
 ### Adding Music:
-The GameObject called "StageMusic" is where you specify what music you want for your stage. Expand the Music array and drag in any audio clips you want to play. If "Shuffle" is not checked, they'll play on loop in the order you specify.
+The GameObject called "StageMusic" is where you specify what music you want for your stage. Expand the Music array in the StageMusic component on the StageMusic GameObject and drag in any audio clips you want to play. If "Shuffle" is not checked, they'll play on loop in the order you specify.
 ## Part 4: Adding your stage to the Stage Selection menu
 1. Within your stage's scene, go to File->Build Settings (CTRL+Shift+B), and then click "Add Open Scenes." This will add your new stage's scene to the "Scenes in Build" list and assign your scene an index.
 2. Go to the Hub scene.
