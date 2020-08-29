@@ -584,11 +584,11 @@ public class CharacterController : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);
             rb.velocity = (new Vector2(rb.velocity.x / 1.02f, rb.velocity.y));
         }
-        movement = new Vector3(leftJoystick.x, 0, 0) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement, Space.World);
+        movement = new Vector3(leftJoystick.x, 0, 0) * moveSpeed;
+        transform.Translate(movement  * Time.deltaTime, Space.World);
 
         // Adjust our idle/walk/run animation blend tree
-        animator.SetFloat("Run", Mathf.Abs(movement.x) * 100f);
+        animator.SetFloat("Run", Mathf.Abs(movement.x) * 2);
     }
 
     // Helper methods in case we need it later

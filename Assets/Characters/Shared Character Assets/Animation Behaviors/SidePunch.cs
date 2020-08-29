@@ -7,10 +7,10 @@ public class SidePunch : StateMachineBehaviour
     CharacterController charCtrl;
     Transform tf;
     int direction;
-    public float moveSpeed;
     public bool attack = true;
     public float damageAmount = 6;
     public float launchFactor = 0.2f;
+    private float moveSpeed = 2f;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -23,7 +23,7 @@ public class SidePunch : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        tf.Translate(direction * new Vector3(moveSpeed, 0, 0), Space.World);
+        tf.Translate(direction * new Vector3(moveSpeed * Time.deltaTime, 0, 0), Space.World);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
