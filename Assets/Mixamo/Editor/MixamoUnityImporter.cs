@@ -375,12 +375,12 @@ public class MixamoUnityImporter
                     case TextureFormat.PVRTC_RGBA4:
                     case TextureFormat.ETC2_RGBA8:
                     case TextureFormat.ETC2_RGBA1:
-                    case TextureFormat.ASTC_RGBA_4x4:
-                    case TextureFormat.ASTC_RGBA_5x5:
-                    case TextureFormat.ASTC_RGBA_6x6:
-                    case TextureFormat.ASTC_RGBA_8x8:
-                    case TextureFormat.ASTC_RGBA_10x10:
-                    case TextureFormat.ASTC_RGBA_12x12:
+                    case TextureFormat.ASTC_4x4:
+                    case TextureFormat.ASTC_5x5:
+                    case TextureFormat.ASTC_6x6:
+                    case TextureFormat.ASTC_8x8:
+                    case TextureFormat.ASTC_10x10:
+                    case TextureFormat.ASTC_12x12:
                     case TextureFormat.DXT5: // NOTE: DXT5 has alpha, DXT1 is usually non-alpha
                         break;
                     default:

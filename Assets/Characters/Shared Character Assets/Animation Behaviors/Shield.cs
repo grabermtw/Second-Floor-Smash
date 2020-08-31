@@ -11,6 +11,9 @@ public class Shield : StateMachineBehaviour
     int maxShield;
     int shield;
     float shieldShrink; // amount that the shield should shrink by
+    float shieldRemaining; // amount of remaining shield
+    private const float SHIELD_EXPIRE_TIME = 2f; // How much time remaining should there be before shield expires?
+                                                // (we don't want the shield to be invisible by the time it expires)
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,7 +21,7 @@ public class Shield : StateMachineBehaviour
         charCtrl = animator.gameObject.GetComponent<CharacterController>();
         // Get our initial value for Shield. This will be the number of frames we will be able to use our
         // shield before it expires
-        shield = animator.GetInteger("Shield");
+        shieldRemaining = (float)animator.GetInteger("Shield");
 
         // Activate the shield gameGbject
         charCtrl.GetShield().SetActive(true);
@@ -31,7 +34,7 @@ public class Shield : StateMachineBehaviour
         shieldShrink = 1f / (float)maxShield;
 
         // Set starting shield sphere size
-        float initSize = 1 - ((maxShield - shield) * shieldShrink);
+        float initSize = 1 - ((maxShield - shieldRemaining) * shieldShrink);
         shieldSphere.localScale = new Vector3(initSize, initSize, initSize);
         
     }
@@ -40,11 +43,11 @@ public class Shield : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Has the shield expired yet?
-        if (shield > 0)
+        if (shieldRemaining > SHIELD_EXPIRE_TIME) // cut it off early so that it's still visible before the shield expiring animation
         {
-            shield--;
-            shieldSphere.localScale = shieldSphere.localScale - new Vector3(shieldShrink, shieldShrink, shieldShrink);
-
+            shieldRemaining -= Time.deltaTime;
+            shieldSphere.localScale = shieldSphere.localScale - new Vector3(shieldShrink * Time.deltaTime, shieldShrink * Time.deltaTime, shieldShrink * Time.deltaTime);
+            Debug.Log("ShieldRemaining: " + shieldRemaining);
             // Should we dodge?
             int shouldDodge = charCtrl.ShouldWeDodge();
             if(shouldDodge != 0){
@@ -60,7 +63,7 @@ public class Shield : StateMachineBehaviour
                 Debug.Log("Sidestep!");
             }
         }
-        else if (shield == 0)
+        else if (shieldRemaining <= SHIELD_EXPIRE_TIME) 
         {
             // Shield has expired!
             animator.SetInteger("Shield", 0);
@@ -72,7 +75,7 @@ public class Shield : StateMachineBehaviour
     {
         
         // Did the shield expire? If shield == 0, then it expired and we must punish the player.
-        if (shield == 0)
+        if (shieldRemaining <= SHIELD_EXPIRE_TIME)
         {
             // Hurt ourselves as punishment
             charCtrl.Strike(damageAmount, 1.4f, 0.01f, charCtrl.GetDirection(), false);
@@ -80,7 +83,7 @@ public class Shield : StateMachineBehaviour
         else
         {
             // Shield didn't run out so we'll recharge it from the amount we have left in the character controller.
-            charCtrl.SetCurrentShieldAmt(shield);
+            charCtrl.SetCurrentShieldAmt((int)shieldRemaining);
         }
         shieldSphere.localScale = new Vector3(1, 1, 1);
         charCtrl.GetShield().SetActive(false);

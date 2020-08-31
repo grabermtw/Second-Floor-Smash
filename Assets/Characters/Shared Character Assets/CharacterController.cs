@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement; // remove this if no longer needed
 
 public class CharacterController : MonoBehaviour
 {
-
+    private int maxShield = 7; // Maximum number of frames of shield
     Animator animator;
     Vector2 leftJoystick;
     Vector3 movement;
@@ -31,11 +31,10 @@ public class CharacterController : MonoBehaviour
     DamageControl damageControl;
     int playerNumber;
 
-
     public float jumpPower;
     public float hangOffset; // Distance down from the edge that we must be to realistically hang off the edge.
                              // This really depends on the character's arm/torso length.
-    public int maxShield; // Maximum number of frames of shield
+    
     public float grabHeight; // Height on the player that grabbing occurs at
     public float grabRange; // How far is the player's reach?
     public GameObject shield;
