@@ -52,9 +52,9 @@ public class FirstPersonControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement);
-        rb.MoveRotation(Quaternion.Euler(rb.rotation.eulerAngles + new Vector3(0, lookHorizontal, 0)));
-        fpCam.Rotate(lookVertical, 0, 0);
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.Euler(rb.rotation.eulerAngles + new Vector3(0, lookHorizontal * Time.fixedDeltaTime, 0)));
+        fpCam.Rotate(lookVertical * Time.fixedDeltaTime, 0, 0);
         rb.velocity = new Vector3(0,0,0);
     }
 
