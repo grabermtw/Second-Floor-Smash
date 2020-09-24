@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Punching : StateMachineBehaviour
 {
-    CharacterController charCtrl;
-    public float damageAmount = 3;
-    public float launchFactor = 0.1f;
+    private CharacterController charCtrl;
+    private PunchInfo info;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl = animator.gameObject.GetComponent<CharacterController>();
-
+        info = animator.gameObject.GetComponent<CommonCombatParams>().GetPunchInfo();
+        charCtrl = info.GetCharCtrl();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,7 +22,7 @@ public class Punching : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl.Attack(1.16f, 0.8f, 0, damageAmount, 0.55f, launchFactor);
+        charCtrl.Attack(info.attackHeight, info.attackRange, info.attackAngle, info.damageAmount, info.launchAngle, info.launchFactor);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

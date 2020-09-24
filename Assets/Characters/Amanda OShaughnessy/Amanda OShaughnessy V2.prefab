@@ -542,6 +542,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -638,6 +639,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -876,6 +878,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1050,6 +1053,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1772,6 +1776,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1796,6 +1801,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5041038588788473520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1910,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2053,6 +2060,7 @@ GameObject:
   - component: {fileID: 224078552056244598}
   - component: {fileID: 2683119847374487459}
   - component: {fileID: 6205316382487275640}
+  - component: {fileID: 1759972341405447830}
   m_Layer: 0
   m_Name: Amanda OShaughnessy V2
   m_TagString: Amanda O'Shaughnessy
@@ -2087,7 +2095,7 @@ Animator:
   m_GameObject: {fileID: 6205316382487275622}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 71ce280586471e146b0c37eb36698641, type: 3}
-  m_Controller: {fileID: 9100000, guid: c60f809c5f2535845a9e20549ab0bdc0, type: 2}
+  m_Controller: {fileID: 22100000, guid: 3773d1d4d09e0f141985e874a700948b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2110,7 +2118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPower: 300
   hangOffset: 2.3
-  maxShield: 300
   grabHeight: 1.2
   grabRange: 0.8
   shield: {fileID: 5029481727657388208}
@@ -2205,6 +2212,100 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1759972341405447830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87daa870a174ce4d998df8ccb9c7459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punchInfo:
+    damageAmount: 3
+    launchFactor: 0.1
+    attackHeight: 1.16
+    attackRange: 0.8
+    attackAngle: 0
+    launchAngle: 0.55
+  sidePunchInfo:
+    damageAmount: 6
+    launchFactor: 0.2
+    attackHeight: 1.16
+    attackRange: 0.8
+    attackAngle: 0
+    launchAngle: 0.75
+    moveSpeed: 2
+    attack: 1
+  upPunchInfo:
+    attackTwice: 1
+    damageAmount: 6
+    launchFactor: 0.2
+    attackHeight: 1.1
+    attackRange: 0.8
+    firstAttackAngle: 0
+    secondAttackAngle: 1.5
+    launchAngle: 1.5
+  downPunchInfo:
+    attackTwice: 1
+    firstDamageAmount: 6
+    secondDamageAmount: 6
+    firstLaunchFactor: 0.2
+    secondLaunchFactor: 0.2
+    firstAttackHeight: 0.1
+    secondAttackHeight: 0.1
+    firstAttackRange: 1.5
+    secondAttackRange: 0.8
+    firstAttackAngle: 0
+    secondAttackAngle: 3.14
+    firstLaunchAngle: 1.5
+    secondLaunchAngle: 1.74
+  airPunchInfo:
+    attackTwice: 1
+    firstDamageAmount: 3
+    secondDamageAmount: 3
+    firstLaunchFactor: 0.1
+    secondLaunchFactor: 0.1
+    firstAttackHeight: 0.7
+    secondAttackHeight: 1
+    firstAttackRange: 0.6
+    secondAttackRange: 0.6
+    firstAttackAngle: 0
+    secondAttackAngle: 0
+    firstLaunchAngle: 0.7
+    secondLaunchAngle: -0.7
+  airPunchDownInfo:
+    attackTwice: 1
+    doubleAttackTwice: 1
+    firstDamageAmount: 3
+    secondDamageAmount: 3
+    firstLaunchFactor: 0.1
+    secondLaunchFactor: 0.1
+    firstAttackHeight: 0.45
+    secondAttackHeight: 0.45
+    firstAttackRange: 0.65
+    secondAttackRange: 0.65
+    firstAttackAngle: -1.9
+    secondAttackAngle: -1.4
+    firstLaunchAngle: -1.75
+    secondLaunchAngle: -1.4
+  airPunchUpInfo:
+    attackTwice: 1
+    firstDamageAmount: 3
+    secondDamageAmount: 3
+    firstLaunchFactor: 0.1
+    secondLaunchFactor: 0.1
+    firstAttackHeight: 1.1
+    secondAttackHeight: 1.1
+    firstAttackRange: 0.7
+    secondAttackRange: 0.8
+    firstAttackAngle: 0
+    secondAttackAngle: 1.5
+    firstLaunchAngle: 1.5
+    secondLaunchAngle: 1.5
 --- !u!1 &6212721965945501791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,6 +2475,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2492,6 +2594,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2892,6 +2995,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

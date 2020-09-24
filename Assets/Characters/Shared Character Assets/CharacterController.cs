@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement; // remove this if no longer needed
 
 public class CharacterController : MonoBehaviour
 {
-    private int maxShield = 7; // Maximum number of frames of shield
+    private int maxShield = 7; // Maximum number of seconds of shield
     Animator animator;
     Vector2 leftJoystick;
     Vector3 movement;

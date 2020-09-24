@@ -7,13 +7,14 @@ public class Dodge : StateMachineBehaviour
     CharacterController charCtrl;
     Transform tr;
     int direction;
-    public float dodgeRate;
+    private DodgeInfo dodgeInfo;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         direction = animator.GetInteger("Dodge"); // -1 for left, 1 for right
-        charCtrl = animator.gameObject.GetComponent<CharacterController>();
+        dodgeInfo = animator.gameObject.GetComponent<CommonCombatParams>().GetDodgeInfo();
+        charCtrl = dodgeInfo.GetCharCtrl();
         charCtrl.SetDirection(direction);
         tr = animator.gameObject.transform;
         foreach (Collider2D collider in tr.GetComponentsInChildren<Collider2D>(true))
@@ -27,7 +28,7 @@ public class Dodge : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // This is dodging, so we need to move the player in the dodge direction.
-        tr.Translate(new Vector3(dodgeRate * direction * Time.deltaTime, 0, 0), Space.World);
+        tr.Translate(new Vector3(dodgeInfo.dodgeRate * direction * Time.deltaTime, 0, 0), Space.World);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

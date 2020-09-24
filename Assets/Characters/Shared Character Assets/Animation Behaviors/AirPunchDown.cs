@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class AirPunchDown : StateMachineBehaviour
 {
-
-    CharacterController charCtrl;
-    public float damageAmount = 3;
-    public float launchFactor = 0.1f;
+    private CharacterController charCtrl;
+    private AirPunchDownInfo info;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl = animator.gameObject.GetComponent<CharacterController>();
-        charCtrl.Attack(0.45f, 0.65f, -1.9f, damageAmount, -1.75f, launchFactor);
-        charCtrl.Attack(0.45f, 0.65f, -1.4f, damageAmount, -1.4f, launchFactor);
+        info = animator.gameObject.GetComponent<CommonCombatParams>().GetAirPunchDownInfo();
+        charCtrl = info.GetCharCtrl();
+        charCtrl.Attack(info.firstAttackHeight, info.firstAttackRange,
+                        info.firstAttackAngle, info.firstDamageAmount,
+                        info.firstLaunchAngle, info.firstLaunchFactor);
+        if (info.attackTwice)
+        {
+            charCtrl.Attack(info.secondAttackHeight, info.secondAttackRange,
+            info.secondAttackAngle, info.secondDamageAmount,
+            info.secondLaunchAngle, info.secondLaunchFactor);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,8 +32,18 @@ public class AirPunchDown : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl.Attack(0.45f, 0.65f, -1.9f, damageAmount, -1.75f, launchFactor);
-        charCtrl.Attack(0.45f, 0.65f, -1.4f, damageAmount, -1.4f, launchFactor);
+        if (info.doubleAttackTwice)
+        {
+            charCtrl.Attack(info.firstAttackHeight, info.firstAttackRange,
+                            info.firstAttackAngle, info.firstDamageAmount,
+                            info.firstLaunchAngle, info.firstLaunchFactor);
+            if (info.attackTwice)
+            {
+                charCtrl.Attack(info.secondAttackHeight, info.secondAttackRange,
+                info.secondAttackAngle, info.secondDamageAmount,
+                info.secondLaunchAngle, info.secondLaunchFactor);
+            }
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
