@@ -148,4 +148,4 @@ Depending on what kind of character you aim to include, there are many different
     <img align="right" width="336" height="41" src="Images/heightoffset.JPG">
     
     5. In the Inspector, find your character's height offset field, and enter in your calculated height adjustment value.
-3. Click the play button and select your character to verify that both adjustments are satisfactory. If that is the case, then your character has been successfully and fully added to _Second Floor Smash_!
+3. Click the play button and select your character to verify that both adjustments are satisfactory. You can also judge the heights and ranges and power your character has for its basic attacks and change them on the CommonCombatParams component on your character's GameObject if you desire to better fit your character, as well as change the movement speed and jump power on the CharacterController component. If you are all satisfied, then your character has been successfully and fully added to _Second Floor Smash_!
