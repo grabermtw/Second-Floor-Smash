@@ -64,6 +64,7 @@ Depending on what kind of character you aim to include, there are many different
 
 14. Once your character's model has been added to the open prefab, you will notice that it appears as a prefab instance (highlighted in blue) in your hierarchy. Right-click on this prefab instance and select the option of "Unpack Prefab Completely." Then expand your newly unpacked prefab to view its children.
 15. Of the newly unpacked prefab's children, use Shift-click or Ctrl-click to select each child except for the one named "Body," and then drag them so that they are all made a child of "Body."
+16. Open the CharacterController.cs component and add your character's tag to the characterIndices dictionary when it is initialized in the Awake() method, using the character's tag as the key and an int not used by any of the other characters as the value.
 
 <img align="right" width="205" height="242" src="Images/moveshieldfinish.JPG">
 
