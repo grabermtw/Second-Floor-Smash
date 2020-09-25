@@ -270,4 +270,10 @@ public class GameplayManager : MonoBehaviour
             }
         }
     }
+
+    // return reference to playerRbs
+    public Rigidbody2D[] GetPlayerRbs()
+    {
+        return playerRbs;
+    }
 }
