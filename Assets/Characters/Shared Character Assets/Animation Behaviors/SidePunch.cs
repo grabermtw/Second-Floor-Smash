@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class SidePunch : StateMachineBehaviour
 {
-    CharacterController charCtrl;
-    Transform tf;
-    int direction;
     public bool attack = true;
-    public float damageAmount = 6;
-    public float launchFactor = 0.2f;
-    private float moveSpeed = 2f;
+    private CharacterController charCtrl;
+    private Transform tf;
+    private int direction;
+    private SidePunchInfo info;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl = animator.gameObject.GetComponent<CharacterController>();
+        info = animator.gameObject.GetComponent<CommonCombatParams>().GetSidePunchInfo();
+        charCtrl = info.GetCharCtrl();
         direction = charCtrl.GetDirection();
         tf = charCtrl.gameObject.transform;
     }
@@ -23,15 +22,15 @@ public class SidePunch : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        tf.Translate(direction * new Vector3(moveSpeed * Time.deltaTime, 0, 0), Space.World);
+        tf.Translate(direction * new Vector3(info.moveSpeed * Time.deltaTime, 0, 0), Space.World);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(attack)
+        if (attack)
         {
-            charCtrl.Attack(1.16f, 0.8f, 0, damageAmount, 0.75f, launchFactor);
+            charCtrl.Attack(info.attackHeight, info.attackRange, info.attackAngle, info.damageAmount, info.launchAngle, info.launchFactor);
         }
     }
 

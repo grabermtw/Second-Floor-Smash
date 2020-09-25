@@ -23,7 +23,7 @@ public class FallGetUp : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(stateInfo.IsTag("GetUp") && stateInfo.normalizedTime > 0.6f && crouchCollide.activeSelf){
+        if (stateInfo.IsTag("GetUp") && stateInfo.normalizedTime > 0.6f && crouchCollide.activeSelf){
             Debug.Log("Reactivating standing collider");
             standCollide.SetActive(true);
             crouchCollide.SetActive(false);

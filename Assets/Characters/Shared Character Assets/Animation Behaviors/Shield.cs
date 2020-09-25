@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Shield : StateMachineBehaviour
 {
-    CharacterController charCtrl;
-    Transform shieldSphere;
-    public float damageAmount = 3;
-    public float launchFactor = 0.1f;
-    int maxShield;
-    int shield;
-    float shieldShrink; // amount that the shield should shrink by
-    float shieldRemaining; // amount of remaining shield
+    private CharacterController charCtrl;
+    private Transform shieldSphere;
+    private ShieldInfo shieldInfo;
+    private int maxShield;
+    private int shield;
+    private float shieldShrink; // amount that the shield should shrink by
+    private float shieldRemaining; // amount of remaining shield
     private const float SHIELD_EXPIRE_TIME = 2f; // How much time remaining should there be before shield expires?
                                                 // (we don't want the shield to be invisible by the time it expires)
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl = animator.gameObject.GetComponent<CharacterController>();
+        shieldInfo = animator.gameObject.GetComponent<CommonCombatParams>().GetShieldInfo();
+        charCtrl = shieldInfo.GetCharCtrl();
         // Get our initial value for Shield. This will be the number of frames we will be able to use our
         // shield before it expires
         shieldRemaining = (float)animator.GetInteger("Shield");
@@ -78,7 +78,7 @@ public class Shield : StateMachineBehaviour
         if (shieldRemaining <= SHIELD_EXPIRE_TIME)
         {
             // Hurt ourselves as punishment
-            charCtrl.Strike(damageAmount, 1.4f, 0.01f, charCtrl.GetDirection(), false);
+            charCtrl.Strike(shieldInfo.damageAmount, shieldInfo.launchAngle, shieldInfo.launchFactor, charCtrl.GetDirection(), false);
         }
         else
         {

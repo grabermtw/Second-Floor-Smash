@@ -20,7 +20,7 @@ public class PodiumControl : MonoBehaviour
     {
         if (rotate)
         {
-            transform.Rotate(0, 1, 0);
+            transform.Rotate(0, 60 * Time.deltaTime, 0);
         }
     }
 

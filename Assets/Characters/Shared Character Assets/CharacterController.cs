@@ -7,29 +7,31 @@ using UnityEngine.SceneManagement; // remove this if no longer needed
 
 public class CharacterController : MonoBehaviour
 {
-    private int maxShield = 7; // Maximum number of frames of shield
-    Animator animator;
-    Vector2 leftJoystick;
-    Vector3 movement;
-    float moveSpeed = 6f;
-    int direction;
-    Rigidbody2D rb;
-    int jumping;
-    int currShieldAmt; // Current amount of saved shield we have to use
-    bool crouching;
-    bool canMove; // Used to determine whether or not the character is "busy" (i.e. in the middle of punching or something)
+    private int maxShield = 7; // Maximum number of seconds of shield
+    private Animator animator;
+    private Vector2 leftJoystick;
+    private Vector3 movement;
+    private float moveSpeed = 6f;
+    private int direction;
+    private Rigidbody2D rb;
+    private int jumping;
+    private int currShieldAmt; // Current amount of saved shield we have to use
+    private bool crouching;
+    private bool canMove; // Used to determine whether or not the character is "busy" (i.e. in the middle of punching or something)
                   // Assinged in Update()
-    bool ready = false; // Set to true at end of Start(), used to prevent unwanted early input from messing things up
+    private bool ready = false; // Set to true at end of Start(), used to prevent unwanted early input from messing things up
                         // Also set to true whenever the script is enabled and set to false whenever it is disabled.
                         //bool started = false; // Set to true once and only once, at the end of start.
                         // Prevents OnEnable from prematurely setting ready to true.
 
-    GameObject standCollider;
-    GameObject crouchCollider;
-    ContactFilter2D attackFilter;
-    ContactFilter2D grabFilter;
-    DamageControl damageControl;
-    int playerNumber;
+    private GameObject standCollider;
+    private GameObject crouchCollider;
+    private ContactFilter2D attackFilter;
+    private ContactFilter2D grabFilter;
+    private DamageControl damageControl;
+    private int playerNumber;
+    private Dictionary<string, int> characterIndices; // Used for determining the int that indicates what special
+                                                      // moves the characters have
 
     public float jumpPower;
     public float hangOffset; // Distance down from the edge that we must be to realistically hang off the edge.
@@ -47,6 +49,73 @@ public class CharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         damageControl = GetComponent<DamageControl>();
+
+        // Initialize the dictionary with all the character tags
+        characterIndices = new Dictionary<string, int>()
+        {
+            {"John Ball", 1},
+            {"Johnny Three Sides", 1},
+            {"Dr. Desmesmert", 1},
+            {"Omer Bowman", 2},
+            {"Jordan Woo", 3},
+            {"The Ghost of Prince Frederick", 3},
+            {"DefaultCharacter", 4},
+            {"AJ Shannon", 5},
+            {"Anders Julin", 6},
+            {"Calvin Crunkleton", 7},
+            {"Graber", 8},
+            {"James Hall", 9},
+            {"Jesse Parreira", 10},
+            {"Vorsteg", 11},
+            {"Tim Henderson", 12},
+            {"Tim from Tim's Tastings", 12},
+            {"Tim O. Thee", 12},
+            {"Patrick Vorsteg", 13},
+            {"Nate Rogers", 14},
+            {"Beauregard Bowman", 14},
+            {"Quinn Morris", 15},
+            {"Emma Mirizio", 16},
+            {"Judy Tram", 17},
+            {"Christina Huang", 18},
+            {"Jasmine Lim", 19},
+            {"Tom Zong", 20},
+            {"Tom from Tom's Tastings", 20},
+            {"Emily Whittaker", 21},
+            {"Dr. Whittaker", 21},
+            {"Fred Delawie", 22},
+            {"Felix Adams", 23},
+            {"Joy London", 24},
+            {"June Xu", 25},
+            {"Flo Ning", 26},
+            {"Bebo Harraz", 27},
+            {"Melissa Baum", 28},
+            {"Testudo", 29},
+            {"VorstegBot", 30},
+            {"Robois", 30},
+            {"GraberBot", 30},
+            {"OmerBot", 30},
+            {"Robo Farmer", 30},
+            {"Standard Bad Guy", 30},
+            {"Meghan Graber", 31},
+            {"Brian DeLorenzo", 32},
+            {"Sam Polhemus", 33},
+            {"Ben Eassa", 34},
+            {"Bella Lay", 35},
+            {"Lore Dixon", 36},
+            {"Danielle Kennedy", 37},
+            {"Dave Hoag", 38},
+            {"Milan Gupta", 39},
+            {"Molly Oyer", 40},
+            {"Kate Benware", 41},
+            {"Chico Liu", 52},
+            {"Cormac Bowman", 53},
+            {"Maria Oliva", 54},
+            {"Amanda O'Shaughnessy", 55},
+            {"Elizabeth Kilpatrick", 56},
+            {"D.O.U.G.", 57},
+            {"Jim Boeheim", 58},
+            {"Jimbo", 58}
+        };
     }
 
     void Start()
@@ -105,6 +174,9 @@ public class CharacterController : MonoBehaviour
         // Default the Shield animation parameter to -1. This way, later on, if it counts down to 0,
         // then we know that the player used up their shield and must be punished accordingly.
         animator.SetInteger("Shield", -1);
+
+        // Inform the animator of who we are
+        animator.SetInteger("CharacterIndex", GetCharacterAnimIndex());
 
         ready = true;
     }
@@ -209,29 +281,33 @@ public class CharacterController : MonoBehaviour
     {
         if (ready)
         {
-            // Side punch
+            // Side special
             if (Mathf.Abs(leftJoystick.x) > 0.4f)
             {
                 gameObject.SendMessage("OnSideSpecial", leftJoystick.x > 0 ? 1 : -1, SendMessageOptions.DontRequireReceiver);
+                animator.SetTrigger("SideSpecial");
                 Debug.Log("Side Special");
             }
-            // Up punch
+            // Up special
             else if (leftJoystick.y > 0.4f)
             {
                 gameObject.SendMessage("OnUpSpecial", SendMessageOptions.DontRequireReceiver);
+                animator.SetTrigger("UpSpecial");
                 Debug.Log("Up Special");
             }
-            // Down punch
+            // Down special
             else if (leftJoystick.y < -0.4f)
             {
                 gameObject.SendMessage("OnDownSpecial", SendMessageOptions.DontRequireReceiver);
+                animator.SetTrigger("DownSpecial");
                 Debug.Log("Down Special");
             }
-            // Neutral punch
+            // Neutral special
             else if (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("NeutralPunch") ||
                         animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt"))
             {
                 gameObject.SendMessage("OnNeutralSpecial", SendMessageOptions.DontRequireReceiver);
+                animator.SetTrigger("NeutralSpecial");
                 Debug.Log("Neutral Special");
             }
         }
@@ -704,12 +780,25 @@ public class CharacterController : MonoBehaviour
         animator.ResetTrigger("Hang");
         animator.ResetTrigger("Grab");
         animator.ResetTrigger("BeginGrabbed");
+        animator.ResetTrigger("UpTaunt");
+        animator.ResetTrigger("SideTaunt");
+        animator.ResetTrigger("DownTaunt");
     }
 
     // ---------------- UTILITY ----------------------------
+    
+    // Returns the Non-Game version of this character (for use in 3D scenes)
     public GameObject GetNonGameCharacter()
     {
         return nonGameCharacter;
+    }
+
+    // Returns the index of the character based on the characterIndices
+    // dictionary as defined in the Awake() method of this function.
+    // This int is used to determine what special moves to use in the animation controller.
+    public int GetCharacterAnimIndex()
+    {
+        return characterIndices[gameObject.tag];
     }
 
 
