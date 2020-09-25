@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e8d164c40e25fa24e8b42560eec9cdbb,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -244,8 +247,8 @@ MonoBehaviour:
   - {fileID: 6246742893019215746, guid: 29d09b01989c38342b39845516785da5, type: 3}
   - {fileID: 6246742893019215746, guid: d5821611f2103204eafe0ad8441f4b0c, type: 3}
   testCharacters:
-  - {fileID: 6205316382487275622, guid: 4cde31498a9310c44abfd0f608b02d4a, type: 3}
-  - {fileID: 6205316382487275622, guid: 8d24b64ee12d4594fbed6cecb0ecd2fe, type: 3}
+  - {fileID: 6205316382487275622, guid: c0bd25c630c0c514580535ecf7f58b85, type: 3}
+  - {fileID: 6205316382487275622, guid: c6a14cbbec98d534ea29839700e3082c, type: 3}
   - {fileID: 6205316382487275622, guid: 17e1f5de6a7ce5240913a5da460ee466, type: 3}
   - {fileID: 6205316382487275622, guid: ceac2ac7acbd4f04393c7628a53649a8, type: 3}
 --- !u!1 &208187117
@@ -414,6 +417,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -438,6 +442,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &235256778
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -552,7 +557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606118788}
-  m_LocalRotation: {x: 0.0000000029802323, y: -4.5221e-25, z: 1.5173649e-16, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -0, z: 1.517348e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -802,7 +807,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 14.029612
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -827,7 +832,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0000000029802323, y: -4.5221e-25, z: 1.5173649e-16, w: 1}
+  m_LocalRotation: {x: 1e-45, y: -0, z: 1.517348e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour
     private float moveSpeed = 6f;
     private int direction;
     private Rigidbody2D rb;
+    private CharacterAudioManager charAudio;
     private int jumping;
     private int currShieldAmt; // Current amount of saved shield we have to use
     private bool crouching;
@@ -49,6 +50,7 @@ public class CharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         damageControl = GetComponent<DamageControl>();
+        charAudio = GetComponent<CharacterAudioManager>();
 
         // Initialize the dictionary with all the character tags
         characterIndices = new Dictionary<string, int>()
@@ -120,7 +122,6 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
-
         standCollider = transform.GetChild(0).gameObject;
         crouchCollider = transform.GetChild(1).gameObject;
         canMove = true;
@@ -217,6 +218,7 @@ public class CharacterController : MonoBehaviour
             {
                 Debug.Log("Punch!");
                 animator.SetTrigger("Punch");
+                charAudio.PlayNeutralPunch();
             }
         }
     }
@@ -243,10 +245,12 @@ public class CharacterController : MonoBehaviour
                 if (jumping == 0)
                 {
                     animator.SetTrigger("SidePunch");
+                    charAudio.PlaySidePunch();
                 }
                 else
                 {
                     animator.SetTrigger("Punch");
+                    charAudio.PlayAirSidePunch();
                 }
 
             }
@@ -259,6 +263,7 @@ public class CharacterController : MonoBehaviour
             (value == null || value.Get<float>() > 0.4f))
         {
             animator.SetTrigger("UpPunch");
+            charAudio.PlayUpPunch();
         }
     }
 
@@ -269,6 +274,7 @@ public class CharacterController : MonoBehaviour
             (value == null || value.Get<float>() > 0.4f))
         {
             animator.SetTrigger("DownPunch");
+            charAudio.PlayDownPunch();
         }
     }
 
@@ -282,25 +288,27 @@ public class CharacterController : MonoBehaviour
         if (ready)
         {
             // Side special
-            if (Mathf.Abs(leftJoystick.x) > 0.4f)
+            if (Mathf.Abs(leftJoystick.x) > 0.4f && (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt")))
             {
                 gameObject.SendMessage("OnSideSpecial", leftJoystick.x > 0 ? 1 : -1, SendMessageOptions.DontRequireReceiver);
                 animator.SetTrigger("SideSpecial");
+                charAudio.PlaySideSpecial();
                 Debug.Log("Side Special");
             }
             // Up special
-            else if (leftJoystick.y > 0.4f)
+            else if (leftJoystick.y > 0.4f && (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt")))
             {
                 gameObject.SendMessage("OnUpSpecial", SendMessageOptions.DontRequireReceiver);
                 animator.SetTrigger("UpSpecial");
+                charAudio.PlayUpSpecial();
                 Debug.Log("Up Special");
             }
             // Down special
-            else if (leftJoystick.y < -0.4f)
+            else if (leftJoystick.y < -0.4f && (canMove || crouching || animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt")))
             {
                 gameObject.SendMessage("OnDownSpecial", SendMessageOptions.DontRequireReceiver);
+                charAudio.PlayDownSpecial();
                 animator.SetTrigger("DownSpecial");
-                Debug.Log("Down Special");
             }
             // Neutral special
             else if (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("NeutralPunch") ||
@@ -308,6 +316,7 @@ public class CharacterController : MonoBehaviour
             {
                 gameObject.SendMessage("OnNeutralSpecial", SendMessageOptions.DontRequireReceiver);
                 animator.SetTrigger("NeutralSpecial");
+                charAudio.PlayNeutralSpecial();
                 Debug.Log("Neutral Special");
             }
         }
@@ -344,6 +353,7 @@ public class CharacterController : MonoBehaviour
                 ourGrab.SetVictim(results[0].rigidbody.gameObject.GetComponent<Grabbed>(), direction);
                 Debug.Log("We've grabbed someone, deactivating character controller!");
                 ready = false;
+                charAudio.PlayGrab();
             }
             else // Didn't grab anyone
             {
@@ -369,6 +379,7 @@ public class CharacterController : MonoBehaviour
         ourGrabbed.SetAttacker(attacker);
         Debug.Log("We've been grabbed, deactivating character controller");
         ready = false;
+        charAudio.PlayBeingGrabbed();
     }
 
     // ----------------------- JUMPING SECTION ---------------------------
@@ -384,6 +395,7 @@ public class CharacterController : MonoBehaviour
                 animator.SetInteger("Jumping", jumping); // start jump animation
                 rb.isKinematic = false;
                 rb.AddForce(transform.up * jumpPower);
+                charAudio.PlayJump1();
             }
             if (canMove || animator.GetCurrentAnimatorStateInfo(0).IsTag("Hurt")) // Shouldn't be able to jump while punching
             {
@@ -396,6 +408,7 @@ public class CharacterController : MonoBehaviour
                     jumping = 1;
                     animator.SetInteger("Jumping", jumping); // start jump animation
                     rb.AddForce(transform.up * jumpPower);
+                    charAudio.PlayJump1();
                 }
                 // Double Jump
                 else if (jumping == 1)
@@ -406,6 +419,7 @@ public class CharacterController : MonoBehaviour
                     // reset the verticle velocity so that our jumping force isn't hindered by a downward velocity.
                     rb.velocity = new Vector2(rb.velocity.x, 0);
                     rb.AddForce(transform.up * jumpPower);
+                    charAudio.PlayJump2();
                 }
             }
         }
@@ -445,6 +459,7 @@ public class CharacterController : MonoBehaviour
         if (ready)
         {
             animator.SetTrigger("UpTaunt");
+            charAudio.PlayUpTaunt();
             Debug.Log("UpTaunt");
         }
     }
@@ -454,6 +469,7 @@ public class CharacterController : MonoBehaviour
         if (ready)
         {
             animator.SetTrigger("SideTaunt");
+            charAudio.PlaySideTaunt();
             Debug.Log("SideTaunt");
         }
     }
@@ -463,6 +479,7 @@ public class CharacterController : MonoBehaviour
         if (ready)
         {
             animator.SetTrigger("DownTaunt");
+            charAudio.PlayDownTaunt();
             Debug.Log("DownTaunt");
         }
     }
@@ -766,6 +783,7 @@ public class CharacterController : MonoBehaviour
 
         // Add our force to launch us
         rb.AddForce(new Vector2(launchEnergy * Mathf.Cos(angle) * launchDirection, launchEnergy * Mathf.Sin(angle)), ForceMode2D.Impulse);
+        charAudio.PlayTakeDamage();
     }
 
     // Use LateUpdate to reset the triggers so that they can be evaluated within the animation controller
@@ -783,6 +801,10 @@ public class CharacterController : MonoBehaviour
         animator.ResetTrigger("UpTaunt");
         animator.ResetTrigger("SideTaunt");
         animator.ResetTrigger("DownTaunt");
+        animator.ResetTrigger("UpSpecial");
+        animator.ResetTrigger("NeutralSpecial");
+        animator.ResetTrigger("SideSpecial");
+        animator.ResetTrigger("DownSpecial");
     }
 
     // ---------------- UTILITY ----------------------------
@@ -799,6 +821,11 @@ public class CharacterController : MonoBehaviour
     public int GetCharacterAnimIndex()
     {
         return characterIndices[gameObject.tag];
+    }
+
+    public CharacterAudioManager GetCharacterAudioManager()
+    {
+        return charAudio;
     }
 
 

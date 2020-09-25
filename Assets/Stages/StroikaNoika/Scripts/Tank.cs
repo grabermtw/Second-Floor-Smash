@@ -35,6 +35,7 @@ public class Tank : MonoBehaviour
     void Start()
     {
         state = State.driving;
+        Destroy(gameObject, 45f);
     }
 
     public void Initialize(bool canShoot, Material mat, GameplayManager manager)
@@ -86,7 +87,7 @@ public class Tank : MonoBehaviour
                     Quaternion direction = Quaternion.Slerp(turret.transform.rotation, Quaternion.LookRotation(target.position - turret.transform.position), Time.deltaTime * rotationSpeed);
                     turret.transform.eulerAngles = new Vector3(0, direction.eulerAngles.y, 0);
 
-                    direction = Quaternion.Slerp(barrel.transform.rotation, Quaternion.LookRotation(target.position - barrel.transform.position), Time.deltaTime * rotationSpeed);
+                    direction = Quaternion.Slerp(barrel.transform.rotation, Quaternion.LookRotation(target.position + new Vector3(0,0.5f,0) - barrel.transform.position), Time.deltaTime * rotationSpeed);
                     barrel.transform.eulerAngles = new Vector3(direction.eulerAngles.x, barrel.transform.eulerAngles.y, 0);
                 }
                 else
@@ -164,6 +165,7 @@ public class Tank : MonoBehaviour
                 float angle = Mathf.Asin((buffer[i].transform.position.y - explosionPosition2D.y) / (dir * dist));
                 
                 buffer[i].transform.parent.GetComponent<CharacterController>().Strike(25 * (1.5f - rayDist), angle, 8 * (1.5f - rayDist), dir, true);
+                Debug.Log("SHOT " + buffer[i].transform.parent.gameObject.name);
             }
         }
     }
@@ -193,8 +195,8 @@ public class Tank : MonoBehaviour
     // drives offstage and destroys the tank
     private void ExitTank()
     {
-        destination += 20f;
+        destination += 50f;
         state = State.driving;
-        Destroy(this.gameObject, 10f);
+        Destroy(this.gameObject, 15f);
     }
 }
