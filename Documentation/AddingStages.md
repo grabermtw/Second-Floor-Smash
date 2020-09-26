@@ -18,7 +18,7 @@
 ![Diagram of the left side of the "Platform" GameObject that is in the ProvingGround scene](Images/platformdiagram.jpg)
         
 2. Feel free to add other things to your stage. Create a new folder with your stage's name as a subfolder in Assets/Stages and keep any assets you add to the project for your stage in there.
-### Note: Your stage's folder in Assets/Stages must have the same name as the name of your stage's scene. This is necessary for when the characters try to load their audio mixers.
+#### Note: Your stage's folder in Assets/Stages must have the same name as the name of your stage's scene. This is necessary for when the characters try to load their audio mixers.
 3. If you create new types of platforms or obstacles or stage-related scripts or something fancy that you think could be useful in other future stages, put them in Assets/Stages/Shared Stage Assets.
 #### Note: to test your stage with one character, simply enter play mode while in your stage's scene. To test with more than one character at a time, you'll need to complete Part 4 of this guide and then run the game from the Hub scene and select the stage from the Stage Select screen.
 ## Part 3: Updating StageManagement
