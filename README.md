@@ -12,7 +12,8 @@ If you'd like to contribute to this project (which is encouraged and apppreciate
 
 1. [Adding additional stages](Documentation/AddingStages.md)
 2. [Adding additional characters](Documentation/AddingCharacters.md)
+2. [Customizing existing characters (animations and sound effects)](Documentation/CustomizingCharacters.md)
 
-Feel free to add more details to the Hub scene as well (the recreation of Prince Frederick Hall), or sound effects, music, ~~or special moves~~ (I need to do more work before we can add special moves) or more unique character animations. Feel free to reach out if you've got any questions on how to go about that.
+Feel free to add more details to the Hub scene as well (the recreation of Prince Frederick Hall), or music, or special moves. Feel free to reach out if you've got any questions on how to go about that.
 
 You could also use the above documentation to completely change the theme of the game to something other than the former residents of Prince Frederick Hall at University of Maryland. Probably wouldn't want to merge that back in with this project though, unless you create a way to switch themes in-game, which would be very nifty.
