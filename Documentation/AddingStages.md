@@ -18,7 +18,6 @@
 ![Diagram of the left side of the "Platform" GameObject that is in the ProvingGround scene](Images/platformdiagram.jpg)
         
 2. Feel free to add other things to your stage. Create a new folder with your stage's name as a subfolder in Assets/Stages and keep any assets you add to the project for your stage in there.
-#### Note: Your stage's folder in Assets/Stages must have the same name as the name of your stage's scene. This is necessary for when the characters try to load their audio mixers.
 3. If you create new types of platforms or obstacles or stage-related scripts or something fancy that you think could be useful in other future stages, put them in Assets/Stages/Shared Stage Assets.
 #### Note: to test your stage with one character, simply enter play mode while in your stage's scene. To test with more than one character at a time, you'll need to complete Part 4 of this guide and then run the game from the Hub scene and select the stage from the Stage Select screen.
 ## Part 3: Updating StageManagement
@@ -30,8 +29,7 @@ If your stage is significantly bigger or smaller than ProvingGround, you'll want
 4. Expand the "InitialPositions" GameObject and move the positions of its four children to appropriate spots to spawn four player at the start of a round in this stage. Keep in mind that the center of each of these child GameObjects will be located at the feet of the spawned players.
 ### Adding Music:
 1. The GameObject called "StageMusic" is where you specify what music you want for your stage. Expand the Music array in the StageMusic component on the StageMusic GameObject and drag in any audio clips you want to play. If "Shuffle" is not checked, they'll play on loop in the order you specify.
-2. Inside Assets/Stages/"Shared Stage Assets", there is an Audio Mixer called "TemplateMixer". Use Ctrl-D to duplicate this Audio Mixer, then put the newly-created duplicate in your new stage's subfolder within Assets/Stages.
-3. Rename this Audio Mixer to "<your stage's scene name>Mixer". For example, the default demo stage is called "Proving Ground," but its scene name is "ProvingGround," so its Audio Mixer is named "ProvingGroundMixer".
+2. Inside Assets/Resources/StageAudioMixers, there is an Audio Mixer called "ProvingGroundMixer". Use Ctrl-D to duplicate this Audio Mixer, then rename this Audio Mixer to "<your stage's scene name>Mixer". For example, the default demo stage is called "Proving Ground," but its scene name is "ProvingGround," so its Audio Mixer is named "ProvingGroundMixer".
 4. Go to the StageMusic gameObject in your scene. Click the circle within a circle icon for the "Output" property to get a list of possible audio mixer groups. Select the audio mixer group called "Music" within your audio mixer.
 5. Explanation: With your stage's audio mixer, you can adjust the volume of the music vs. the character sound effects without affecting all the rest of the stages. When they enter the scene, the characters will automatically set their audio mixer groups to be your stage's audio mixer's "CharSoundFX" group. You can also add additional groups for other sound effects from other things in your stage if you would like to be able to mix their audio easily as well.
 ## Part 4: Adding your stage to the Stage Selection menu
