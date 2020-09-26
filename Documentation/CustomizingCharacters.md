@@ -1,5 +1,4 @@
 # Customizing Characters
-## Adding unique animations and sound effects for characters
 
 ### Adding Unique Animations
 1. Choose the character that you want to add custom animations for, and then navigate to their corresponding folder within Assets/Characters.
