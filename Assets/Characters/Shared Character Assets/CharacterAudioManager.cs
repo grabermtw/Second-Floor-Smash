@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class CharacterAudioManager : MonoBehaviour
 {
@@ -32,6 +34,19 @@ public class CharacterAudioManager : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        // Get the correct audioMixer to assign to our audio source.
+        // Each audio mixer will be the scene name (note SCENE name not STAGE name) with "Mixer" appended to the end of it.
+        try
+        {
+            AudioMixer mixer = Resources.Load("StageAudioMixers/" + SceneManager.GetActiveScene().name + "Mixer") as AudioMixer;
+            // Find the "CharSoundFX" group within the audio mixer and assign it to our audio source.
+            audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("CharSoundFX")[0];
+        } catch {
+            Debug.LogWarning("This scene, " + SceneManager.GetActiveScene().name + ", lacks a properly-titled AudioMixer." +
+                            " In the folder for this stage, there should be an AudioMixer called \"" + SceneManager.GetActiveScene().name + "Mixer" +
+                            "\", and it should have an audio mixer group called \"CharSoundFX\".");
+        }
     }
 
     public void PlayNeutralPunch()

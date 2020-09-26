@@ -557,7 +557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606118788}
-  m_LocalRotation: {x: 1e-45, y: -0, z: 1.517348e-16, w: 1}
+  m_LocalRotation: {x: 0.0000000029802323, y: -4.5220505e-25, z: 1.5173481e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -807,7 +807,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 14.029612
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -832,7 +832,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 1e-45, y: -0, z: 1.517348e-16, w: 1}
+  m_LocalRotation: {x: 0.0000000029802323, y: -4.5220505e-25, z: 1.5173481e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1106,6 +1106,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1469716525}
     m_Modifications:
+    - target: {fileID: 100603321755895008, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -24182685650429725, guid: d8f423c4d5f05e04e8e2ece12e947989,
+        type: 2}
     - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -16,6 +16,9 @@ public class OpeningManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Make the cursor invisible
+        Cursor.visible = false;
+
         if (UseRandomCharacters)
         {
             // Deactivate any placeholder characters that are currently in the scene

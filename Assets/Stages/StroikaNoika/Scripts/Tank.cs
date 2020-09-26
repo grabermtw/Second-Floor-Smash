@@ -164,7 +164,7 @@ public class Tank : MonoBehaviour
                 float dist = Vector2.Distance(explosionPosition2D, buffer[i].transform.position);
                 float angle = Mathf.Asin((buffer[i].transform.position.y - explosionPosition2D.y) / (dir * dist));
                 
-                buffer[i].transform.parent.GetComponent<CharacterController>().Strike(25 * (1.5f - rayDist), angle, 8 * (1.5f - rayDist), dir, true);
+                buffer[i].transform.parent.GetComponent<CharacterController>().Strike(Mathf.Abs(25 * (1.5f - rayDist)), angle, 8 * (1.5f - rayDist), dir, true);
                 Debug.Log("SHOT " + buffer[i].transform.parent.gameObject.name);
             }
         }
