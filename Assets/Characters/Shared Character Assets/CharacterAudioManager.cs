@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CharacterAudioManager : MonoBehaviour
 {
+    public AudioClip[] characterSelected; // used for character select screen
     public AudioClip[] neutralPunch;
     public AudioClip[] upPunch;
     public AudioClip[] downPunch;
@@ -22,9 +23,10 @@ public class CharacterAudioManager : MonoBehaviour
     public AudioClip[] jump1;
     public AudioClip[] jump2;
     public AudioClip[] takeDamage;
-    public AudioClip upTaunt;
-    public AudioClip sideTaunt;
-    public AudioClip downTaunt;
+    public AudioClip[] shieldExpire;
+    public AudioClip[] upTaunt;
+    public AudioClip[] sideTaunt;
+    public AudioClip[] downTaunt;
 
 
     private AudioSource audioSource;
@@ -46,6 +48,20 @@ public class CharacterAudioManager : MonoBehaviour
             Debug.LogWarning("This scene, " + SceneManager.GetActiveScene().name + ", lacks a properly-titled AudioMixer." +
                             " In the folder for this stage, there should be an AudioMixer called \"" + SceneManager.GetActiveScene().name + "Mixer" +
                             "\", and it should have an audio mixer group called \"CharSoundFX\".");
+        }
+    }
+
+    // Returns a random characterSelected audioClip for the player. This is only used
+    // for getting the audio to play in the character select screen.
+    public AudioClip[] GetCharacterSelectedAudioClip()
+    {
+        if (characterSelected.Length != 0)
+        {
+            return characterSelected;
+        }
+        else 
+        {
+            return null;
         }
     }
 
@@ -188,35 +204,63 @@ public class CharacterAudioManager : MonoBehaviour
     {
         if (takeDamage.Length != 0)
         {
-            audioSource.clip = takeDamage[Random.Range(0, takeDamage.Length)];
+            AudioClip clip = takeDamage[Random.Range(0, takeDamage.Length)];
+            if(clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+        }
+    }
+
+    public void PlayShieldExpire()
+    {
+        if (takeDamage.Length != 0)
+        {
+            audioSource.clip = shieldExpire[Random.Range(0, shieldExpire.Length)];
             audioSource.Play();
         }
     }
 
+
+    // Something weird happened with the taunts so a lot of people have empty spots
+    // in their taunt sound arrays, so we're gonna do an extra null check here.
     public void PlayUpTaunt()
     {
-        if (upTaunt != null)
+        if (upTaunt.Length != 0)
         {
-            audioSource.clip = upTaunt;
-            audioSource.Play();
+            AudioClip clip = upTaunt[Random.Range(0, upTaunt.Length)];
+            if(clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
     }
 
     public void PlaySideTaunt()
     {
-        if (sideTaunt != null)
+        if (sideTaunt.Length != 0)
         {
-            audioSource.clip = sideTaunt;
-            audioSource.Play();
+            AudioClip clip = sideTaunt[Random.Range(0, sideTaunt.Length)];
+            if(clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
     }
 
     public void PlayDownTaunt()
     {
-        if (downTaunt != null)
+        if (downTaunt.Length != 0)
         {
-            audioSource.clip = downTaunt;
-            audioSource.Play();
+            AudioClip clip = downTaunt[Random.Range(0, downTaunt.Length)];
+            if(clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
     }
 }

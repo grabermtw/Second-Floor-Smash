@@ -70,6 +70,7 @@ public class CharacterController : MonoBehaviour
             {"Jesse Parreira", 10},
             {"Vorsteg", 11},
             {"Tim Henderson", 12},
+            {"Agent Timothy Henderson", 12},
             {"Tim from Tim's Tastings", 12},
             {"Tim O. Thee", 12},
             {"Patrick Vorsteg", 13},

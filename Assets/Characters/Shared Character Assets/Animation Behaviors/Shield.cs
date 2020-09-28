@@ -79,6 +79,7 @@ public class Shield : StateMachineBehaviour
         {
             // Hurt ourselves as punishment
             charCtrl.Strike(shieldInfo.damageAmount, shieldInfo.launchAngle, shieldInfo.launchFactor, charCtrl.GetDirection(), false);
+            charCtrl.GetCharacterAudioManager().PlayShieldExpire();
         }
         else
         {

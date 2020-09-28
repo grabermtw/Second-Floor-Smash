@@ -2248,25 +2248,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected:
+  - {fileID: 8300000, guid: 14df8edb502a44c45a58ecb16a295d30, type: 3}
+  - {fileID: 8300000, guid: 0cae24be381b6a24d86e7a32bb93d6ed, type: 3}
+  - {fileID: 8300000, guid: d50d16cd062fc41409f12e3939a10a74, type: 3}
+  - {fileID: 8300000, guid: f68a8f85287dd8a47b920e7784aa6366, type: 3}
+  - {fileID: 8300000, guid: c309a564f02d94547b3123e9a7451ab9, type: 3}
+  - {fileID: 8300000, guid: 79a87ddebf04f4945b6675d248933790, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
   sidePunch: []
-  airSidePunch: []
-  airUpPunch: []
+  airSidePunch:
+  - {fileID: 8300000, guid: 14df8edb502a44c45a58ecb16a295d30, type: 3}
+  airUpPunch:
+  - {fileID: 8300000, guid: 79a87ddebf04f4945b6675d248933790, type: 3}
   airDownPunch: []
   neutralSpecial: []
   upSpecial: []
   downSpecial: []
   sideSpecial: []
   grab: []
-  beingGrabbed: []
+  beingGrabbed:
+  - {fileID: 8300000, guid: 8eb920a2031f278409653402db11dbe9, type: 3}
+  - {fileID: 8300000, guid: 594bab7faf7746047baed0fd2c43204c, type: 3}
   jump1: []
   jump2: []
-  takeDamage: []
-  upTaunt: {fileID: 0}
-  sideTaunt: {fileID: 0}
-  downTaunt: {fileID: 0}
+  takeDamage:
+  - {fileID: 8300000, guid: 8eb920a2031f278409653402db11dbe9, type: 3}
+  - {fileID: 8300000, guid: 594bab7faf7746047baed0fd2c43204c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  shieldExpire:
+  - {fileID: 8300000, guid: 8eb920a2031f278409653402db11dbe9, type: 3}
+  - {fileID: 8300000, guid: 79a87ddebf04f4945b6675d248933790, type: 3}
+  - {fileID: 8300000, guid: 594bab7faf7746047baed0fd2c43204c, type: 3}
+  upTaunt:
+  - {fileID: 8300000, guid: 14df8edb502a44c45a58ecb16a295d30, type: 3}
+  - {fileID: 8300000, guid: d50d16cd062fc41409f12e3939a10a74, type: 3}
+  sideTaunt:
+  - {fileID: 8300000, guid: 767cae6b168ad274ea88a0797f4c4968, type: 3}
+  - {fileID: 8300000, guid: f68a8f85287dd8a47b920e7784aa6366, type: 3}
+  - {fileID: 8300000, guid: a5ad9526b3dc98446ac3ab7c984a6c59, type: 3}
+  downTaunt:
+  - {fileID: 8300000, guid: c309a564f02d94547b3123e9a7451ab9, type: 3}
+  - {fileID: 8300000, guid: 594bab7faf7746047baed0fd2c43204c, type: 3}
 --- !u!82 &4249520521100884453
 AudioSource:
   m_ObjectHideFlags: 0

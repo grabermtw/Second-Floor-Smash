@@ -2254,6 +2254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected:
+  - {fileID: 8300000, guid: 66c2786a5e04d674db72134e2aba9af2, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
@@ -2269,15 +2271,30 @@ MonoBehaviour:
   beingGrabbed:
   - {fileID: 8300000, guid: 0c9a5155d0b8bc644aeddcc2768cfff7, type: 3}
   - {fileID: 8300000, guid: 03b94c9883b913c408757ddb9f0d1e4b, type: 3}
+  - {fileID: 8300000, guid: 70a96685460b10646af5040266a887b6, type: 3}
+  - {fileID: 8300000, guid: 1a48706b3736b53429c9a6d5ee9cadea, type: 3}
+  - {fileID: 8300000, guid: 7a231b7c5ddcbd543ba18231aa05756c, type: 3}
   jump1: []
   jump2: []
   takeDamage:
   - {fileID: 8300000, guid: a3c0dc64f72e3324898b3516b17fade2, type: 3}
   - {fileID: 8300000, guid: a107f6474217a8740a896dc6d2b18a45, type: 3}
   - {fileID: 8300000, guid: 03b94c9883b913c408757ddb9f0d1e4b, type: 3}
-  upTaunt: {fileID: 8300000, guid: f32f5625bfa56f14d832bd20da0be768, type: 3}
-  sideTaunt: {fileID: 8300000, guid: 9d7536e611ffe0145855628ca4f122c0, type: 3}
-  downTaunt: {fileID: 8300000, guid: f32f5625bfa56f14d832bd20da0be768, type: 3}
+  - {fileID: 8300000, guid: 1a48706b3736b53429c9a6d5ee9cadea, type: 3}
+  - {fileID: 8300000, guid: 64e93f2fe3513a14798510154112123f, type: 3}
+  shieldExpire:
+  - {fileID: 8300000, guid: 64e93f2fe3513a14798510154112123f, type: 3}
+  - {fileID: 8300000, guid: 0c9a5155d0b8bc644aeddcc2768cfff7, type: 3}
+  - {fileID: 8300000, guid: 275bb24c5496c9c4ab9a8b3b9faf0426, type: 3}
+  upTaunt:
+  - {fileID: 8300000, guid: 2175359de70d76a469199adc6e7065c3, type: 3}
+  - {fileID: 8300000, guid: 9179313903df3f045adb87f6f2ecf625, type: 3}
+  - {fileID: 8300000, guid: 275bb24c5496c9c4ab9a8b3b9faf0426, type: 3}
+  sideTaunt:
+  - {fileID: 8300000, guid: e7c1124de80cd0f47a9a8252050103c8, type: 3}
+  downTaunt:
+  - {fileID: 8300000, guid: 2175359de70d76a469199adc6e7065c3, type: 3}
+  - {fileID: 8300000, guid: cb9bdd5ad145552429c0c8f986a82b86, type: 3}
 --- !u!82 &6556907207520759196
 AudioSource:
   m_ObjectHideFlags: 0

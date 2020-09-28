@@ -2457,11 +2457,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected:
+  - {fileID: 8300000, guid: 4c88a8d6f5a26df4d8d41a4998dea36c, type: 3}
+  - {fileID: 8300000, guid: 4822055a5444f7f42bd494e0ae321654, type: 3}
+  - {fileID: 8300000, guid: e50516227ceaa6c4c9f8f85c90856ab6, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
-  sidePunch: []
-  airSidePunch: []
+  sidePunch:
+  - {fileID: 8300000, guid: 19163638852c2f64ca2668742368de71, type: 3}
+  airSidePunch:
+  - {fileID: 8300000, guid: 4c88a8d6f5a26df4d8d41a4998dea36c, type: 3}
   airUpPunch: []
   airDownPunch: []
   neutralSpecial: []
@@ -2469,13 +2475,23 @@ MonoBehaviour:
   downSpecial: []
   sideSpecial: []
   grab: []
-  beingGrabbed: []
+  beingGrabbed:
+  - {fileID: 8300000, guid: 0ab8184a74c32df4584fd7ed101ad95f, type: 3}
   jump1: []
   jump2: []
-  takeDamage: []
-  upTaunt: {fileID: 8300000, guid: 4b61dbe5b5fcf1441b8529304aa9cd8b, type: 3}
-  sideTaunt: {fileID: 8300000, guid: 4b61dbe5b5fcf1441b8529304aa9cd8b, type: 3}
-  downTaunt: {fileID: 8300000, guid: 4b61dbe5b5fcf1441b8529304aa9cd8b, type: 3}
+  takeDamage:
+  - {fileID: 8300000, guid: 1b5d974ea8136b841994073650aae154, type: 3}
+  - {fileID: 8300000, guid: 0ab8184a74c32df4584fd7ed101ad95f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  shieldExpire: []
+  upTaunt:
+  - {fileID: 8300000, guid: ea710c351ff3c7e4f90317fbc4773ed9, type: 3}
+  sideTaunt:
+  - {fileID: 8300000, guid: 4822055a5444f7f42bd494e0ae321654, type: 3}
+  downTaunt:
+  - {fileID: 8300000, guid: e50516227ceaa6c4c9f8f85c90856ab6, type: 3}
 --- !u!82 &-1141864010592582299
 AudioSource:
   m_ObjectHideFlags: 0

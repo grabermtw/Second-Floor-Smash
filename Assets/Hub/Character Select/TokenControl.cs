@@ -65,12 +65,13 @@ public class TokenControl : MonoBehaviour
             currSkin = 0;
         }
         SetHeld(true);
-        SetHeld(false);
+        SetHeld(false, false);
 
     }
 
     // Update whether we are being held by the hand
-    public void SetHeld(bool hold)
+    // Forceplay is always true unless changing skin
+    public void SetHeld(bool hold, bool forcePlay = true)
     {
         held = hold;
         if (!hold)
@@ -115,8 +116,10 @@ public class TokenControl : MonoBehaviour
                 playerCharList.ChooseCharacter(currentCharacter[currSkin], playerNum);
                 charPreview = Instantiate(currentCharacter[currSkin].GetComponent<CharacterController>().GetNonGameCharacter(), podium.transform);
                 
-                // Let the podium know who it's got on it
-                podium.GetComponent<PodiumControl>().AssignCurrentCharacter(charPreview);
+                // Let the podium know who it's got on it (and give it their character selected audio as well)
+                podium.GetComponent<PodiumControl>().AssignCurrentCharacter(charPreview,
+                                                                            currentCharacter[currSkin].GetComponent<CharacterAudioManager>().GetCharacterSelectedAudioClip(),
+                                                                            forcePlay);
 
                 // Change the height of the podium so that the character isn't blocked by/blocking the icons
                 podium.transform.localPosition = podPos + new Vector3(0, heightAdjust, 0);
