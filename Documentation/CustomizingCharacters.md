@@ -12,5 +12,4 @@
 2. Put your character's sound effects in a folder within your character's folder called "Audio".
 3. Select all of the prefabs of your character that you want to add the sound effects for.
 4. In the inspector, scroll down to your character's "CharacterAudioManager" component. You will see a list of moves such as "UpPunch," "NeutralSpecial," "TakeDamage," etc. These all correspond to moves that the character performs.
-5. Each of the listed moves (except for the three taunts at the bottom) are actually arrays that are empty by default. Click the arrow next to a move you want to add a sound effect for, expand its length to the number of sound effects you want to add for that move (it will pick randomly which gets played), and then drag the sound effects into the AudioClip slot(s) that appear(s).
-6. Taunt audio works the same way, but just take one audio clip per taunt.
+5. Each of the listed moves are actually arrays that are empty by default. Click the arrow next to a move you want to add a sound effect for, expand its length to the number of sound effects you want to add for that move (it will pick randomly which gets played), and then drag the sound effects into the AudioClip slot(s) that appear(s).
