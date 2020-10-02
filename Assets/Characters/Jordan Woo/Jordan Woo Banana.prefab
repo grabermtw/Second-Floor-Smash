@@ -2522,11 +2522,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSelected:
   - {fileID: 8300000, guid: ef9f73914df01ae46aa8c1d7166c1e23, type: 3}
+  - {fileID: 8300000, guid: edce25c4cbda7254f9ec45493968ce85, type: 3}
+  - {fileID: 8300000, guid: 500a1717e286a674dbdc41b711a2d5e2, type: 3}
+  - {fileID: 8300000, guid: ed7caec757e065645a78eeaa443c8e17, type: 3}
+  - {fileID: 8300000, guid: 8bf67e1e8ae2ea247896e60a8ff8021a, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
-  sidePunch: []
-  airSidePunch: []
+  sidePunch:
+  - {fileID: 8300000, guid: 500a1717e286a674dbdc41b711a2d5e2, type: 3}
+  airSidePunch:
+  - {fileID: 8300000, guid: ed7caec757e065645a78eeaa443c8e17, type: 3}
+  - {fileID: 8300000, guid: 8bf67e1e8ae2ea247896e60a8ff8021a, type: 3}
+  - {fileID: 8300000, guid: edce25c4cbda7254f9ec45493968ce85, type: 3}
   airUpPunch: []
   airDownPunch: []
   neutralSpecial: []
@@ -2534,17 +2542,25 @@ MonoBehaviour:
   downSpecial: []
   sideSpecial: []
   grab: []
-  beingGrabbed: []
+  beingGrabbed:
+  - {fileID: 8300000, guid: edce25c4cbda7254f9ec45493968ce85, type: 3}
+  - {fileID: 8300000, guid: 1bb3a2d28d8623a4eade825e7f9c0a68, type: 3}
+  - {fileID: 8300000, guid: 3f4b3dd96a29ad04fbd4ed359fe63dd5, type: 3}
   jump1: []
   jump2: []
-  takeDamage: []
-  shieldExpire: []
+  takeDamage:
+  - {fileID: 8300000, guid: 3f4b3dd96a29ad04fbd4ed359fe63dd5, type: 3}
+  - {fileID: 8300000, guid: 1bb3a2d28d8623a4eade825e7f9c0a68, type: 3}
+  shieldExpire:
+  - {fileID: 8300000, guid: 3f4b3dd96a29ad04fbd4ed359fe63dd5, type: 3}
   upTaunt:
   - {fileID: 8300000, guid: ef9f73914df01ae46aa8c1d7166c1e23, type: 3}
+  - {fileID: 8300000, guid: ed7caec757e065645a78eeaa443c8e17, type: 3}
   sideTaunt:
   - {fileID: 8300000, guid: ef9f73914df01ae46aa8c1d7166c1e23, type: 3}
+  - {fileID: 8300000, guid: 8bf67e1e8ae2ea247896e60a8ff8021a, type: 3}
   downTaunt:
-  - {fileID: 8300000, guid: ef9f73914df01ae46aa8c1d7166c1e23, type: 3}
+  - {fileID: 8300000, guid: 500a1717e286a674dbdc41b711a2d5e2, type: 3}
 --- !u!82 &8200386014720122572
 AudioSource:
   m_ObjectHideFlags: 0

@@ -215,10 +215,14 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayShieldExpire()
     {
-        if (takeDamage.Length != 0)
+        if (shieldExpire.Length != 0)
         {
-            audioSource.clip = shieldExpire[Random.Range(0, shieldExpire.Length)];
-            audioSource.Play();
+            AudioClip clip = shieldExpire[Random.Range(0, shieldExpire.Length)];
+            if(clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
     }
 

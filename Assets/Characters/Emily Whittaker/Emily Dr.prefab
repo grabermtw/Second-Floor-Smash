@@ -2507,7 +2507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSelected: []
+  characterSelected:
+  - {fileID: 8300000, guid: dcc1462192f0a7342a7db9f78478cdb7, type: 3}
+  - {fileID: 8300000, guid: 40b89448b9648ee4cbb0323de602f80b, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
@@ -2519,18 +2521,28 @@ MonoBehaviour:
   upSpecial: []
   downSpecial: []
   sideSpecial: []
-  grab: []
-  beingGrabbed: []
+  grab:
+  - {fileID: 8300000, guid: 48e615fef51f30e4181a73313829de69, type: 3}
+  beingGrabbed:
+  - {fileID: 8300000, guid: d8de4ddae56c2f2418bbea5e583de442, type: 3}
+  - {fileID: 8300000, guid: ebb8bdd254b7bdc40b95760247ba3bef, type: 3}
   jump1: []
   jump2: []
-  takeDamage: []
-  shieldExpire: []
+  takeDamage:
+  - {fileID: 8300000, guid: d8de4ddae56c2f2418bbea5e583de442, type: 3}
+  - {fileID: 8300000, guid: ebb8bdd254b7bdc40b95760247ba3bef, type: 3}
+  - {fileID: 8300000, guid: ef6c02b733a4f8a4899cfe5308a38047, type: 3}
+  shieldExpire:
+  - {fileID: 8300000, guid: ebb8bdd254b7bdc40b95760247ba3bef, type: 3}
   upTaunt:
-  - {fileID: 8300000, guid: da6301a3bcb50cf4a8d3b5acbff7b194, type: 3}
+  - {fileID: 8300000, guid: dcc1462192f0a7342a7db9f78478cdb7, type: 3}
+  - {fileID: 8300000, guid: 401cc631c23cb7240a54038d36519c3a, type: 3}
   sideTaunt:
-  - {fileID: 8300000, guid: cdc4db28e96a6644d88d9f900c93f961, type: 3}
+  - {fileID: 8300000, guid: dcc1462192f0a7342a7db9f78478cdb7, type: 3}
+  - {fileID: 8300000, guid: 384b85e4fd429d74aa97ae5157a1bce1, type: 3}
   downTaunt:
-  - {fileID: 8300000, guid: da6301a3bcb50cf4a8d3b5acbff7b194, type: 3}
+  - {fileID: 8300000, guid: de9e5138313b327469e688bd704627fb, type: 3}
+  - {fileID: 8300000, guid: 401cc631c23cb7240a54038d36519c3a, type: 3}
 --- !u!82 &-4621316796226048307
 AudioSource:
   m_ObjectHideFlags: 0

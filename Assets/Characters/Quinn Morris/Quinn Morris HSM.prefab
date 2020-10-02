@@ -2375,6 +2375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected:
+  - {fileID: 8300000, guid: 6255c97182edbeb459b9d54ce3cab625, type: 3}
+  - {fileID: 8300000, guid: 0768870ebe6269e4cacadfa44f1f9e6f, type: 3}
+  - {fileID: 8300000, guid: 75d0a44026ff4d6429adb406e9b5188b, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
@@ -2390,10 +2394,16 @@ MonoBehaviour:
   beingGrabbed: []
   jump1: []
   jump2: []
-  takeDamage: []
-  upTaunt: {fileID: 0}
-  sideTaunt: {fileID: 0}
-  downTaunt: {fileID: 0}
+  takeDamage:
+  - {fileID: 8300000, guid: 871fb2feb2ffa1e478b475df3cd6c3d4, type: 3}
+  shieldExpire:
+  - {fileID: 8300000, guid: 32905785fd71b574f9ec769303662133, type: 3}
+  upTaunt:
+  - {fileID: 8300000, guid: 6255c97182edbeb459b9d54ce3cab625, type: 3}
+  sideTaunt:
+  - {fileID: 8300000, guid: 0768870ebe6269e4cacadfa44f1f9e6f, type: 3}
+  downTaunt:
+  - {fileID: 8300000, guid: 75d0a44026ff4d6429adb406e9b5188b, type: 3}
 --- !u!82 &-2184180317051792326
 AudioSource:
   m_ObjectHideFlags: 0

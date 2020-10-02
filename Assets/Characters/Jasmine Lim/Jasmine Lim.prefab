@@ -2234,11 +2234,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected:
+  - {fileID: 8300000, guid: 4be3b251163042f4780769c849a744dd, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
   sidePunch: []
-  airSidePunch: []
+  airSidePunch:
+  - {fileID: 8300000, guid: 4be3b251163042f4780769c849a744dd, type: 3}
   airUpPunch: []
   airDownPunch: []
   neutralSpecial: []
@@ -2250,9 +2253,13 @@ MonoBehaviour:
   jump1: []
   jump2: []
   takeDamage: []
-  upTaunt: {fileID: 0}
-  sideTaunt: {fileID: 0}
-  downTaunt: {fileID: 0}
+  shieldExpire: []
+  upTaunt:
+  - {fileID: 8300000, guid: 4be3b251163042f4780769c849a744dd, type: 3}
+  sideTaunt:
+  - {fileID: 8300000, guid: 4be3b251163042f4780769c849a744dd, type: 3}
+  downTaunt:
+  - {fileID: 8300000, guid: 4be3b251163042f4780769c849a744dd, type: 3}
 --- !u!82 &-7940689653404620689
 AudioSource:
   m_ObjectHideFlags: 0
