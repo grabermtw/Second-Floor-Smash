@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -67,7 +68,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayNeutralPunch()
     {
-        if (neutralPunch.Length != 0)
+        if (neutralPunch.Length != 0 && !IsPlayingInArr(neutralPunch))
         {
             audioSource.clip = neutralPunch[Random.Range(0, neutralPunch.Length)];
             audioSource.Play();
@@ -76,7 +77,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayUpPunch()
     {
-        if (upPunch.Length != 0)
+        if (upPunch.Length != 0 && !IsPlayingInArr(upPunch))
         {
             audioSource.clip = upPunch[Random.Range(0, upPunch.Length)];
             audioSource.Play();
@@ -85,7 +86,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayDownPunch()
     {
-        if (downPunch.Length != 0)
+        if (downPunch.Length != 0 && !IsPlayingInArr(downPunch))
         {
             audioSource.clip = downPunch[Random.Range(0, downPunch.Length)];
             audioSource.Play();
@@ -94,7 +95,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlaySidePunch()
     {
-        if (sidePunch.Length != 0)
+        if (sidePunch.Length != 0 && !IsPlayingInArr(sidePunch))
         {
             audioSource.clip = sidePunch[Random.Range(0, sidePunch.Length)];
             audioSource.Play();
@@ -103,7 +104,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayAirUpPunch()
     {
-        if (airUpPunch.Length != 0)
+        if (airUpPunch.Length != 0 && !IsPlayingInArr(airUpPunch))
         {
             audioSource.clip = airUpPunch[Random.Range(0, airUpPunch.Length)];
             audioSource.Play();
@@ -112,7 +113,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayAirDownPunch()
     {
-        if (airDownPunch.Length != 0)
+        if (airDownPunch.Length != 0 && !IsPlayingInArr(airDownPunch))
         {
             audioSource.clip = airDownPunch[Random.Range(0, airDownPunch.Length)];
             audioSource.Play();
@@ -121,7 +122,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayAirSidePunch()
     {
-        if (airSidePunch.Length != 0)
+        if (airSidePunch.Length != 0 && !IsPlayingInArr(airSidePunch))
         {
             audioSource.clip = airSidePunch[Random.Range(0, airSidePunch.Length)];
             audioSource.Play();
@@ -130,7 +131,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayNeutralSpecial()
     {
-        if (neutralSpecial.Length != 0)
+        if (neutralSpecial.Length != 0 && !IsPlayingInArr(neutralSpecial))
         {
             audioSource.clip = neutralSpecial[Random.Range(0, neutralSpecial.Length)];
             audioSource.Play();
@@ -139,7 +140,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayUpSpecial()
     {
-        if (upSpecial.Length != 0)
+        if (upSpecial.Length != 0 && !IsPlayingInArr(upSpecial))
         {
             audioSource.clip = upSpecial[Random.Range(0, upSpecial.Length)];
             audioSource.Play();
@@ -148,7 +149,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayDownSpecial()
     {
-        if (downSpecial.Length != 0)
+        if (downSpecial.Length != 0 && !IsPlayingInArr(downSpecial))
         {
             audioSource.clip = downSpecial[Random.Range(0, downSpecial.Length)];
             audioSource.Play();
@@ -157,7 +158,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlaySideSpecial()
     {
-        if (sideSpecial.Length != 0)
+        if (sideSpecial.Length != 0 && !IsPlayingInArr(sideSpecial))
         {
             audioSource.clip = sideSpecial[Random.Range(0, sideSpecial.Length)];
             audioSource.Play();
@@ -166,7 +167,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayGrab()
     {
-        if (grab.Length != 0)
+        if (grab.Length != 0 && !IsPlayingInArr(grab))
         {
             audioSource.clip = grab[Random.Range(0, grab.Length)];
             audioSource.Play();
@@ -175,7 +176,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayBeingGrabbed()
     {
-        if (beingGrabbed.Length != 0)
+        if (beingGrabbed.Length != 0 && !IsPlayingInArr(beingGrabbed))
         {
             audioSource.clip = beingGrabbed[Random.Range(0, beingGrabbed.Length)];
             audioSource.Play();
@@ -184,7 +185,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayJump1()
     {
-        if (jump1.Length != 0)
+        if (jump1.Length != 0 && !IsPlayingInArr(jump1))
         {
             audioSource.clip = jump1[Random.Range(0, jump1.Length)];
             audioSource.Play();
@@ -193,7 +194,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayJump2()
     {
-        if (jump2.Length != 0)
+        if (jump2.Length != 0 && !IsPlayingInArr(jump2))
         {
             audioSource.clip = jump2[Random.Range(0, jump2.Length)];
             audioSource.Play();
@@ -202,7 +203,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayTakeDamage()
     {
-        if (takeDamage.Length != 0)
+        if (takeDamage.Length != 0 && !IsPlayingInArr(takeDamage))
         {
             AudioClip clip = takeDamage[Random.Range(0, takeDamage.Length)];
             if(clip != null)
@@ -215,7 +216,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayShieldExpire()
     {
-        if (shieldExpire.Length != 0)
+        if (shieldExpire.Length != 0 && !IsPlayingInArr(shieldExpire))
         {
             AudioClip clip = shieldExpire[Random.Range(0, shieldExpire.Length)];
             if(clip != null)
@@ -231,7 +232,7 @@ public class CharacterAudioManager : MonoBehaviour
     // in their taunt sound arrays, so we're gonna do an extra null check here.
     public void PlayUpTaunt()
     {
-        if (upTaunt.Length != 0)
+        if (upTaunt.Length != 0 && !IsPlayingInArr(upTaunt))
         {
             AudioClip clip = upTaunt[Random.Range(0, upTaunt.Length)];
             if(clip != null)
@@ -244,7 +245,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlaySideTaunt()
     {
-        if (sideTaunt.Length != 0)
+        if (sideTaunt.Length != 0 && !IsPlayingInArr(sideTaunt))
         {
             AudioClip clip = sideTaunt[Random.Range(0, sideTaunt.Length)];
             if(clip != null)
@@ -257,7 +258,7 @@ public class CharacterAudioManager : MonoBehaviour
 
     public void PlayDownTaunt()
     {
-        if (downTaunt.Length != 0)
+        if (downTaunt.Length != 0 && !IsPlayingInArr(downTaunt))
         {
             AudioClip clip = downTaunt[Random.Range(0, downTaunt.Length)];
             if(clip != null)
@@ -267,4 +268,21 @@ public class CharacterAudioManager : MonoBehaviour
             }
         }
     }
+
+
+
+    // ---------- HELPERS -----------
+
+    // returns true if the audio clip currently playing in the specified array.
+    // Used in all the Play_____() methods so that we don't get people spamming
+    // the same audio clip that sounds awful.
+    private bool IsPlayingInArr(AudioClip[] clipArr)
+    {
+        if (audioSource.isPlaying)
+        {
+            return clipArr.Contains(audioSource.clip);
+        }
+        return false;
+    }
+
 }
