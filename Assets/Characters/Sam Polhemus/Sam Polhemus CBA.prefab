@@ -1940,6 +1940,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected:
+  - {fileID: 8300000, guid: 801b5dbd1aaad184cba78364fba0cc27, type: 3}
+  - {fileID: 8300000, guid: 04387d4ada6342d4eb68f233bf7cc959, type: 3}
+  - {fileID: 8300000, guid: 3e2e0e9d338b37148aa49e52360b3464, type: 3}
+  - {fileID: 8300000, guid: 7551212b58a5bad40b7e53f424c999cb, type: 3}
+  - {fileID: 8300000, guid: 10521258b2486e24da4a20a396d279f9, type: 3}
   neutralPunch: []
   upPunch: []
   downPunch: []
@@ -1951,14 +1957,31 @@ MonoBehaviour:
   upSpecial: []
   downSpecial: []
   sideSpecial: []
-  grab: []
-  beingGrabbed: []
+  grab:
+  - {fileID: 8300000, guid: 04387d4ada6342d4eb68f233bf7cc959, type: 3}
+  beingGrabbed:
+  - {fileID: 8300000, guid: e51cc1a97357edf4e9514319222ebab3, type: 3}
+  - {fileID: 8300000, guid: 2efb7205df9777a4785ea5cdc40d2008, type: 3}
+  - {fileID: 8300000, guid: 801b5dbd1aaad184cba78364fba0cc27, type: 3}
   jump1: []
   jump2: []
-  takeDamage: []
-  upTaunt: {fileID: 0}
-  sideTaunt: {fileID: 0}
-  downTaunt: {fileID: 0}
+  takeDamage:
+  - {fileID: 8300000, guid: e51cc1a97357edf4e9514319222ebab3, type: 3}
+  - {fileID: 8300000, guid: ece2a0fee5b9d544d9ec8d6b8e8f7df0, type: 3}
+  - {fileID: 8300000, guid: a36716d9cc42f0049946c33268d78dfc, type: 3}
+  - {fileID: 8300000, guid: 997d9f4d7f913764380c61b2d6b7a1a7, type: 3}
+  shieldExpire:
+  - {fileID: 8300000, guid: a36716d9cc42f0049946c33268d78dfc, type: 3}
+  - {fileID: 8300000, guid: 5dbb438fda2623e47ad0f3b2ddc3edde, type: 3}
+  - {fileID: 8300000, guid: 7551212b58a5bad40b7e53f424c999cb, type: 3}
+  upTaunt:
+  - {fileID: 8300000, guid: 562aa0ac1150f9847ac40bdb5b2ac67e, type: 3}
+  sideTaunt:
+  - {fileID: 8300000, guid: 3e2e0e9d338b37148aa49e52360b3464, type: 3}
+  downTaunt:
+  - {fileID: 8300000, guid: 801b5dbd1aaad184cba78364fba0cc27, type: 3}
+  - {fileID: 8300000, guid: 5dbb438fda2623e47ad0f3b2ddc3edde, type: 3}
+  - {fileID: 8300000, guid: 7551212b58a5bad40b7e53f424c999cb, type: 3}
 --- !u!82 &1318419030264073563
 AudioSource:
   m_ObjectHideFlags: 0
