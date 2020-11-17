@@ -20,11 +20,6 @@ public class FPSToCharSelect : HubInteractor, ITransitionable
         podiums = (PodiumControl[])FindObjectsOfType(typeof(PodiumControl));
     }
 
-    void Update()
-    {
-        base.UpdateStatus();
-    }
-
     public override void Interact()
     {
         Transition(true);

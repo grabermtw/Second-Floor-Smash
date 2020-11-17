@@ -19,7 +19,7 @@ public abstract class HubInteractor : MonoBehaviour
         playerControl = player.gameObject.GetComponent<FirstPersonControl>();
     }
     
-    protected void UpdateStatus()
+    protected virtual void Update()
     {
         if (interactable && player != null)
         {
