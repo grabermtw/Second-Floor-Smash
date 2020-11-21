@@ -1975,6 +1975,8 @@ GameObject:
   - component: {fileID: 3820185907458159679}
   - component: {fileID: -4788644670799533490}
   - component: {fileID: 5391176907791096704}
+  - component: {fileID: 8602609908786440349}
+  - component: {fileID: -7417492258306462371}
   m_Layer: 0
   m_Name: Amanda OShaughnessy V2 1
   m_TagString: Amanda O'Shaughnessy
@@ -2058,6 +2060,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a5fd22e7549ea4ebd8eb8bed070367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8602609908786440349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68beaa875a774649902f86894d6e664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamingRadius: 10
+  roamingTimer: 8
+--- !u!195 &-7417492258306462371
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 2.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.65
+  m_BaseOffset: -0.09
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6212721965945501791
 GameObject:
   m_ObjectHideFlags: 0

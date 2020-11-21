@@ -1,49 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class NPCControl : MonoBehaviour
 {
+    public float roamingRadius = 10;
+    public float roamingTimer = 8f;
+
     private Animator anim;
-
-
-    // Start is called before the first frame update
-    void Start()
+    private NavMeshAgent nav;
+    private Transform target;
+    private float timer;
+    
+    private void OnEnable()
     {
         anim = GetComponent<Animator>();
-
-        // Check what our situation is to determine our behavior
-        switch(SceneManager.GetActiveScene().name)
-        {
-            case "Opening":
-                anim.SetTrigger("Opening");
-            break;
-
-            case "Hub":
-                // Are we in the character select or are we an NPC?
-                // NPC
-                if (transform.parent == null || !transform.parent.name.Contains("Podium"))
-                {
-                    anim.SetTrigger("Hub");
-                }
-                else // Character Select
-                {
-                    anim.SetTrigger("CharacterSelect");
-                }
-            break;
-
-            default:
-                Debug.LogWarning("What the heck is this scene? " + gameObject.name + " doesn't know what to do here!");
-                anim.SetTrigger("Opening");
-            break;
-        }
-        
+        nav = GetComponent<NavMeshAgent>();
+        timer = roamingTimer;
+        transform.Find("Body").localEulerAngles = new Vector3(0,0,0);
     }
-
+ 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update () {
+        timer += Time.deltaTime;
+ 
+        // When time is up, roam to a new destination
+        if (timer >= roamingTimer) {
+            Vector3 newPos = GetNewDestination(transform.position, roamingRadius, -1);
+            nav.SetDestination(newPos);
+            timer = 0;
+        }
+    }
+ 
+    public static Vector3 GetNewDestination(Vector3 origin, float dist, int layermask) {
+        // Get a random new destination
+        Vector3 newDirection = Random.insideUnitSphere * dist;
+ 
+        newDirection += origin;
+ 
+        NavMeshHit navHit;
+ 
+        NavMesh.SamplePosition(newDirection, out navHit, dist, layermask);
+ 
+        return navHit.position;
     }
 }

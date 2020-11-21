@@ -2017,6 +2017,8 @@ GameObject:
   - component: {fileID: -6391342077870508683}
   - component: {fileID: 603727826584987661}
   - component: {fileID: -1271104139784581251}
+  - component: {fileID: -5471176978159863043}
+  - component: {fileID: 7676129860970220601}
   m_Layer: 0
   m_Name: Molly Oyer 1
   m_TagString: Molly Oyer
@@ -2100,6 +2102,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a5fd22e7549ea4ebd8eb8bed070367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5471176978159863043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68beaa875a774649902f86894d6e664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamingRadius: 10
+  roamingTimer: 8
+--- !u!195 &7676129860970220601
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 2.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.65
+  m_BaseOffset: -0.09
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6294735373303282393
 GameObject:
   m_ObjectHideFlags: 0

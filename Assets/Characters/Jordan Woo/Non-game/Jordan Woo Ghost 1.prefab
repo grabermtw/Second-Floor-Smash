@@ -1814,6 +1814,8 @@ GameObject:
   - component: {fileID: -3820754281120487767}
   - component: {fileID: 1580157018336237853}
   - component: {fileID: -5685023119590102041}
+  - component: {fileID: -1459935858125570612}
+  - component: {fileID: 4615140325790098070}
   m_Layer: 0
   m_Name: Jordan Woo Ghost 1
   m_TagString: The Ghost of Prince Frederick
@@ -1897,6 +1899,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a5fd22e7549ea4ebd8eb8bed070367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1459935858125570612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68beaa875a774649902f86894d6e664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamingRadius: 10
+  roamingTimer: 8
+--- !u!195 &4615140325790098070
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 2.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.65
+  m_BaseOffset: -0.09
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6217171591835596358
 GameObject:
   m_ObjectHideFlags: 0
