@@ -12,6 +12,7 @@ public class NPCControl : MonoBehaviour
     private NavMeshAgent nav;
     private Transform target;
     private float timer;
+    private Vector3 lastFacing;
     
     private void OnEnable()
     {
@@ -19,12 +20,22 @@ public class NPCControl : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         timer = roamingTimer;
         transform.Find("Body").localEulerAngles = new Vector3(0,0,0);
+        lastFacing = transform.forward;
     }
  
     // Update is called once per frame
     void Update () {
         timer += Time.deltaTime;
- 
+
+        // Calculate angular velocity
+        Vector3 s = transform.InverseTransformDirection(nav.velocity).normalized;
+        float turn = s.x;
+
+        // let the animator know what's going on
+        anim.SetFloat("Speed", nav.velocity.magnitude);
+        anim.SetFloat("Turn", turn * 2);
+
+
         // When time is up, roam to a new destination
         if (timer >= roamingTimer) {
             Vector3 newPos = GetNewDestination(transform.position, roamingRadius, -1);
