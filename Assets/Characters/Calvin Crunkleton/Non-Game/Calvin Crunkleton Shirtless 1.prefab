@@ -1939,7 +1939,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamingRadius: 10
-  roamingTimer: 8
+  roamingTimerMax: 10
+  roamingTimerMin: 3
+  destination: {fileID: 0}
 --- !u!195 &85873746964725714
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1955,7 +1957,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 200
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.65

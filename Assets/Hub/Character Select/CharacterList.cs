@@ -228,7 +228,26 @@ public class CharacterList : MonoBehaviour
     // Returns the height offset for the specific character (this is for the character selection screen)
     public float GetHeightOffset(string characterName)
     {
-        return heightOffsets[characterName];
+        if (heightOffsets.ContainsKey(characterName))
+        {
+            return heightOffsets[characterName];
+        }
+        else // Search all characters' tags in case a tag was specified that isn't the actual character's name
+        {
+            foreach (KeyValuePair<string, GameObject[]> p in characters)
+            {
+                foreach(GameObject skin in p.Value)
+                {
+                    if (skin.CompareTag(characterName))
+                    {
+                        return heightOffsets[p.Key];
+                    }
+                }
+            }
+        }
+        // default to 0 otherwise but this shouldn't happen
+        Debug.LogWarning(characterName + "? Who the heck is this?");
+        return 0;
     }
 
     // Returns a list of all the arrays of skins for each character

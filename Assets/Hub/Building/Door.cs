@@ -1,41 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : HubInteractor
 {
+    public enum State
+    {
+        Closed,
+        Open,
+        Closing,
+        Opening,
+    }
+
     public float maxAngleOpen = 90;
     public float flapTime = 3;
     public AudioClip[] openSounds;
     public AudioClip[] closeSounds;
 
-    Quaternion rotOpened; // Door's rotation when fully opened.
-    Quaternion rotClosed; // Door's rotation when full closed.
+    public State currentState;
 
-    bool isFlapping = false; // Animate while true.
+    private Quaternion rotOpened; // Door's rotation when fully opened.
+    private Quaternion rotClosed; // Door's rotation when full closed.
+
+    private bool isFlapping = false; // Animate while true.
 
     // Set this according to whether we are going from zero
     // to one, or from one to zero.
-    float changeSign;
+    private float changeSign;
 
     private Transform hinge;
-    private Animator hingeAnim;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         hinge = transform.Find("Hinge"); // let's hope all the doors have hinges...
-        hingeAnim = hinge.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         rotOpened = Quaternion.Euler(0, maxAngleOpen, 0);
         rotClosed = Quaternion.Euler(0, 0, 0);
     }
 
+    // Used by the player to open/close the door
     public override void Interact()
     {
         base.playerControl.UnsetInteract();
         StartCoroutine(FlapDoor());
+    }
+
+    // Used when an NPC wants to open the door
+    public void OpenDoor()
+    {
+        if (currentState == State.Closed || currentState == State.Closing)
+        {
+            StartCoroutine(FlapDoor());
+        }
+    }
+
+    // Used when an NPC wants to close the door
+    public void CloseDoor()
+    {
+        if (currentState == State.Open || currentState == State.Opening)
+        {
+            StartCoroutine(FlapDoor());
+        }
     }
 
     private void PlaySound(bool opening)
@@ -55,10 +83,18 @@ public class Door : HubInteractor
     private IEnumerator FlapDoor()
     {
         // Reverse flap direction if we're already flappin'
-        Debug.Log("flapdoor()");
         if (isFlapping)
         {
-            changeSign  = (changeSign == -1 ? 1: -1);
+            if (changeSign == -1)
+            {
+                changeSign = 1;
+                currentState = State.Opening;
+            }
+            else 
+            {
+                changeSign = -1;
+                currentState = State.Closing;
+            }
             yield break;
         }
 
@@ -78,6 +114,7 @@ public class Door : HubInteractor
         {
             interpolationParameter = 0;
             changeSign = 1;
+            currentState = State.Opening;
             // Play opening sound effect because we're opening
             PlaySound(true);
         }
@@ -85,6 +122,7 @@ public class Door : HubInteractor
         {
             interpolationParameter = 1;
             changeSign = -1;
+            currentState = State.Closing;
         }
 
         while (isFlapping)
@@ -109,6 +147,11 @@ public class Door : HubInteractor
                 {
                     // Play closing sound effect because we just closed
                     PlaySound(false);
+                    currentState = State.Closed;
+                }
+                else
+                {
+                    currentState = State.Open;
                 }
             }
 
