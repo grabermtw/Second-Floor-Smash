@@ -8,8 +8,6 @@ public class NPCControl : MonoBehaviour
     public float roamingRadius = 10;
     public float roamingTimerMax = 10f;
     public float roamingTimerMin = 3f;
-    // DEBUG, leave this empty for regular behavior
-    public Transform destination;
 
     private Animator anim;
     private NavMeshAgent nav;
@@ -17,6 +15,11 @@ public class NPCControl : MonoBehaviour
     private float timer;
     private float currentRoamTime;
     private bool isRoaming;
+
+    // DEBUG and Temp stuff that should eventually be removed
+    public Transform destination; // leave this empty for regular behavior
+    public bool startInRandomPosition = true;
+    public float randomPositionStartingRadius = 120;
     
     
     private void OnEnable()
@@ -31,6 +34,14 @@ public class NPCControl : MonoBehaviour
         // Calculate the base offset adjustment using the capsule collider
         CapsuleCollider capsule = GetComponent<CapsuleCollider>();
         nav.baseOffset = - (capsule.center.y - capsule.height / 2) - 0.05f;
+
+        // Remove this
+        // Randomize starting position
+        if (startInRandomPosition)
+        {
+            Vector3 initPos = GetNewDestination(transform.position, randomPositionStartingRadius, -1);
+            transform.position = initPos;
+        }
     }
  
     // Update is called once per frame
@@ -77,7 +88,6 @@ public class NPCControl : MonoBehaviour
             if (data.offMeshLink != null)
             {
                 Door door = data.offMeshLink.GetComponent<Door>();
-                Debug.Log(door.gameObject);
                 
                 // Open door
                 door.OpenDoor();
@@ -128,16 +138,16 @@ public class NPCControl : MonoBehaviour
     }
 
 
-    public static Vector3 GetNewDestination(Vector3 origin, float dist, int layermask) {
+    public static Vector3 GetNewDestination(Vector3 origin, float radius, int layermask) {
         // Get a random new destination
-        Vector3 newDirection = Random.insideUnitSphere * dist;
- 
+        Vector3 newDirection = Random.insideUnitSphere * radius;
+
         newDirection += origin;
- 
+        
         NavMeshHit navHit;
  
-        NavMesh.SamplePosition(newDirection, out navHit, dist, layermask);
- 
+        NavMesh.SamplePosition(newDirection, out navHit, radius, layermask);
+    
         return navHit.position;
     }
 }
