@@ -16,6 +16,7 @@ public class NPCInstantiator : MonoBehaviour
     {
         allChars = charList.GetAllCharactersList();
         currentChars = new GameObject[allChars.Count];
+        InstantiateNPCs();
     }
 
     public void InstantiateNPCs()
@@ -27,7 +28,7 @@ public class NPCInstantiator : MonoBehaviour
                 // Instantiate a random skin of each character
                 foreach(GameObject[] character in allChars)
                 {
-                    currentChars[i] = Instantiate(character[(int) Mathf.Round(Random.Range(0, character.Length - 1))]);
+                    currentChars[i] = Instantiate(character[(int) Mathf.Round(Random.Range(0, character.Length - 1))].GetComponent<CharacterController>().GetNonGameCharacter(), transform);
                     i++;
                 }
                 status = 1;
