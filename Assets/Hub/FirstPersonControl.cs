@@ -16,6 +16,9 @@ public class FirstPersonControl : MonoBehaviour
     private Transform fpCam;
     private HubInteractor currentInteract;
 
+    // remove this eventually
+    public NPCInstantiator npcInstantiator;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -129,5 +132,11 @@ public class FirstPersonControl : MonoBehaviour
     {
         float inputVal = value.Get<float>();
         lookHorizontal = inputVal * lookSensitivity;
+    }
+
+    // Debug
+    void OnDebug()
+    {
+        npcInstantiator.InstantiateNPCs();
     }
 }
