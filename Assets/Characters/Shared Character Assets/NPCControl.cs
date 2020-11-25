@@ -95,7 +95,7 @@ public class NPCControl : MonoBehaviour
                 // Close the door
                 door.CloseDoor();
             }
-            else // This shouldn't be needed but for some reason it is.
+            else // This shouldn't be needed but for some reason it (sometimes) is
             {
                 Debug.LogWarning(gameObject.name + " encountered a null offMeshLink for no reason!");
                 nav.CompleteOffMeshLink();
