@@ -14,7 +14,7 @@ public class NPCInstantiator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        allChars = charList.GetAllCharactersList(true);
+        allChars = charList.GetAllCharactersList(false);
         currentChars = new GameObject[allChars.Count];
         InstantiateNPCs();
     }
