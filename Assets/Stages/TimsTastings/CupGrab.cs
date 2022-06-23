@@ -50,7 +50,7 @@ public class CupGrab : MonoBehaviour
         }
         animator = GetComponent<Animator>();
         // Get a random cupNum to start with
-        cupNum = Random.Range(0,3);
+        cupNum = Random.Range(0,4);
         // Set the animator to start
         animator.SetInteger("CupNum", cupNum + 1);
     }
@@ -116,8 +116,6 @@ public class CupGrab : MonoBehaviour
         // This is the last action that takes place after the cup is picked up,
         // so we'll decide on our next cup to pick up and let the animator know.
         cupNum = Random.Range(0,4);
-        if (cupNum == 4)
-            cupNum = 3;
         animator.SetInteger("CupNum", cupNum + 1);
     }
     

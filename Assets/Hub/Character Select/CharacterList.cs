@@ -251,12 +251,12 @@ public class CharacterList : MonoBehaviour
     }
 
     // Returns a list of all the arrays of skins for each character
-    public List<GameObject[]> GetAllCharactersList()
+    public List<GameObject[]> GetAllCharactersList(bool includeExclusions = false)
     {
         List<GameObject[]> charList = new List<GameObject[]>();
         foreach (KeyValuePair<string, GameObject[]> p in characters)
         {
-            if (!Array.Exists(excludeFromOpening, element => element == p.Key)) // temporarily
+            if (includeExclusions || !Array.Exists(excludeFromOpening, element => element == p.Key)) // temporarily
             {
                 charList.Add(p.Value);
             }
