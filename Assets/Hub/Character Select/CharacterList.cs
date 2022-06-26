@@ -191,14 +191,14 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Maria Oliva", MariaOlivaHeightOffset);
         characters.Add("Meghan Graber", MeghanGraber);
         heightOffsets.Add("Meghan Graber", MeghanGraberHeightOffset);
-        characters.Add("Melissa Baum", MelissaBaum);
-        heightOffsets.Add("Melissa Baum", MelissaBaumHeightOffset);
+        characters.Add("Mel Baum", MelissaBaum);
+        heightOffsets.Add("Mel Baum", MelissaBaumHeightOffset);
         characters.Add("Milan Gupta", MilanGupta);
         heightOffsets.Add("Milan Gupta", MilanGuptaHeightOffset);
         characters.Add("Molly Oyer", MollyOyer);
         heightOffsets.Add("Molly Oyer", MollyOyerHeightOffset);
-        characters.Add("Nate Rogers", NateRogers);
-        heightOffsets.Add("Nate Rogers", NateRogersHeightOffset);
+        characters.Add("Nat Rogers", NateRogers);
+        heightOffsets.Add("Nat Rogers", NateRogersHeightOffset);
         characters.Add("Omer Bowman", OmerBowman);
         heightOffsets.Add("Omer Bowman", OmerBowmanHeightOffset);
         characters.Add("Patrick Vorsteg", PatrickVorsteg);
