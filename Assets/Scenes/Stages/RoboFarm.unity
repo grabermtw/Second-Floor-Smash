@@ -463,10 +463,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a964e3c8b317a0c47a99580f3419c5b2, type: 2}
+    - target: {fileID: -16637128204966094, guid: 723f26c635b459146a9e5de772d80079,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 723f26c635b459146a9e5de772d80079,
         type: 3}
       propertyPath: m_Name
       value: robomatt
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 723f26c635b459146a9e5de772d80079,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 723f26c635b459146a9e5de772d80079, type: 3}
@@ -820,10 +830,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a964e3c8b317a0c47a99580f3419c5b2, type: 2}
+    - target: {fileID: -16637128204966094, guid: 723f26c635b459146a9e5de772d80079,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 723f26c635b459146a9e5de772d80079,
         type: 3}
       propertyPath: m_Name
       value: big
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 723f26c635b459146a9e5de772d80079,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 723f26c635b459146a9e5de772d80079, type: 3}
@@ -838,7 +858,7 @@ GameObject:
   - component: {fileID: 391351975}
   - component: {fileID: 391351977}
   - component: {fileID: 391351976}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5829,7 +5849,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606118788}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 6.3108872e-30, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6204,7 +6224,7 @@ MonoBehaviour:
   - target: {fileID: 1444050331}
     weight: 0.5
     radius: 0
-  - target: {fileID: 1129964344}
+  - target: {fileID: 1129866057}
     weight: 0
     radius: 0
   - target: {fileID: 1336301409}
@@ -6381,7 +6401,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 13.752696
+  field of view: 14.018965
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -6406,7 +6426,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 6.3108872e-30, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6543,6 +6563,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d812bcd1de70764f89c1a984742f48c, type: 3}
+--- !u!1 &1129866056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129866057}
+  m_Layer: 8
+  m_Name: BigRoboCameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1129866057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129866056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.17, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1129964344}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129964342 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 723f26c635b459146a9e5de772d80079,
@@ -7998,6 +8048,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276757017922751219, guid: aaa5c8b9c13be6d4f917816a4845cc56,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.007998814
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276757017922751219, guid: aaa5c8b9c13be6d4f917816a4845cc56,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0031881807
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaa5c8b9c13be6d4f917816a4845cc56, type: 3}
