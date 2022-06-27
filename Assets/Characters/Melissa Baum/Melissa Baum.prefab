@@ -1656,7 +1656,7 @@ GameObject:
   - component: {fileID: -3225049310511607404}
   m_Layer: 0
   m_Name: Melissa Baum
-  m_TagString: Melissa Baum
+  m_TagString: Mel Baum
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1917,6 +1917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff30d01311b99249a278b94e40289eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelected: []
   neutralPunch: []
   upPunch: []
   downPunch: []
@@ -1933,9 +1934,13 @@ MonoBehaviour:
   jump1: []
   jump2: []
   takeDamage: []
-  upTaunt: {fileID: 0}
-  sideTaunt: {fileID: 0}
-  downTaunt: {fileID: 0}
+  shieldExpire: []
+  upTaunt:
+  - {fileID: 0}
+  sideTaunt:
+  - {fileID: 0}
+  downTaunt:
+  - {fileID: 0}
 --- !u!82 &-3225049310511607404
 AudioSource:
   m_ObjectHideFlags: 0
