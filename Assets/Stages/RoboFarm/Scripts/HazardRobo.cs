@@ -67,11 +67,15 @@ public class HazardRobo : MonoBehaviour
         }
     }
 
+    // Damage players who impact the hazard robo
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.TryGetComponent(out CharacterController cc))
         {
-            cc.Strike(hitDamage, Mathf.PI / 4, hitForce, 1, true);
+            // Don't damage a player who is shielding, ignore the "Shield" layer
+            if (other.collider.gameObject.layer != 13) {
+                cc.Strike(hitDamage, Mathf.PI / 4, hitForce, 1, true);
+            }
         }
     }
 
@@ -82,6 +86,7 @@ public class HazardRobo : MonoBehaviour
         rb.isKinematic = false;
         transform.position = startingPos;
         targetGroup.m_Targets[8].weight = 1f;
+        rb.velocity = new Vector2(0, 0);
         rb.AddForce(force * Vector2.up);
         StartCoroutine(DoParticles(particleDuration));
     }

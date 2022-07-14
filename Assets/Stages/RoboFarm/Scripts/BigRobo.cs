@@ -38,7 +38,7 @@ public class BigRobo : MonoBehaviour
     {
         
         // The target is in index 7
-        targetGroup.m_Targets[7].weight = active ? 0.4f : 0f;
+        targetGroup.m_Targets[7].weight = active ? 0.7f : 0f;
         float elapsedTime = 0;
         Vector3 start = active ? inactivePos.position : activePos.position;
         Vector3 end = active ? activePos.position : inactivePos.position;
@@ -50,5 +50,19 @@ public class BigRobo : MonoBehaviour
         }
         
     }
+
+    // Handle parenting/unparenting players that touch the big robo,
+    // as they should move as the robo moves.
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        col.gameObject.transform.parent = transform;
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        col.gameObject.transform.parent = null;
+    }
+
+
 
 }

@@ -57,7 +57,6 @@ public class BackgroundRobo : MonoBehaviour
 
     }
 
-    // FIX INF LOOP!
     private Vector3 GetRandomPos()
     {
         Vector3 pos = new Vector3(0,20,0);
