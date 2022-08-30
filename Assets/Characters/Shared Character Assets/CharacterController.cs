@@ -117,7 +117,8 @@ public class CharacterController : MonoBehaviour
             {"Elizabeth Kilpatrick", 56},
             {"D.O.U.G.", 57},
             {"Jim Boeheim", 58},
-            {"Jimbo", 58}
+            {"Jimbo", 58},
+            {"Polly Athlon", 59}
         };
     }
 

@@ -108,7 +108,7 @@ public class Tank : MonoBehaviour
                 }
                 else
                 {
-                    ExitTank();
+                    ExitTank(); // get em outta here
                 }
                 break;                
         }

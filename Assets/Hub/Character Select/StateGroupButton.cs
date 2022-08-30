@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StateGroupButton : MonoBehaviour, ICursorButtonable
 {
-    public GameObject md;
-    public GameObject ny;
+    public GameObject[] states;
+    public GameObject nextState;
 
     public void HoverBegin()
     {
@@ -25,7 +25,10 @@ public class StateGroupButton : MonoBehaviour, ICursorButtonable
     public void Click()
     {
         // Toggle whether the UMD people or the NY people are active
-        md.SetActive(!md.activeSelf);
-        ny.SetActive(!ny.activeSelf);
+        foreach (GameObject state in states)
+        {
+            state.SetActive(false);
+        }
+        nextState.SetActive(true);
     }
 }
