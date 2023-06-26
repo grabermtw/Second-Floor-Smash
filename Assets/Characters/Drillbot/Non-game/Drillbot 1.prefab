@@ -416,7 +416,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98190336833690895}
-  - component: {fileID: 4910721681133188625}
   m_Layer: 0
   m_Name: drill
   m_TagString: Untagged
@@ -440,20 +439,6 @@ Transform:
   m_Father: {fileID: 3217863950550625486}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -2.8860002, y: 179.82501, z: 3.4670002}
---- !u!136 &4910721681133188625
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3965294470044315420}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.10261507
-  m_Height: 0.83780664
-  m_Direction: 0
-  m_Center: {x: -0.10972824, y: -0.00000002486725, z: 0.000000004736251}
 --- !u!1 &4049991341596709038
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +949,7 @@ GameObject:
   - component: {fileID: 2695814449759090795}
   - component: {fileID: -5893791482255719226}
   - component: {fileID: -1926264483590691640}
+  - component: {fileID: 5745402715724829688}
   m_Layer: 0
   m_Name: Drillbot 1
   m_TagString: Drillbot
@@ -1087,6 +1073,20 @@ NavMeshAgent:
   m_BaseOffset: -0.09
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5745402715724829688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205316382487275622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b666bf855bf584fa84430416d55c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation_DegPerSec: 500
+  drillObj: {fileID: 98190336833690895}
 --- !u!1 &6372114728131173466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7728608425222867557}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 6548237552927988464}

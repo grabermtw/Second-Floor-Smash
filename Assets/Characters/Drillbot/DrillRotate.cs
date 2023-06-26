@@ -11,7 +11,7 @@ public class DrillRotate : MonoBehaviour
     {
         if (drillObj != null)
         {
-            drillObj.Rotate(Vector3.up * rotation_DegPerSec * Time.deltaTime, Space.Self);
+            drillObj.Rotate(Vector3.right * rotation_DegPerSec * Time.deltaTime, Space.Self);
         }
     }
 }
