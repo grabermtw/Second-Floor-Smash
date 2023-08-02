@@ -15,7 +15,7 @@ public class NPCInstantiator : MonoBehaviour
     public CharacterList charList;
     public GameObject literallyEveryone;
     private List<GameObject[]> allChars;
-    private Mode status = Mode.RulesBased; // 0 is nobody in scene, 1 is one of everyone in scene, 2 is literally everyone in scene
+    private Mode status = Mode.Nobody; // 0 is nobody in scene, 1 is one of everyone in scene, 2 is literally everyone in scene
     private GameObject[] currentChars;
     private GameObject currentLiterallyEveryone;
 
