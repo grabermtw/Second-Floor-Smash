@@ -13311,9 +13311,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100603321755895008, guid: ba133df9b19ffd74dae13de13c675f0b,
         type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895008, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: -24182685650429725, guid: d8f423c4d5f05e04e8e2ece12e947989,
+      objectReference: {fileID: -8031353989078595156, guid: ca958a3284f021047b7fa1af67072b88,
         type: 2}
     - target: {fileID: 100603321755895009, guid: ba133df9b19ffd74dae13de13c675f0b,
         type: 3}
@@ -13370,6 +13375,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895011, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: shuffle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895011, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: music.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100603321755895011, guid: ba133df9b19ffd74dae13de13c675f0b,
+        type: 3}
+      propertyPath: music.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4461d18f48b42fa4098602acf4880252, type: 3}
     - target: {fileID: 100603321755895038, guid: ba133df9b19ffd74dae13de13c675f0b,
         type: 3}
       propertyPath: m_Name
