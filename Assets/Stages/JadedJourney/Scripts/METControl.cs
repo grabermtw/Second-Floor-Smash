@@ -312,6 +312,12 @@ public class METControl : MonoBehaviour
                 target = manager.ChooseRandomTarget();
             }
 
+            if (target == null)
+            {
+                Debug.Log("No targers. Breaking");
+                break;
+            }
+
             if (Vector3.Distance(target.position, transform.position) <= range)
             {
                 if (target.TryGetComponent<Rigidbody2D>(out Rigidbody2D targetRb))

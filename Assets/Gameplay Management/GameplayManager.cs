@@ -308,6 +308,10 @@ public class GameplayManager : MonoBehaviour
             if (rbs[i] != null)
                 numPlayers++;
         }
+        if (numPlayers <= 0)
+        {
+            return null;
+        }
         // get transforms of players still alive
         players = new Transform[numPlayers];
         int j = 0;
