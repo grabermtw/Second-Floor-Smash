@@ -329,7 +329,7 @@ public class METControl : MonoBehaviour
                     {
                         // Estimate the target's future position by the time the laser reaches them based on their velocity and the laser's speed
                         Vector3 velocity = new Vector3(targetRb.velocity.x, targetRb.velocity.y, 0);
-                        Vector3 targetPosition = target.position + velocity * Vector3.Distance(target.position, transform.position) / laserSpeed;
+                        Vector3 targetPosition = target.position + new Vector3(0f, 0.5f, 0f) + velocity * Vector3.Distance(target.position, transform.position) / laserSpeed;
                         // Calculate where to aim
                         Quaternion direction = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetPosition - transform.position), Time.deltaTime * aimSpeed);
                         // Clamp the rotation so that the barrel doesn't clip through the platform

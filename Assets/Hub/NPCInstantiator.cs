@@ -55,7 +55,6 @@ public class NPCInstantiator : MonoBehaviour
                 }
             break;
             case Mode.LiterallyEverybody:
-            break; //debug
                 currentChars = new GameObject[allChars.Count];
                 currentLiterallyEveryone = Instantiate(literallyEveryone);
                 status = Mode.LiterallyEverybody;
