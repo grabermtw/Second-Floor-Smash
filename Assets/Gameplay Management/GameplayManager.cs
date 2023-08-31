@@ -9,9 +9,10 @@ using UnityEngine.SceneManagement; // this is only needed when running from Unit
 public class GameplayManager : MonoBehaviour
 {
 
-    public float upBoundary; // Go past this with a greater y velocity than maxUpVelocity and you die
-    public float downBoundary; // Go past this and you die
-    public float sideBoundary; // If |your x position| > this then you die
+    private float upBoundary; // Go past this with a greater y velocity than maxUpVelocity and you die
+    private float downBoundary; // Go past this and you die
+    private float leftBoundary; // If |your x position| > this then you die
+    private float rightBoundary;
     public CinemachineTargetGroup targetGroup;
     public GameObject intialPositions;
     public float maxUpVelocity;
@@ -41,6 +42,15 @@ public class GameplayManager : MonoBehaviour
         catch
         {
             smashSettings = null;
+        }
+
+        // set boundaries based on collider
+        if (TryGetComponent<BoxCollider2D>(out BoxCollider2D boundaryCollider))
+        {
+            upBoundary = boundaryCollider.bounds.center.y + boundaryCollider.bounds.extents.y;
+            downBoundary = boundaryCollider.bounds.center.y - boundaryCollider.bounds.extents.y;
+            leftBoundary = boundaryCollider.bounds.center.x - boundaryCollider.bounds.extents.x;
+            rightBoundary = boundaryCollider.bounds.center.x + boundaryCollider.bounds.extents.x;
         }
     }
 
@@ -88,6 +98,12 @@ public class GameplayManager : MonoBehaviour
             if (playerIndex != 0)
             {
                 Destroy(newPlayer.GetComponent<PlayerInput>());
+            }
+            else
+            {
+                // enable WASD controls for player 1 in test mode only
+                newPlayer.GetComponent<PlayerInput>().SwitchCurrentActionMap("GameplayWASD");
+
             }
         }
         else // If we're actually playing the game
@@ -166,7 +182,11 @@ public class GameplayManager : MonoBehaviour
                 {
                     KO(i);
                 }
-                else if (Mathf.Abs(playerRbs[i].position.x) > sideBoundary)
+                else if (playerRbs[i].position.x < leftBoundary)
+                {
+                    KO(i);
+                }
+                else if (playerRbs[i].position.x > rightBoundary)
                 {
                     KO(i);
                 }
@@ -275,5 +295,32 @@ public class GameplayManager : MonoBehaviour
     public Rigidbody2D[] GetPlayerRbs()
     {
         return playerRbs;
+    }
+
+    public Transform ChooseRandomTarget()
+    {
+        // count number of players
+        int numPlayers = 0;
+        Transform[] players;
+        Rigidbody2D[] rbs = GetPlayerRbs();
+        for (int i = 0; i < rbs.Length; i++)
+        {
+            if (rbs[i] != null)
+                numPlayers++;
+        }
+        if (numPlayers <= 0)
+        {
+            return null;
+        }
+        // get transforms of players still alive
+        players = new Transform[numPlayers];
+        int j = 0;
+        for (int i = 0; i < rbs.Length; i++)
+        {
+            if (rbs[i] != null)
+                players[j++] = rbs[i].transform;
+        }
+        // return random target
+        return players[Random.Range(0, numPlayers)];
     }
 }

@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class NPCInstantiator : MonoBehaviour
 {
+    public enum Mode
+    {
+        Nobody,
+        Everybody,
+        LiterallyEverybody,
+        RulesBased
+    }
+
     public CharacterList charList;
     public GameObject literallyEveryone;
     private List<GameObject[]> allChars;
-    private int status = 0; // 0 is nobody in scene, 1 is one of everyone in scene, 2 is literally everyone in scene
+    private Mode status = Mode.Nobody; // 0 is nobody in scene, 1 is one of everyone in scene, 2 is literally everyone in scene
     private GameObject[] currentChars;
     private GameObject currentLiterallyEveryone;
 
@@ -21,9 +29,20 @@ public class NPCInstantiator : MonoBehaviour
 
     public void InstantiateNPCs()
     {
+        status = (Mode)(((int)status + 1 ) % System.Enum.GetValues(typeof(Mode)).Length);
+
+        // always destroy all existing characters
+        foreach(GameObject character in currentChars)
+        {
+            Destroy(character);
+        }
+
         switch(status)
         {
-            case 0:
+            case Mode.Nobody:
+                // nothing to do, we dont want to spawn anything
+            break;
+            case Mode.Everybody:
                 int i = 0;
                 // Instantiate a random skin of each character
                 foreach(GameObject[] character in allChars)
@@ -34,17 +53,15 @@ public class NPCInstantiator : MonoBehaviour
                         i++;
                     }
                 }
-                status = 1;
             break;
-            case 1:
-                // clear out the scene
-                foreach(GameObject character in currentChars)
-                {
-                    Destroy(character);
-                }
+            case Mode.LiterallyEverybody:
                 currentChars = new GameObject[allChars.Count];
                 currentLiterallyEveryone = Instantiate(literallyEveryone);
-                status = 2;
+                status = Mode.LiterallyEverybody;
+            break;
+            case Mode.RulesBased:
+                // now spawn characters based on predefined spawn points
+
             break;
             default:
                 // remove everything

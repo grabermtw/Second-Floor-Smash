@@ -114,30 +114,6 @@ public class Tank : MonoBehaviour
         }
     }
 
-    // returns a random player to be the next target of the tank
-    private Transform ChooseTarget()
-    {
-        // count number of players
-        int numPlayers = 0;
-        Transform[] players;
-        Rigidbody2D[] rbs = manager.GetPlayerRbs();
-        for (int i = 0; i < rbs.Length; i++)
-        {
-            if (rbs[i] != null)
-                numPlayers++;
-        }
-        // get transforms of players still alive
-        players = new Transform[numPlayers];
-        int j = 0;
-        for (int i = 0; i < rbs.Length; i++)
-        {
-            if (rbs[i] != null)
-                players[j++] = rbs[i].transform;
-        }
-        // return random target
-        return players[Random.Range(0, numPlayers)];
-    }
-
     // shoots a projectile from the tank barrel, exploding at z=0 as well as damaging players
     private void Shoot()
     {   
@@ -179,7 +155,7 @@ public class Tank : MonoBehaviour
         // if aiming now, choose a target
         if (state == State.tracking)
         {
-            target = ChooseTarget();
+            target = manager.ChooseRandomTarget();
             yield return new WaitForSeconds(Random.Range(4.5f, 6.5f));
             if (canShoot)
             {
