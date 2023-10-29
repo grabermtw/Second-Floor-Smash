@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 20343688}
   - component: {fileID: 20343687}
   - component: {fileID: 20343689}
+  - component: {fileID: 20343690}
   m_Layer: 0
   m_Name: GameplayManager
   m_TagString: Untagged
@@ -221,9 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace3e1d66dc6bc34fbd9c25803859e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upBoundary: 9
-  downBoundary: -6
-  sideBoundary: 15
   targetGroup: {fileID: 884619334}
   intialPositions: {fileID: 2118324695}
   maxUpVelocity: 1
@@ -252,6 +250,32 @@ MonoBehaviour:
   - {fileID: 6205316382487275622, guid: c6a14cbbec98d534ea29839700e3082c, type: 3}
   - {fileID: 6205316382487275622, guid: 17e1f5de6a7ce5240913a5da460ee466, type: 3}
   - {fileID: 6205316382487275622, guid: ceac2ac7acbd4f04393c7628a53649a8, type: 3}
+--- !u!61 &20343690
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20343686}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.9564953, y: 0.23684931}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 37.59299, y: 16.433697}
+  m_EdgeRadius: 0
 --- !u!1 &87669223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5849,7 +5873,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606118788}
-  m_LocalRotation: {x: 6.3108872e-30, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: 9e-44, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6401,7 +6425,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 14.018965
+  field of view: 12.365049
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -6426,7 +6450,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 6.3108872e-30, y: -1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: 9e-44, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
