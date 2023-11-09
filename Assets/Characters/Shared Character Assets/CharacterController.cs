@@ -119,7 +119,8 @@ public class CharacterController : MonoBehaviour
             {"Jim Boeheim", 58},
             {"Jimbo", 58},
             {"Polly Athlon", 59},
-            {"Drillbot", 60}
+            {"Drillbot", 60},
+            {"Gio Garrido Blanco", 61}
         };
     }
 

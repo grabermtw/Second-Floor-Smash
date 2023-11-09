@@ -52,6 +52,8 @@ public class CharacterList : MonoBehaviour
     public float FredDelawieHeightOffset;
     public GameObject[] Graber;
     public float GraberHeightOffset;
+    public GameObject[] GioGarridoBlanco;
+    public float GioGarridoBlancoHeightOffset;
     public GameObject[] JamesHall;
     public float JamesHallHeightOffset;
     public GameObject[] JasmineLim;
@@ -171,6 +173,8 @@ public class CharacterList : MonoBehaviour
         heightOffsets.Add("Fred Delawie", FredDelawieHeightOffset);
         characters.Add("Graber", Graber);
         heightOffsets.Add("Graber", GraberHeightOffset);
+        characters.Add("Gio Garrido Blanco", GioGarridoBlanco);
+        heightOffsets.Add("Gio Garrido Blanco", GioGarridoBlancoHeightOffset);
         characters.Add("James Hall", JamesHall);
         heightOffsets.Add("James Hall", JamesHallHeightOffset);
         characters.Add("Jasmine Lim", JasmineLim);

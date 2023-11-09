@@ -1709,7 +1709,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6205316382487275622}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: affd663144173fd42afba6db0face206, type: 3}
+  m_Avatar: {fileID: 9000000, guid: fcd35d866a42bcc47b05913ad3a7bb59, type: 3}
   m_Controller: {fileID: 9100000, guid: 223ab3f72b0707c46b9aa4a1e1f734c5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1777,6 +1777,8 @@ MonoBehaviour:
   roamingTimerMax: 10
   roamingTimerMin: 3
   destination: {fileID: 0}
+  startInRandomPosition: 1
+  randomPositionStartingRadius: 120
 --- !u!195 &6347478419060448525
 NavMeshAgent:
   m_ObjectHideFlags: 0
