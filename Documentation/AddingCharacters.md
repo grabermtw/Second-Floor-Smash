@@ -64,7 +64,6 @@ Depending on what kind of character you aim to include, there are many different
 
 14. Once your character's model has been added to the open prefab, you will notice that it appears as a prefab instance (highlighted in blue) in your hierarchy. Right-click on this prefab instance and select the option of "Unpack Prefab Completely." Then expand your newly unpacked prefab to view its children.
 15. Of the newly unpacked prefab's children, use Shift-click or Ctrl-click to select each child except for the one named "Body," and then drag them so that they are all made a child of "Body."
-16. Open the CharacterController.cs component and add your character's tag to the characterIndices dictionary when it is initialized in the Awake() method, using the character's tag as the key and an int not used by any of the other characters as the value.
 
 <img align="right" width="205" height="242" src="Images/moveshieldfinish.JPG">
 
@@ -75,6 +74,7 @@ Depending on what kind of character you aim to include, there are many different
 20. Enter the Non-Game folder, rename the prefab in that folder to your character's name (keep the "1" appended to the end of it), then double click to open the prefab.
 21. Repeat steps 10 through 19 with the Non-Game prefab while ignoring everything related to the "Shield" GameObject in steps 11 and 18.
 22. Open your character's game prefab (not the Non-Game one). There will be a field on the CharacterController component called "Non Game Character". Drag your character's corresponding Non-Game prefab into this field.
+23. Open the CharacterController component script and add your character's tag to the characterIndices dictionary when it is initialized in the Awake() method, using the character's tag as the key and an int not used by any of the other characters as the value.
 ### Part 4: Update the Character Selection screen
 #### While completion of Part 3 will give you a playable character, we must first update the character selection screen so that it is actually possible to select that character from within the game.
 1. Exit the opened prefab to return to the view of the scene called "Hub."
