@@ -88,25 +88,11 @@ Depending on what kind of character you aim to include, there are many different
 <img align="right" width="233" height="434" src="Images/sourceimage.JPG">
 
 6. Click on the GameObject for the new character icon that you made in the hierarchy. It will have an "Image" component with a field called "Source Image." Drag your newly edited character icon from the CharacterIcons folder into this field. This will give your character's icon on the character selection screen its distinctive appearance.
-7. Find and select the prefab in the Utilities folder called "CharacterList". There will be a script attached to it called "CharacterList." Right-click this script, and then select "Edit Script" to open it in your IDE.
-8. In the CharacterList.cs script, you will see a series of declarations of public GameObject arrays and public floats, one of each for each character. Add one of each for your new character, like so:
-
-        public GameObject[] NewCharacter;
-        public float NewCharacterHeightOffset;
-
-9. Scroll down until you reach the `void Start()` function. Within this function, you will find a series of statements adding to a dictionary called `characters` and a dictionary called `heightOffsets`. Add a statement adding your character's public GameObject array and your character's public float that you declared in the last step to `characters` and `heightOffsets`, respectively. For each dictionary's key, enter the exact string that you used for your character's tag that you assigned to your character's icon. For example:
-
-        characters.Add("New Character", NewCharacter);
-        heightOffsets.Add("New Character", NewCharacterHeightOffset);
-
-10. Save the script and return to the Unity window, with the CharacterList prefab again selected.
-11. In the Inspector, you should now see a new field appear on the Character List script component for both your character's GameObject array and your character's height offset.
-
-<img align="right" width="225" height="126" src="Images/vorstegskins.JPG">
-
-12. Navigate to Assets/Characters and then enter the folder you created for your character, where your character's prefab is stored. Expand your character's GameObject array in the Character List script component in the Inspector, set the size of the array to 1, and then drag your character's prefab into the GameObject field that appears.
+7. Find and select the prefab in the Utilities folder called "CharacterList". There will be a script attached to it called "CharacterList."
+8. Click the "+" at the bottom of the component to add a new entry to the CharacterList. Enter the name of your character in the "Character Name Tag" field, spelled exactly as it's spelled in your character's tag.
+9. Navigate to Assets/Characters and then enter the folder you created for your character, where your character's prefab is stored. Add an entry to the "Skins" array, and then drag your character's prefab into the GameObject field that appears.
     1. Note: if you ever create alternate skins/outfits for your character, simply expand the size of the array and drag them into the slots to add them to the game.
-    2. Be sure you are completing this step using the CharacterList prefab in Assets/Utilities rather than an instance of the prefab in the scene.
+    2. Be sure you are completing this step using the CharacterList prefab in Assets/Utilities rather than an instance of the prefab in the scene. If you do it on an instance of the prefab in the scene, then you will need to click on "Overrides" at the top of the GameObject and click "Apply All" to apply your changes to the original prefab.
 ### Part 5: Final adjustments
 #### At this point, if you click the play button to run the game, you will be able to select your character and play as that character in the game. However, there are two minor adjustments that may need to be made.
 1. First, we will make sure that the character's feet are actually on the ground. Because not all characters are the same height, the duplication and modification technique we used to create our new character leaves it with the same collider size that the character it was copied from had, which is often the wrong size for the new character.
@@ -145,8 +131,5 @@ Depending on what kind of character you aim to include, there are many different
         2. If the distances are different, then (without exiting play mode), click on the "P1 Podium" GameObject, and then adjust the y-component of the position field in the P1 Podium GameObject's Transform component until your character's head appears to be at an appropriate height in the game view.
     3. Calculate the difference between -1.5 (P1 Podium's default y-coordinate) and its new y-coordinate. Do not take the absolute value. For example, if the new y-coordinate were -1.75, then the difference would be -0.25. This is your height adjustment value.
     4. Exit play mode and select the CharacterList prefab in Assets/Utilites.
-    
-    <img align="right" width="336" height="41" src="Images/heightoffset.JPG">
-    
-    5. In the Inspector, find your character's height offset field, and enter in your calculated height adjustment value.
+    5. In the Inspector, find your character's "Character Select Height Offset" field, and enter in your calculated height adjustment value.
 3. Click the play button and select your character to verify that both adjustments are satisfactory. You can also judge the heights and ranges and power your character has for its basic attacks and change them on the CommonCombatParams component on your character's GameObject if you desire to better fit your character, as well as change the movement speed and jump power on the CharacterController component. If you are all satisfied, then your character has been successfully and fully added to _Second Floor Smash_!
