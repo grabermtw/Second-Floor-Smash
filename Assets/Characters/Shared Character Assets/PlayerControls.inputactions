@@ -570,6 +570,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "1D Axis",
+                    "id": "67ea6efc-c1dc-4b75-8f63-94049657a203",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SidePunch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "70ca1223-df00-485c-ab32-ba65f497108d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SidePunch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ec2cf241-5577-4221-a586-408d7f81f1f7",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SidePunch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "cc40314d-8c14-4cd5-b633-e4f51b736de3",
                     "path": "<Gamepad>/rightStick/up",
@@ -582,9 +615,31 @@
                 },
                 {
                     "name": "",
+                    "id": "31ffdefe-2416-48fa-86c7-1dbe4e78966c",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UpPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a2be90ac-532a-4218-8b3d-cd71789392c1",
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DownPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "194d421d-a9c3-491c-ba82-95de3239ca23",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "DownPunch",
@@ -802,9 +857,75 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "0fa781f6-db02-49c7-a670-2bc069cb5211",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "14308962-ca91-4422-9865-4251fe279192",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "34f0c3d2-ebb4-475c-8808-f3914c2876ef",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "c5c59201-eca0-4bcf-8fcb-6dc9aa1585a4",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "a747f493-4ebf-4d75-9197-d4129423c01b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "bf69507a-134a-419f-8791-5a151ca7ee27",
                     "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05daca85-bb07-4d2d-a11d-42bcd8b16b23",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -825,8 +946,30 @@
                 },
                 {
                     "name": "",
+                    "id": "419af0d8-583f-4803-8f5a-2f6beb11a4f3",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8f467cf6-552b-4637-9857-009d00441493",
                     "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad509678-b8ff-4ec8-b053-006f1cc558db",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -847,8 +990,30 @@
                 },
                 {
                     "name": "",
+                    "id": "b5e7df47-4484-43df-976a-28a59a9a13a8",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeSkin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8de65770-a63f-411c-b507-d8f9e19cf885",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2b5f1e5-f190-44be-93d8-fb883b6ff8b8",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
